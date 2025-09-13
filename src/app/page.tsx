@@ -1,103 +1,102 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; speed: number }>>([]);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Generate fewer particles for minimalism
+    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 2 + 1,
+      speed: Math.random() * 1 + 0.3,
+    }));
+    setParticles(newParticles);
+
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const animateParticles = () => {
+      setParticles(prev => prev.map(particle => ({
+        ...particle,
+        y: particle.y - particle.speed,
+        x: particle.x + Math.sin(particle.y * 0.005) * 0.3,
+      })).map(particle => 
+        particle.y < -10 ? { ...particle, y: window.innerHeight + 10 } : particle
+      ));
+    };
+
+    const interval = setInterval(animateParticles, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-950/30 to-black"></div>
+      
+      {/* Minimal Floating Particles */}
+      {particles.map(particle => (
+        <div
+          key={particle.id}
+          className="absolute rounded-full bg-purple-800/20"
+          style={{
+            left: `${particle.x}px`,
+            top: `${particle.y}px`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            boxShadow: `0 0 ${particle.size * 3}px rgba(88, 28, 135, 0.3)`,
+          }}
+        />
+      ))}
+
+      {/* Subtle Mouse Follower */}
+      <div
+        className="fixed w-64 h-64 rounded-full pointer-events-none z-10 opacity-30"
+        style={{
+          left: mousePosition.x - 128,
+          top: mousePosition.y - 128,
+          background: 'radial-gradient(circle, rgba(88, 28, 135, 0.1) 0%, transparent 60%)',
+          transition: 'all 0.2s ease-out',
+        }}
+      />
+
+      {/* Main Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4">
+        {/* Clean Title */}
+        <div className="relative mb-12">
+          <h1 className="text-5xl md:text-7xl font-light text-white tracking-wider">
+            COMING SOON
+          </h1>
+          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-purple-800 to-transparent"></div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Simple Subtitle */}
+        <p className="text-lg md:text-xl text-purple-300/80 mb-16 text-center font-light tracking-wide">
+          Something beautiful is on the way
+        </p>
+
+        {/* Minimal Loading Animation */}
+        <div className="relative mb-20">
+          <div className="w-16 h-16 border border-purple-800/50 rounded-full animate-spin">
+            <div className="absolute top-0 left-0 w-4 h-4 bg-purple-800 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Subtle Bottom Accent */}
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-900/50 to-transparent"></div>
     </div>
   );
 }
