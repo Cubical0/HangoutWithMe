@@ -83,8 +83,8 @@ export default function Home() {
         </div>
 
         {/* Simple Subtitle */}
-        <p className="text-lg md:text-xl text-purple-300/80 mb-16 text-center font-light tracking-wide">
-          Something beautiful is on the way
+        <p className="text-lg md:text-xl text-purple-300/80 mb-16 text-center font-light tracking-wide ">
+Codex of connections is on its way.
         </p>
 
         {/* Minimal Loading Animation */}
