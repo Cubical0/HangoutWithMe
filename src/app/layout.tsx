@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import LenisProvider from "@/componets/providers/LenisProvider";
+import LenisProvider from "@/components/providers/LenisProvider";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coming Soon - Something Amazing",
-  description: "Something incredible is coming soon. Get ready for an amazing experience with stunning visuals and cutting-edge technology.",
+  title: "CryptoTrade - Master Cryptocurrency Trading",
+  description: "Learn cryptocurrency trading with our comprehensive courses and expert insights. Join thousands of successful traders worldwide.",
 };
 
 export default function RootLayout({
@@ -26,10 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
         <LenisProvider>
-          {children}
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
         </LenisProvider>
       </body>
     </html>

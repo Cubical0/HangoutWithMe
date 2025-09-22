@@ -31,9 +31,9 @@ export const ContainerScroll = ({
     return isMobile ? [0.6, 0.9] : [1.1, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 0.6, 1], [85, 0, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [...scaleDimensions(), scaleDimensions()[1]]);
-  const translate = useTransform(scrollYProgress, [0, 0.6, 1], [0, -150, -150]);
+  const rotate = useTransform(scrollYProgress, [0, 0.6, 1], [85, -4, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.9, 1], [...scaleDimensions(), scaleDimensions()[1]]);
+  const translate = useTransform(scrollYProgress, [0, 1, 1], [0, -100, -150]);
 
   // Debug: Log scroll progress (remove this in production)
   useEffect(() => {
@@ -48,13 +48,7 @@ export const ContainerScroll = ({
       className=" flex items-center justify-center relative p-2 md:p-20"
       ref={containerRef}
     >
-      {/* Debug progress indicator */}
-      <motion.div 
-        className="fixed top-4 right-4 bg-white text-black p-2 rounded z-50"
-        style={{ opacity: scrollYProgress }}
-      >
-        Progress: <motion.span>{scrollYProgress}</motion.span>
-      </motion.div>
+=
       <div
         className="py-10 md:py-40 w-full relative"
         style={{
@@ -186,14 +180,7 @@ export const Card = ({
       className="max-w-5xl -mt-4 mx-auto h-[35rem] md:h-[40rem] w-full  bg-[#222222] rounded-[30px] shadow-2xl relative"
     >
       {/* Dark purple background glow - larger and behind */}
-      <div 
-        className="absolute -top-4 left-0 right-0 h-[12px] rounded-t-[30px]"
-        style={{
-          background: "linear-gradient(90deg, transparent 0%, rgba(59, 7, 100, 0.8) 15%, rgba(88, 28, 135, 0.9) 30%, rgba(88, 28, 135, 0.9) 70%, rgba(59, 7, 100, 0.8) 85%, transparent 100%)",
-          boxShadow: "0 -20px 50px rgba(59, 7, 100, 0.7), 0 -40px 80px rgba(59, 7, 100, 0.5), 0 -60px 100px rgba(59, 7, 100, 0.3), 0 -80px 120px rgba(59, 7, 100, 0.2)",
-          filter: "blur(2px)"
-        }}
-      />
+
       {/* Bright purple glowing gradient at top border */}
       <div 
         className="absolute top-0 left-0 right-0 h-[2px] rounded-t-[30px] z-10"

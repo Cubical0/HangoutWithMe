@@ -11,6 +11,9 @@ export default function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Add Lenis classes to html element
+    document.documentElement.classList.add('lenis');
+    
     // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
@@ -26,6 +29,9 @@ export default function LenisProvider({ children }: LenisProviderProps) {
 
     lenisRef.current = lenis;
 
+    // Make Lenis instance globally available
+    (window as any).lenis = lenis;
+
     // Animation frame loop
     function raf(time: number) {
       lenis.raf(time);
@@ -36,7 +42,9 @@ export default function LenisProvider({ children }: LenisProviderProps) {
 
     // Cleanup
     return () => {
+      document.documentElement.classList.remove('lenis');
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 
