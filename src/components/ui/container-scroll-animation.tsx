@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useTransform, motion, MotionValue, useMotionValue } from 'framer-motion';
 import { useLenisScroll } from '@/hooks/useLenisScroll';
 
-export const ContainerScroll = ({
+export const  ContainerScroll = ({
   titleComponent,
   children,
   discordRef,
@@ -31,7 +31,7 @@ export const ContainerScroll = ({
     return isMobile ? [0.6, 0.9] : [1.1, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 0.6, 1], [85, -4, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 0.6, 1], [85, -1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.9, 1], [...scaleDimensions(), scaleDimensions()[1]]);
   const translate = useTransform(scrollYProgress, [0, 1, 1], [0, -100, -150]);
 
@@ -45,12 +45,11 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className=" flex items-center justify-center relative p-2 md:p-20"
+      className=" flex items-center justify-center  p-2 md:p-20"
       ref={containerRef}
     >
-=
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="w-full relative"
         style={{
           perspective: "1000px",
         }}

@@ -14,9 +14,9 @@ export default function Home() {
       <HomeHero />
       <FeaturesOverview />
       <PlatformStats />
+      <QuickStartCTA />
       <UserTestimonials />
       <FAQ />
-      <QuickStartCTA />
     </div>
   );
 }
