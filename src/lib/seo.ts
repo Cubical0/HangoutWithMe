@@ -46,7 +46,9 @@ export function generateMetadata(config: SEOConfig): Metadata {
     keywords: keywords.join(', '),
     authors: author ? [{ name: author }] : undefined,
     robots: noindex ? 'noindex,nofollow' : 'index,follow',
-    canonical: canonicalUrl,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: fullTitle,
       description,
@@ -77,9 +79,6 @@ export function generateMetadata(config: SEOConfig): Metadata {
       images: [imageUrl],
       creator: '@HangoutFinance',
       site: '@HangoutFinance',
-    },
-    alternates: {
-      canonical: canonicalUrl,
     },
   };
 

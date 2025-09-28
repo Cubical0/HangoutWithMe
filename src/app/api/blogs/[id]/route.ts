@@ -6,12 +6,12 @@ import mongoose from 'mongoose';
 // GET /api/blogs/[id] - Get a single blog by ID or slug
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
     let blog;
 
     // Check if id is a valid ObjectId, otherwise search by slug
@@ -44,12 +44,12 @@ export async function GET(
 // PUT /api/blogs/[id] - Update a blog
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     // Calculate reading time if content is updated
@@ -105,12 +105,12 @@ export async function PUT(
 // DELETE /api/blogs/[id] - Delete a blog
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = params;
+    const { id } = await params;
     let blog;
 
     // Check if id is a valid ObjectId, otherwise search by slug

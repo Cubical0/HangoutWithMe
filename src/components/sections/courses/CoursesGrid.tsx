@@ -2,56 +2,40 @@
 
 import { Cover } from '@/components/ui/cover';
 import { motion } from 'framer-motion';
-import { GraduationCap, BarChart3, Building2, Palette, Briefcase, Code } from 'lucide-react';
+import { ShoppingCart, Package, Users, TrendingUp } from 'lucide-react';
 
 const courses = [
   {
     id: 1,
-    title: "Cryptocurrency Fundamentals",
-    description: "Complete beginner's guide to understanding cryptocurrencies.",
-    price: "$79",
+    title: "E-commerce Fundamentals",
+    description: "Complete guide to starting and scaling your online store from scratch.",
+    price: "$149",
     level: "Beginner",
-    icon: GraduationCap
+    icon: ShoppingCart
   },
   {
     id: 2,
-    title: "Technical Analysis Mastery",
-    description: "Learn to read charts and make informed trading decisions.",
-    price: "$149",
+    title: "Dropshipping Mastery",
+    description: "Build a profitable dropshipping business with proven strategies.",
+    price: "$199",
     level: "Intermediate",
-    icon: BarChart3
+    icon: Package
   },
   {
     id: 3,
-    title: "DeFi Deep Dive",
-    description: "Comprehensive course on decentralized finance protocols.",
-    price: "$199",
-    level: "Advanced",
-    icon: Building2
+    title: "Dropservicing Empire",
+    description: "Scale service-based businesses using dropservicing methods.",
+    price: "$179",
+    level: "Intermediate",
+    icon: Users
   },
   {
     id: 4,
-    title: "NFT & Digital Assets",
-    description: "Understanding the NFT ecosystem and investment strategies.",
+    title: "Affiliate Marketing Pro",
+    description: "Master affiliate marketing and create passive income streams.",
     price: "$129",
-    level: "Intermediate",
-    icon: Palette
-  },
-  {
-    id: 5,
-    title: "Crypto Portfolio Management",
-    description: "Advanced strategies for building a diversified crypto portfolio.",
-    price: "$179",
-    level: "Advanced",
-    icon: Briefcase
-  },
-  {
-    id: 6,
-    title: "Blockchain Development Basics",
-    description: "Introduction to blockchain development and smart contracts.",
-    price: "$249",
-    level: "Advanced",
-    icon: Code
+    level: "Beginner",
+    icon: TrendingUp
   }
 ];
 
@@ -61,11 +45,18 @@ export default function CoursesGrid() {
       {/* Section Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Master Crypto <Cover> Trading</Cover>
+          Master E-commerce & Digital Business
         </h2>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-          Learn from industry experts with our comprehensive courses designed to take you from beginner to professional trader
+          Learn from industry experts with our comprehensive courses designed to help you build and scale profitable online businesses
         </p>
+      </div>
+      <div className="text-center mb-8">
+        <Cover> 
+        <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+          We provide funds up to $5000
+          </h2>
+          </Cover>
       </div>
 
       {/* Courses Grid */}

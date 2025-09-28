@@ -7,6 +7,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
+import Link from "next/link";
 
 import React, { useRef, useState } from "react";
 
@@ -136,12 +137,12 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <Link
+          key={`link-${idx}`}
+          href={item.link}
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
           className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-          key={`link-${idx}`}
-          href={item.link}
         >
           {hovered === idx && (
             <motion.div
@@ -150,7 +151,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             />
           )}
           <span className="relative z-20">{item.name}</span>
-        </a>
+        </Link>
       ))}
     </motion.div>
   );
@@ -243,14 +244,22 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <Link
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <span className="font-medium text-black dark:text-white">HangoutCodex</span>
-    </a>
+    </Link>
   );
 };
+
+type NavbarButtonProps<T extends React.ElementType = "a"> = {
+  href?: string;
+  as?: T;
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "dark" | "gradient";
+} & Omit<React.ComponentPropsWithoutRef<T>, "as" | "className" | "variant" | "href" | "children">;
 
 export const NavbarButton = <T extends React.ElementType = "a">({
   href,
@@ -259,13 +268,7 @@ export const NavbarButton = <T extends React.ElementType = "a">({
   className,
   variant = "primary",
   ...props
-}: {
-  href?: string;
-  as?: T;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & Omit<React.ComponentPropsWithoutRef<T>, "as" | "children" | "className" | "variant" | "href">) => {
+}: NavbarButtonProps<T>) => {
   const Tag = as || "a";
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
@@ -279,16 +282,20 @@ export const NavbarButton = <T extends React.ElementType = "a">({
       "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
-  // Create props object conditionally including href
-  const tagProps = {
-    className: cn(baseStyles, variantStyles[variant], className),
-    ...props,
-    ...(href && { href }),
-  } as React.ComponentPropsWithoutRef<T>;
+  const finalClassName = cn(baseStyles, variantStyles[variant], className);
 
-  return (
-    <Tag {...tagProps}>
-      {children}
-    </Tag>
-  );
+  // Handle the polymorphic component rendering
+  if (href && !as) {
+    return (
+      <a href={href} className={finalClassName} {...props}>
+        {children}
+      </a>
+    );
+  }
+
+  return React.createElement(Tag, {
+    ...props,
+    className: finalClassName,
+    ...(href && { href }),
+  }, children);
 };

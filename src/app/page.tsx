@@ -18,9 +18,9 @@ export default function Home() {
       <PlatformStats />
       
       <AnimatedTestimonialsDemo/>
-      <UserTestimonials />
       <FAQ />
       <ContactUs />
+      <UserTestimonials />
     </div>
   );
 }

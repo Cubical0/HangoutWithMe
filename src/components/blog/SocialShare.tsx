@@ -29,7 +29,7 @@ export default function SocialShare({ url, title, description }: SocialShareProp
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
+    if (typeof navigator !== 'undefined' && 'share' in navigator) {
       try {
         await navigator.share({
           title,
@@ -96,7 +96,7 @@ export default function SocialShare({ url, title, description }: SocialShareProp
           </button>
 
           {/* Native Share (mobile) */}
-          {typeof navigator !== 'undefined' && navigator.share && (
+          {typeof navigator !== 'undefined' && 'share' in navigator && (
             <button
               onClick={handleShare}
               className="flex items-center gap-2 px-4 py-3 bg-white/15 backdrop-blur-sm hover:bg-white/25 text-white rounded-xl transition-all duration-300 border border-white/30 hover:border-white/50 font-medium sm:hidden"

@@ -25,16 +25,16 @@ const CoursesHero = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
   const courseFeatures = [
-    { icon: BookOpen, text: "Comprehensive Curriculum" },
-    { icon: GraduationCap, text: "Expert Instructors" },
-    { icon: Users, text: "Community Support" },
-    { icon: Star, text: "5-Star Rated" },
+    { icon: BookOpen, text: "Comprehensive E-commerce Training" },
+    { icon: GraduationCap, text: "Industry Expert Mentors" },
+    { icon: Users, text: "Active Community Support" },
+    { icon: Star, text: "Proven Success Methods" },
   ];
 
   return (
@@ -51,27 +51,28 @@ const CoursesHero = () => {
         >
           {/* Badge */}
           <motion.div
-            variants={itemVariants}
+          variants={containerVariants}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-8"
           >
             <div className="w-2 h-2 bg-amber-300 rounded-full animate-pulse"></div>
-            <span className="text-sm text-gray-300">Over 50,000+ students enrolled worldwide</span>
+            <span className="text-sm text-gray-300">Launch Your E-commerce Empire Today</span>
           </motion.div>
 
           {/* Main Heading */}
-          <motion.div variants={itemVariants} className="mb-8">
+          <motion.div           variants={containerVariants}
+ className="mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-purple-300 via-pink-300 to-amber-300 bg-clip-text text-transparent">
-                Master Crypto Trading
+                Ecom Launchpad
               </span>
               <br />
               <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                With Our Premium
+                Master E-commerce &
               </span>
               <br />
               <Cover> 
               <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
-               Trading Courses
+               Digital Business
                 </span>
                 </Cover>
             </h1>
@@ -79,17 +80,17 @@ const CoursesHero = () => {
 
           {/* Subtitle */}
           <motion.p
-            variants={itemVariants}
+          variants={containerVariants}
             className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
           >
-            From beginner fundamentals to advanced trading strategies.
+            From E-commerce basics to advanced digital business strategies.
             <br className="hidden md:block" />
-            Learn at your own pace with our structured curriculum and expert mentorship.
+            Build profitable online businesses with our comprehensive training programs.
           </motion.p>
 
           {/* Feature Pills */}
           <motion.div
-            variants={itemVariants}
+          variants={containerVariants}
             className="flex flex-wrap justify-center gap-4 mb-12"
           >
             {courseFeatures.map((feature, index) => (
@@ -105,7 +106,7 @@ const CoursesHero = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            variants={itemVariants}
+          variants={containerVariants}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             {/* Primary CTA */}

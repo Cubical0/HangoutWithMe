@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-export function useLenisScroll(targetRef: React.RefObject<HTMLElement>) {
+export function useLenisScroll(targetRef: React.RefObject<HTMLElement | null>) {
   const scrollYProgress = useMotionValue(0);
 
   useEffect(() => {

@@ -1,13 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Input } from '@/components/ui/input';
-
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { X, Mail, MessageCircle } from 'lucide-react';
 
 export default function ContactUs() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -17,6 +20,50 @@ export default function ContactUs() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Ensure component is mounted before rendering portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    };
+  }, [isModalOpen]);
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isModalOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -48,6 +95,10 @@ export default function ContactUs() {
       if (response.ok) {
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+        setTimeout(() => {
+          setIsModalOpen(false);
+          setSubmitStatus('idle');
+        }, 2000);
       } else {
         setSubmitStatus('error');
       }
@@ -59,98 +110,207 @@ export default function ContactUs() {
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSubmitStatus('idle');
+  };
+
   return (
-    <section className="flex flex-col justify-center items-center ">
-
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-          <LabelInputContainer>
-            <Label htmlFor="firstname">First name</Label>
-            <Input 
-              id="firstname" 
-              name="firstName"
-              placeholder="Tyler" 
-              type="text" 
-              value={formData.firstName}
-              onChange={handleInputChange}
-              required
-            />
-          </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
-            <Input 
-              id="lastname" 
-              name="lastName"
-              placeholder="Durden" 
-              type="text" 
-              value={formData.lastName}
-              onChange={handleInputChange}
-              required
-            />
-          </LabelInputContainer>
-        </div>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input 
-            id="email" 
-            name="email"
-            placeholder="projectmayhem@fc.com" 
-            type="email" 
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="subject">Subject</Label>
-          <Input 
-            id="subject" 
-            name="subject"
-            placeholder="What's this about?" 
-            type="text" 
-            value={formData.subject}
-            onChange={handleInputChange}
-            required
-          />
-        </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
-          <Label htmlFor="message">Message</Label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Tell us more about your inquiry..."
-            className="flex h-24 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400 resize-none"
-            value={formData.message}
-            onChange={handleInputChange}
-            required
-          />
-        </LabelInputContainer>
- 
-        <button
-          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
-          type="submit"
-          disabled={isSubmitting}
+    <>
+      {/* Beautiful Contact Button */}
+      <section className="flex flex-col justify-center items-center py-8">
+        <motion.button
+          onClick={() => setIsModalOpen(true)}
+          className="group relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-black"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'} &rarr;
-          <BottomGradient />
-        </button>
- 
-        {submitStatus === 'success' && (
-          <div className="mt-4 p-3 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-md">
-            Message sent successfully! We&apos;ll get back to you soon.
-          </div>
-        )}
-        
-        {submitStatus === 'error' && (
-          <div className="mt-4 p-3 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-md">
-            Failed to send message. Please try again.
-          </div>
-        )}
+          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#d946ef_0%,#f59e0b_50%,#d946ef_100%)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
+            <MessageCircle className="mr-3 w-5 h-5" />
+            Get In Touch
+            <motion.div
+              className="ml-3 w-2 h-2 bg-pink-300 rounded-full"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </span>
+        </motion.button>
+      </section>
 
-        <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+      {/* Glassmorphism Modal - Rendered via Portal */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[99999] flex items-center justify-center p-4 overflow-hidden"
+              onClick={closeModal}
+              style={{ 
+                position: 'fixed', 
+                top: 0, 
+                left: 0, 
+                right: 0, 
+                bottom: 0,
+                zIndex: 99999
+              }}
+            >
+            {/* Backdrop with blur - prevents scrolling */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
+            
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Glassmorphism Container */}
+              <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl">
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-white/20 rounded-xl">
+                        <Mail className="w-5 h-5 text-white" />
+                      </div>
+                      <h2 className="text-2xl font-bold text-white">Contact Us</h2>
+                    </div>
+                    <button
+                      onClick={closeModal}
+                      className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
 
-      </form>
-    </section>
+                  {/* Form */}
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Name Fields */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <LabelInputContainer>
+                        <Label htmlFor="firstname" className="text-white/90">First name</Label>
+                        <Input 
+                          id="firstname" 
+                          name="firstName"
+                          placeholder="Tyler" 
+                          type="text" 
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:ring-white/20"
+                          required
+                        />
+                      </LabelInputContainer>
+                      <LabelInputContainer>
+                        <Label htmlFor="lastname" className="text-white/90">Last name</Label>
+                        <Input 
+                          id="lastname" 
+                          name="lastName"
+                          placeholder="Durden" 
+                          type="text" 
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:ring-white/20"
+                          required
+                        />
+                      </LabelInputContainer>
+                    </div>
+
+                    {/* Email */}
+                    <LabelInputContainer>
+                      <Label htmlFor="email" className="text-white/90">Email Address</Label>
+                      <Input 
+                        id="email" 
+                        name="email"
+                        placeholder="projectmayhem@fc.com" 
+                        type="email" 
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 focus:ring-purple-400/20"
+                        required
+                      />
+                    </LabelInputContainer>
+
+                    {/* Subject */}
+                    <LabelInputContainer>
+                      <Label htmlFor="subject" className="text-white/90">Subject</Label>
+                      <Input 
+                        id="subject" 
+                        name="subject"
+                        placeholder="What's this about?" 
+                        type="text" 
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 focus:ring-purple-400/20"
+                        required
+                      />
+                    </LabelInputContainer>
+
+                    {/* Message */}
+                    <LabelInputContainer>
+                      <Label htmlFor="message" className="text-white/90">Message</Label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell us more about your inquiry..."
+                        className="flex h-24 w-full border border-white/20 bg-white/10 text-white shadow-input rounded-md px-3 py-2 text-sm placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:border-white/40 disabled:cursor-not-allowed disabled:opacity-50 transition duration-200 resize-none backdrop-blur-sm"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </LabelInputContainer>
+
+                    {/* Submit Button */}
+                    <motion.button
+                      className="group/btn relative block h-12 w-full rounded-xl bg-white/20 hover:bg-white/30 font-medium text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+                      type="submit"
+                      disabled={isSubmitting}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'} &rarr;
+                    </motion.button>
+
+                    {/* Status Messages */}
+                    <AnimatePresence>
+                      {submitStatus === 'success' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="p-3 bg-green-500/20 border border-green-500/30 text-green-300 rounded-xl backdrop-blur-sm"
+                        >
+                          ✨ Message sent successfully! We&apos;ll get back to you soon.
+                        </motion.div>
+                      )}
+                      
+                      {submitStatus === 'error' && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="p-3 bg-red-500/20 border border-red-500/30 text-red-300 rounded-xl backdrop-blur-sm"
+                        >
+                          ⚠️ Failed to send message. Please try again.
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </form>
+                </div>
+              </div>
+            </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 }
 

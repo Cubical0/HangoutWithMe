@@ -3,7 +3,6 @@
 import { CardSpotlight } from '@/components/ui/card-spotlight';
 import { motion } from 'framer-motion';
 import { 
-  Check, 
   TrendingUp, 
   Users, 
   Brain, 
@@ -28,7 +27,8 @@ import {
   UserCheck, 
   MessageSquare, 
   Mic, 
-  Sparkles 
+  Sparkles,
+  type LucideIcon
 } from 'lucide-react';
 
 const services = [
@@ -151,7 +151,7 @@ export default function PlatformStats() {
 
 
  
-const Step = ({ title, icon: Icon }: { title: string; icon: any }) => {
+const Step = ({ title, icon: Icon }: { title: string; icon: LucideIcon }) => {
   return (
     <li className="flex gap-3 items-start">
       <Icon className="h-4 w-4 text-blue-400 mt-1 shrink-0" />

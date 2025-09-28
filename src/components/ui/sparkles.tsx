@@ -29,7 +29,7 @@ export const SparklesCore = ({
   }>>([]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
 
   const generateParticles = useCallback(() => {
     const canvas = canvasRef.current;

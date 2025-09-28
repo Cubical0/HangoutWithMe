@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
 export default async function TagPage({ params }: TagPageProps) {
   const { slug } = await params;
   const tag = tags.find(t => t.slug === slug);
-  const posts = getBlogPostsByTag(slug);
+  const posts = await getBlogPostsByTag(slug);
 
   if (!tag) {
     notFound();
