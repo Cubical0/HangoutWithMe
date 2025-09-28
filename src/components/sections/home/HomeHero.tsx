@@ -55,7 +55,7 @@ const HomeHero = () => {
 ];
 
   return (
-    <div className="flex flex-col relative min-h-screen">
+    <div className="flex flex-col relative min-h-screen overflow-x-hidden">
       <Spotlight />
       
       {/* Enhanced background with subtle gradients */}

@@ -5,6 +5,7 @@ import FeaturesOverview from '@/components/sections/home/FeaturesOverview';
 import PlatformStats from '@/components/sections/home/PlatformStats';
 import UserTestimonials from '@/components/sections/home/UserTestimonials';
 import FAQ from '@/components/sections/home/FAQ';
+import ContactUs from '@/components/sections/home/ContactUs';
 import QuickStartCTA from '@/components/sections/home/QuickStartCTA';
 
 
@@ -17,6 +18,7 @@ export default function Home() {
       <QuickStartCTA />
       <UserTestimonials />
       <FAQ />
+      <ContactUs />
     </div>
   );
 }
