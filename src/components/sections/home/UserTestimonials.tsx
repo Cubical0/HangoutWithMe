@@ -98,7 +98,7 @@ const GridItem = ({ area, icon, title, description, author, role }: GridItemProp
                 {title}
               </h3>
               <p className="font-sans text-sm/[1.125rem] text-black md:text-base/[1.375rem] dark:text-neutral-400 italic">
-                "{description}"
+                &quot;{description}&quot;
               </p>
               <div className="flex items-center gap-2 pt-2">
                 <div className="flex items-center gap-1">

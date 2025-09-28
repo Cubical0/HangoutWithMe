@@ -11,7 +11,7 @@ export const contentType = 'image/png';
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     return new ImageResponse(
@@ -96,9 +96,13 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           >
             <span>{post.author.name}</span>
             <span>•</span>
+            <span>{post.readingTime} min read</span>
+            <span>•</span>
             <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
             <span>•</span>
-            <span>{post.category}</span>
+            <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>
+              Hangout Finance
+            </span>
           </div>
         </div>
       </div>

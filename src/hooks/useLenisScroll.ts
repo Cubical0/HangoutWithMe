@@ -2,6 +2,14 @@
 
 import { useEffect, useRef } from 'react';
 import { useMotionValue } from 'framer-motion';
+import Lenis from 'lenis';
+
+// Extend Window interface to include lenis
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
 
 export function useLenisScroll(targetRef: React.RefObject<HTMLElement>) {
   const scrollYProgress = useMotionValue(0);
@@ -32,10 +40,7 @@ export function useLenisScroll(targetRef: React.RefObject<HTMLElement>) {
         progress = 1;
       }
       
-      // Debug log
-      if (targetRef.current) {
-        console.log('Element top:', elementTop, 'Progress:', progress);
-      }
+
       
       scrollYProgress.set(progress);
     };
@@ -47,7 +52,7 @@ export function useLenisScroll(targetRef: React.RefObject<HTMLElement>) {
 
     // Set up scroll listener
     const setupListener = () => {
-      const lenis = (window as any).lenis;
+      const lenis = window.lenis;
       if (lenis) {
         lenis.on('scroll', updateScrollProgress);
         cleanup = () => lenis.off('scroll', updateScrollProgress);

@@ -117,17 +117,7 @@ const TradingHero = () => {
               </span>
             </motion.button>
 
-            {/* Secondary CTA */}
-            <motion.button
-              className="group inline-flex h-16 items-center justify-center rounded-full border-2 border-white/20 px-8 py-4 text-lg font-semibold text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Watch Demo
-              <div className="ml-2 w-5 h-5 rounded-full border-2 border-current flex items-center justify-center">
-                <div className="w-0 h-0 border-l-[6px] border-l-current border-y-[4px] border-y-transparent ml-0.5"></div>
-              </div>
-            </motion.button>
+
           </motion.div>
 
 

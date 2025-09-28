@@ -5,7 +5,7 @@ import BlogPost from '@/components/blog/BlogPost';
 import RelatedPosts from '@/components/blog/RelatedPosts';
 import SocialShare from '@/components/blog/SocialShare';
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb';
-import { getBlogPostBySlug, getRelatedPosts, blogPosts } from '@/lib/blog';
+import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import { generateBlogPostMetadata, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/seo';
 
 interface BlogPostPageProps {
@@ -15,14 +15,15 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   
   if (!post) {
     return {
@@ -36,13 +37,21 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(post.id);
+  // For now, get related posts by fetching all posts and filtering by category/tags
+  // TODO: Create a dedicated API endpoint for related posts
+  const allPosts = await getAllPosts();
+  const relatedPosts = allPosts
+    .filter(p => p.id !== post.id && (
+      p.category === post.category || 
+      p.tags.some(tag => post.tags.includes(tag))
+    ))
+    .slice(0, 3);
   
   const breadcrumbItems = [
     { name: 'Home', url: '/' },

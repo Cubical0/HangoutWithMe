@@ -7,6 +7,7 @@ import UserTestimonials from '@/components/sections/home/UserTestimonials';
 import FAQ from '@/components/sections/home/FAQ';
 import ContactUs from '@/components/sections/home/ContactUs';
 import QuickStartCTA from '@/components/sections/home/QuickStartCTA';
+import { AnimatedTestimonialsDemo } from '@/components/sections/trading/TradingTools';
 
 
 export default function Home() {
@@ -15,7 +16,8 @@ export default function Home() {
       <HomeHero />
       <FeaturesOverview />
       <PlatformStats />
-      <QuickStartCTA />
+      
+      <AnimatedTestimonialsDemo/>
       <UserTestimonials />
       <FAQ />
       <ContactUs />

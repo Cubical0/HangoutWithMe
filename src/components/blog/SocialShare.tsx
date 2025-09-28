@@ -24,7 +24,7 @@ export default function SocialShare({ url, title, description }: SocialShareProp
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy URL:', err);
+      // Handle error silently
     }
   };
 
@@ -37,7 +37,7 @@ export default function SocialShare({ url, title, description }: SocialShareProp
           url,
         });
       } catch (err) {
-        console.error('Error sharing:', err);
+        // Handle error silently
       }
     }
   };

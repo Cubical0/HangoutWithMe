@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
   const category = categories.find(cat => cat.slug === slug);
-  const posts = getBlogPostsByCategory(slug);
+  const posts = await getBlogPostsByCategory(slug);
 
   if (!category) {
     notFound();

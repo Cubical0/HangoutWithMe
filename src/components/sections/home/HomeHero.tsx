@@ -76,26 +76,25 @@ const HomeHero = () => {
                   transition={{ duration: 1, delay: 0.1 }}
                 />
 
-                <motion.h1
-                  className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  Take control of your <br />
-                  <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300 bg-clip-text text-transparent text-6xl md:text-7xl font-bold tracking-tight">
-                    Crypto Investments
-                  </span>
+<motion.h1
+                className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300 bg-clip-text text-transparent text-6xl md:text-7xl font-bold tracking-tight"> */}
+               Build, Trade, Innovate
+                {/* </span> */}
                 </motion.h1>
+                
 
-                <motion.p
-                  className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  Join thousands of traders who trust our platform for secure, fast, and profitable cryptocurrency trading with <span className="bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent font-semibold">advanced AI-powered insights</span>
-                </motion.p>
+                 <motion.p
+                className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+Learn fast, build bold, trade smart, and raise the bar all in one place where ideas meet mentors, tools, and a little bit of magic.              </motion.p>
 
                 {/* Enhanced stats section */}
                 <motion.div
@@ -125,17 +124,29 @@ const HomeHero = () => {
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
                   {/* Enhanced primary button */}
-                  <button className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group">
+                  <a 
+                    href="https://discord.com/invite/hangoutcodex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
+                  >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
-                      Start Trading Free
+                      Join Discord
                     </span>
-                  </button>
+                  </a>
 
                   {/* Secondary button */}
+                    <a 
+                    href="https://discord.com/invite/hangoutcodex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative inline-flex h-16  rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
+                  >
                   <button className="inline-flex h-16 items-center justify-center rounded-full border-2 border-white/20 px-8 py-4 text-lg font-semibold text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300">
-                    Watch Demo
+                   Explore Opportunities
                   </button>
+                   </a>
                 </motion.div>
 
                 {/* Trust indicators */}

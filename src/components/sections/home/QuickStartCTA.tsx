@@ -1,24 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Brain, MessageSquare, Mic, Server } from 'lucide-react';
 import Link from 'next/link';
 
-export default function MarketCTA() {
-  const cryptoData = [
-    { name: "NEM", price: "$0.0193", change: "-24.80%", color: "text-red-500" },
-    { name: "XRP", price: "$2.14", change: "+13.45%", color: "text-green-500" },
-    { name: "EDR", price: "$0.0049", change: "-4.80%", color: "text-red-500" },
-    { name: "BNB", price: "$604.76", change: "+7.40%", color: "text-green-500" },
-    { name: "ETH", price: "$1829.04", change: "+14.80%", color: "text-green-500" },
-    { name: "HOT", price: "$0.0948", change: "-7.25%", color: "text-red-500" },
+export default function TradingHubCTA() {
+  const tradingHubData = [
+    { name: "Trading Signals", subtitle: "3 free, then paid", icon: TrendingUp, color: "text-green-500" },
+    { name: "Mentorship", subtitle: "Expert traders", icon: Users, color: "text-green-500" },
+    { name: "AI Analysis", subtitle: "Market insights", icon: Brain, color: "text-red-500" },
+    { name: "ChatAI", subtitle: "Smart assistance", icon: MessageSquare, color: "text-green-500" },
+    { name: "Voice AI", subtitle: "NLP powered", icon: Mic, color: "text-red-500" },
+    { name: "Zero Downtime", subtitle: "99.9% uptime", icon: Server, color: "text-green-500" },
   ];
 
-  const leftData = cryptoData.filter((_, i) => i % 2 === 0); 
-  const rightData = cryptoData.filter((_, i) => i % 2 === 1); 
+  const leftData = tradingHubData.filter((_, i) => i % 2 === 0); 
+  const rightData = tradingHubData.filter((_, i) => i % 2 === 1); 
 
   // Create multiple duplicates for seamless infinite scroll
-  const infiniteArray = (data: typeof cryptoData) => [...data, ...data, ...data, ...data, ...data];
+  const infiniteArray = (data: typeof tradingHubData) => [...data, ...data, ...data, ...data, ...data];
 
   return (
     <section className="py-20 px-6 bg-black">
@@ -32,19 +32,19 @@ export default function MarketCTA() {
         >
           <h2 className="text-5xl font-bold leading-tight">
             <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">
-              Stay on top of market<br /> moves in real time
+              Advanced Trading Hub<br /> Powered by AI
             </span>
           </h2>
           <p className="text-lg text-gray-400 mt-6 max-w-xl">
-            Track live price changes, market shifts, and key events as they happen.
-            Never miss an opportunity or a critical update again.
+            Experience professional trading with AI-powered signals, expert mentorship, 
+            and zero-downtime infrastructure. Get 3 free signals to start your journey.
           </p>
 
           {/* Button */}
           <div className="mt-8">
-            <Link href="/invest">
+            <Link href="/trading-hub">
               <button className="bg-white text-black flex items-center gap-2 py-3 px-6 rounded-full font-medium hover:bg-gray-200 transition">
-                Start investing
+                Start Trading
                 <ArrowRight size={18} />
               </button>
             </Link>
@@ -65,18 +65,21 @@ export default function MarketCTA() {
                 ease: "linear"
               }}
             >
-              {infiniteArray(leftData).map((coin, index) => (
-                <div
-                  key={`left-${index}`}
-                  className="bg-gray-900 rounded-xl p-4 flex flex-col shadow-lg min-h-[100px] flex-shrink-0"
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-medium">{coin.name}</span>
-                    <span className={`text-sm font-semibold ${coin.color}`}>{coin.change}</span>
+              {infiniteArray(leftData).map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div
+                    key={`left-${index}`}
+                    className="bg-gray-900 rounded-xl p-4 flex flex-col shadow-lg min-h-[100px] flex-shrink-0"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <IconComponent className={`h-5 w-5 ${feature.color}`} />
+                      <span className="text-gray-300 font-medium">{feature.name}</span>
+                    </div>
+                    <div className="text-white text-sm">{feature.subtitle}</div>
                   </div>
-                  <div className="mt-2 text-white text-lg font-bold">{coin.price}</div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
             
             {/* Fade overlays */}
@@ -95,18 +98,21 @@ export default function MarketCTA() {
                 ease: "linear"
               }}
             >
-              {infiniteArray(rightData.reverse()).map((coin, index) => (
-                <div
-                  key={`right-${index}`}
-                  className="bg-gray-900 rounded-xl p-4 flex flex-col shadow-lg min-h-[100px] flex-shrink-0"
-                >
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-medium">{coin.name}</span>
-                    <span className={`text-sm font-semibold ${coin.color}`}>{coin.change}</span>
+              {infiniteArray(rightData.reverse()).map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div
+                    key={`right-${index}`}
+                    className="bg-gray-900 rounded-xl p-4 flex flex-col shadow-lg min-h-[100px] flex-shrink-0"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <IconComponent className={`h-5 w-5 ${feature.color}`} />
+                      <span className="text-gray-300 font-medium">{feature.name}</span>
+                    </div>
+                    <div className="text-white text-sm">{feature.subtitle}</div>
                   </div>
-                  <div className="mt-2 text-white text-lg font-bold">{coin.price}</div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
             
             {/* Fade overlays */}

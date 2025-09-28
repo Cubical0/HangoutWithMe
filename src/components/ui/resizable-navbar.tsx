@@ -102,7 +102,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "40%" : "100%",
+        width: visible ? "80%" : "100%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -244,7 +244,7 @@ export const MobileNavToggle = ({
 export const NavbarLogo = () => {
   return (
     <a
-      href="#"
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <span className="font-medium text-black dark:text-white">HangoutCodex</span>
@@ -252,23 +252,21 @@ export const NavbarLogo = () => {
   );
 };
 
-export const NavbarButton = ({
+export const NavbarButton = <T extends React.ElementType = "a">({
   href,
-  as: Tag = "a",
+  as,
   children,
   className,
   variant = "primary",
   ...props
 }: {
   href?: string;
-  as?: React.ElementType;
+  as?: T;
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+} & Omit<React.ComponentPropsWithoutRef<T>, "as" | "children" | "className" | "variant" | "href">) => {
+  const Tag = as || "a";
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -281,12 +279,15 @@ export const NavbarButton = ({
       "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
   };
 
+  // Create props object conditionally including href
+  const tagProps = {
+    className: cn(baseStyles, variantStyles[variant], className),
+    ...props,
+    ...(href && { href }),
+  } as React.ComponentPropsWithoutRef<T>;
+
   return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
+    <Tag {...tagProps}>
       {children}
     </Tag>
   );

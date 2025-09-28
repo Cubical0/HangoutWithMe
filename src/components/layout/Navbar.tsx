@@ -15,16 +15,20 @@ import { useState } from "react";
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "Home",
-      link: "/",
-    },
-    {
-      name: "Trading",
+      name: "Trading hub",
       link: "/trading",
     },
     {
-      name: "Courses",
+      name: "Ecom Launchpad",
       link: "/courses",
+    },
+    {
+      name: "Services",
+      link: "/services",
+    },
+     {
+      name: "Fundraiser",
+      link: "/services",
     },
     {
       name: "Blog",
@@ -43,7 +47,14 @@ export function NavbarDemo() {
             <NavbarLogo />
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">
-              <NavbarButton variant="primary">Join Discord</NavbarButton>
+              <NavbarButton 
+                variant="primary" 
+                href="https://discord.com/invite/hangoutcodex"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join Discord
+              </NavbarButton>
             </div>
           </NavBody>
           {/* Mobile Navigation */}

@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BlogPost, formatDate, categories } from '@/lib/blog';
+import { BlogPost, formatDate, extractCategoriesFromPosts } from '@/lib/blog';
 import BlogSearch from './BlogSearch';
 
 interface BlogListingProps {
@@ -11,10 +11,16 @@ interface BlogListingProps {
 }
 
 export default function BlogListing({ posts }: BlogListingProps) {
+  // Safety check for posts
+  const safePosts = posts || [];
+  
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchResults, setSearchResults] = useState<BlogPost[]>(posts);
+  const [searchResults, setSearchResults] = useState<BlogPost[]>(safePosts);
   const postsPerPage = 6;
+  
+  // Extract categories from posts
+  const categories = extractCategoriesFromPosts(safePosts);
 
   const filteredPosts = selectedCategory === 'all' 
     ? searchResults 
@@ -38,7 +44,7 @@ export default function BlogListing({ posts }: BlogListingProps) {
     <section className="py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Search */}
-        <BlogSearch posts={posts} onResults={handleSearchResults} />
+        <BlogSearch posts={safePosts} onResults={handleSearchResults} />
         
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
