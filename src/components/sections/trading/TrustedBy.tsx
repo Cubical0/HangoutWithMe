@@ -24,18 +24,15 @@ const TrustedBy = () => {
       {/* Features Grid */}
 
 
-    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-12">
+    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto my-12">
       {/* Free User Card */}
-      <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col p-6 relative min-h-[400px] rounded-lg bg-white/5 dark:bg-black/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+      <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col p-6 relative rounded-lg bg-white/5 dark:bg-black/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
         <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
         <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
         <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
         <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
    
-        <div className="mb-6">
-          <EvervaultCard text="FREE" />
-        </div>
-   
+
         <h2 className="dark:text-white text-black text-xl font-bold mb-2">
           Free Plan
         </h2>
@@ -68,7 +65,7 @@ const TrustedBy = () => {
       </div>
 
       {/* Pro User Card */}
-      <div className="border-2 border-yellow-500/[0.5] dark:border-yellow-400/[0.5] flex flex-col p-6 relative min-h-[400px] rounded-lg bg-gradient-to-br from-yellow-50/10 to-orange-50/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1">
+      <div className="border-2 border-yellow-500/[0.5] dark:border-yellow-400/[0.5] flex flex-col p-6 relative  rounded-lg bg-gradient-to-br from-yellow-50/10 to-orange-50/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1">
         <Icon className="absolute h-6 w-6 -top-3 -left-3 text-yellow-500" />
         <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-yellow-500" />
         <Icon className="absolute h-6 w-6 -top-3 -right-3 text-yellow-500" />
@@ -79,9 +76,6 @@ const TrustedBy = () => {
           MOST POPULAR
         </div>
    
-        <div className="mb-6">
-          <EvervaultCard text="PRO" />
-        </div>
    
         <h2 className="dark:text-white text-black text-xl font-bold mb-2 flex items-center gap-2">
           Pro Plan

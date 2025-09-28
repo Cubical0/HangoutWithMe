@@ -6,9 +6,10 @@ import { ContainerScroll } from '../../ui/container-scroll-animation';
 import { Spotlight } from '../../ui/spotlight-new';
 import { BackgroundBeamsWithCollision } from '../../ui/background-beams-with-collision';
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
+import ContactUs from './ContactUs';
 
 const HomeHero = () => {
-  const discordRef = useRef<HTMLDivElement>(null);
+  const discordRef = useRef<HTMLDivElement>(null!);
   const people = [
   {
     id: 1,
@@ -55,7 +56,7 @@ const HomeHero = () => {
 ];
 
   return (
-    <div className="flex flex-col relative min-h-screen">
+    <div className="flex flex-col relative min-h-screen overflow-x-hidden">
       <Spotlight />
       
       {/* Enhanced background with subtle gradients */}
@@ -63,99 +64,103 @@ const HomeHero = () => {
       
       <BackgroundBeamsWithCollision collisionTargetRef={discordRef}>
         <ContainerScroll
-          titleComponent={
-            <>
-              {/* Enhanced hero content with better spacing and styling */}
-              <div className="relative z-10 px-4 py-12">
-                
-                {/* Subtle accent line above title */}
- <motion.div
-                  className="w- h-[4px] bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mb-8"
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={{ opacity: 1, scaleX: 1 }}
-                  transition={{ duration: 1, delay: 0.1 }}
-                />
+          titleComponent={<>
+            {/* Enhanced hero content with better spacing and styling */}
+            <div className="relative z-10 px-4 py-12">
 
-                <motion.h1
-                  className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
+              {/* Subtle accent line above title */}
+              <motion.div
+                className="w- h-[4px] bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mb-8"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.1 }} />
+
+              <motion.h1
+                className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300 bg-clip-text text-transparent text-6xl md:text-7xl font-bold tracking-tight"> */}
+                Build, Trade, Innovate
+                {/* </span> */}
+              </motion.h1>
+
+
+              <motion.p
+                className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Learn fast, build bold, trade smart, and raise the bar all in one place where ideas meet mentors, tools, and a little bit of magic.              </motion.p>
+
+              {/* Enhanced stats section */}
+              <motion.div
+                className="flex flex-wrap justify-center gap-8 mt-8 mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">10K+</div>
+                  <div className="text-sm text-gray-300">Active Traders</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">$2.5B+</div>
+                  <div className="text-sm text-gray-300">Volume Traded</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-rose-300 to-purple-300 bg-clip-text text-transparent">99.9%</div>
+                  <div className="text-sm text-gray-300">Uptime</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                {/* Enhanced primary button */}
+                <a
+                  href="https://discord.com/invite/hangoutcodex"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
                 >
-                  Take control of your <br />
-                  <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300 bg-clip-text text-transparent text-6xl md:text-7xl font-bold tracking-tight">
-                    Crypto Investments
+                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
+                    Join Discord
                   </span>
-                </motion.h1>
+                </a>
 
-                <motion.p
-                  className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  Join thousands of traders who trust our platform for secure, fast, and profitable cryptocurrency trading with <span className="bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent font-semibold">advanced AI-powered insights</span>
-                </motion.p>
+                {/* Secondary button */}
+                <ContactUs />
+              </motion.div>
 
-                {/* Enhanced stats section */}
-                <motion.div
-                  className="flex flex-wrap justify-center gap-8 mt-8 mb-10"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">10K+</div>
-                    <div className="text-sm text-gray-300">Active Traders</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">$2.5B+</div>
-                    <div className="text-sm text-gray-300">Volume Traded</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold bg-gradient-to-r from-rose-300 to-purple-300 bg-clip-text text-transparent">99.9%</div>
-                    <div className="text-sm text-gray-300">Uptime</div>
-                  </div>
-                </motion.div>
-
-                <motion.div 
-                  className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  {/* Enhanced primary button */}
-                  <button className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group">
-                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
-                      Start Trading Free
-                    </span>
-                  </button>
-
-                  {/* Secondary button */}
-                  <button className="inline-flex h-16 items-center justify-center rounded-full border-2 border-white/20 px-8 py-4 text-lg font-semibold text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300">
-                    Watch Demo
-                  </button>
-                </motion.div>
-
-                {/* Trust indicators */}
-                <motion.div
-                  className="flex flex-wrap justify-center items-center gap-6 mt-12 opacity-60"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.6 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                >
-                  <div className="text-xs text-gray-300 uppercase tracking-wider">Trusted by</div>
-                  <div className="flex items-center gap-4 text-gray-300">
-                  <AnimatedTooltip items={people}/>
-                  </div>
-                </motion.div>
-              </div>
-            </>
-          }
+              {/* Trust indicators */}
+              <motion.div
+                className="flex flex-wrap justify-center items-center gap-6 mt-12 opacity-60"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.6 }}
+                transition={{ duration: 1, delay: 0.6 }}
+              >
+                <div className="text-xs text-gray-300 uppercase tracking-wider">Trusted by</div>
+                <div className="flex items-center gap-4 text-gray-300">
+                  <AnimatedTooltip items={people} />
+                </div>
+              </motion.div>
+            </div>
+          </>}
           discordRef={discordRef}
         >
-        
+          {/* Discord interface content - this will be rendered inside the Card component */}
+          <div className="p-4">
+            <p className="text-gray-300 text-center">
+              Join our community and start your journey!
+            </p>
+          </div>
         </ContainerScroll>
       </BackgroundBeamsWithCollision>
     </div>

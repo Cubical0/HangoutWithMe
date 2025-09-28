@@ -1,13 +1,13 @@
 'use client';
 
-import { MaskContainer } from '@/components/ui/svg-mask-effect';
+// import { MaskContainer } from '@/components/ui/svg-mask-effect';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 export default function MarketOverview() {
   return (
     <div className="bg-black ">
-      <MaskContainer
+      {/* <MaskContainer
         revealText={
           <p className="mx-auto max-w-4xl text-center text-4xl font-bold text-slate-800 dark:text-white">
             Real-time market insights and advanced analytics to help you make 
@@ -20,9 +20,14 @@ export default function MarketOverview() {
         <span className="text-purple-400">advanced analytics</span> and get 
         personalized investment recommendations powered by
         <span className="text-purple-400"> AI-driven insights</span>.
-      </MaskContainer>
+      </MaskContainer> */}
 
-
+      <div className="h-[40rem] flex items-center justify-center">
+        <p className="mx-auto max-w-4xl text-center text-4xl font-bold text-white">
+          Real-time market insights and advanced analytics to help you make 
+          informed investment decisions and build lasting wealth.
+        </p>
+      </div>
     </div>
   );
 }

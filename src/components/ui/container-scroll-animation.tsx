@@ -35,14 +35,6 @@ export const  ContainerScroll = ({
   const scale = useTransform(scrollYProgress, [0, 0.9, 1], [...scaleDimensions(), scaleDimensions()[1]]);
   const translate = useTransform(scrollYProgress, [0, 1, 1], [0, -100, -150]);
 
-  // Debug: Log scroll progress (remove this in production)
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on('change', (value) => {
-      console.log('Scroll progress:', value);
-    });
-    return unsubscribe;
-  }, [scrollYProgress]);
-
   return (
     <div
       className=" flex items-center justify-center  p-2 md:p-20"

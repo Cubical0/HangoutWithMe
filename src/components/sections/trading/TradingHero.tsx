@@ -49,7 +49,7 @@ const TradingHero = () => {
         >
           {/* Badge */}
           <motion.div
-            variants={itemVariants}
+          variants={containerVariants}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-8"
           >
             <div className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
@@ -57,7 +57,8 @@ const TradingHero = () => {
           </motion.div>
 
           {/* Main Heading */}
-          <motion.div variants={itemVariants} className="mb-8">
+          <motion.div           variants={containerVariants}
+ className="mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent">
                 Hangout Finance
@@ -75,7 +76,8 @@ const TradingHero = () => {
 
           {/* Subtitle */}
           <motion.p
-            variants={itemVariants}
+                    variants={containerVariants}
+
             className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
           >
             Transform your financial future with our cutting-edge trading platform. 
@@ -85,7 +87,8 @@ const TradingHero = () => {
 
           {/* Feature Pills */}
           <motion.div
-            variants={itemVariants}
+                     variants={containerVariants}
+
             className="flex flex-wrap justify-center gap-4 mb-12"
           >
             {features.map((feature, index) => (
@@ -101,7 +104,8 @@ const TradingHero = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            variants={itemVariants}
+                     variants={containerVariants}
+
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             {/* Primary CTA */}
@@ -117,17 +121,7 @@ const TradingHero = () => {
               </span>
             </motion.button>
 
-            {/* Secondary CTA */}
-            <motion.button
-              className="group inline-flex h-16 items-center justify-center rounded-full border-2 border-white/20 px-8 py-4 text-lg font-semibold text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Watch Demo
-              <div className="ml-2 w-5 h-5 rounded-full border-2 border-current flex items-center justify-center">
-                <div className="w-0 h-0 border-l-[6px] border-l-current border-y-[4px] border-y-transparent ml-0.5"></div>
-              </div>
-            </motion.button>
+
           </motion.div>
 
 

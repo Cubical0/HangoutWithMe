@@ -1,7 +1,21 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
+import beep from "../../../../public/assets/beep.svg"
+import logo1 from '../../../../public/assets/Blue Full (1).svg'
+import logo2 from '../../../../public/assets/logo (1680×720).svg' 
+import logo3 from '../../../../public/assets/image.svg' 
+import logo4 from '../../../../public/assets/photo_2025-08-28_15-54-16.svg'
+
+const logos = [
+  { src: beep, alt: 'Beep' },
+  { src: logo1, alt: 'Blue Full' },
+  { src: logo2, alt: 'Hangout Codex' },
+  { src: logo3, alt: 'Partner Logo' },
+  { src: logo4, alt: 'Partner Logo 2' }
+];
 
 const features = [
   {
@@ -26,7 +40,7 @@ const features = [
 
 export default function FeaturesOverview() {
   return (
-    <section className=" px-4">
+    <section className="px-4 py-16">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,11 +49,57 @@ export default function FeaturesOverview() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent mb-6">
-            Support top 30+ chains
+            Our Partners
           </h2>
         </motion.div>
-        
-     
+
+     {/* Continuous Carousel */}
+        <div className="relative overflow-hidden">
+          <motion.div
+            className="flex gap-16 items-center"
+            animate={{
+              x: [0, -100 * logos.length]
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              },
+            }}
+            style={{
+              width: `${200 * logos.length}%`
+            }}
+          >
+            {/* First set of logos */}
+            {logos.map((logo, index) => (
+              <div key={`first-${index}`} className="flex-shrink-0">
+                   <Image 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  height={60} 
+                  width={120} 
+                  className="grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {logos.map((logo, index) => (
+              <div key={`second-${index}`} className="flex-shrink-0">
+                <Image 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  height={60} 
+                  width={120} 
+                  className="grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
