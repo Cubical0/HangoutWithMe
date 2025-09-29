@@ -112,15 +112,27 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('❌ Contact API Error:', error);
 
     // Handle mongoose validation errors
-    if (error.name === 'ValidationError') {
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'name' in error &&
+      (error as { name: string }).name === 'ValidationError'
+    ) {
       const validationErrors: { [key: string]: string } = {};
-      Object.keys(error.errors).forEach((key) => {
-        validationErrors[key] = error.errors[key].message;
+      type MongooseValidationError = {
+        errors: {
+          [key: string]: { message: string }
+        }
+      };
+  const errObj = error as unknown as MongooseValidationError;
+      Object.keys(errObj.errors).forEach((key) => {
+        validationErrors[key] = errObj.errors[key].message;
       });
+
 
       return NextResponse.json(
         {
@@ -133,7 +145,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Handle duplicate email (if you add unique constraint later)
-    if (error.code === 11000) {
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'code' in error &&
+      (error as { code: number }).code === 11000
+    ) {
       return NextResponse.json(
         {
           success: false,
@@ -168,7 +185,7 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit;
 
     // Build filter query
-    const filter: any = {};
+    const filter: Record<string, string> = {};
     if (source) filter.source = source;
     if (category) filter.category = category;
 
@@ -225,11 +242,11 @@ export async function GET(request: NextRequest) {
       },
       stats: {
         total: stats[0]?.totalContacts || 0,
-        bySource: sourceStats.reduce((acc: any, item: any) => {
+        bySource: sourceStats.reduce((acc: Record<string, number>, item: { _id: string; count: number }) => {
           acc[item._id] = item.count;
           return acc;
         }, {}),
-        byCategory: categoryStats.reduce((acc: any, item: any) => {
+        byCategory: categoryStats.reduce((acc: Record<string, number>, item: { _id: string; count: number }) => {
           acc[item._id] = item.count;
           return acc;
         }, {}),

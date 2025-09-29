@@ -123,7 +123,7 @@ const SuccessStories = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Real startups, real results. See how we've helped entrepreneurs secure funding and grow their businesses.
+            Real startups, real results. See how we&apos;ve helped entrepreneurs secure funding and grow their businesses.
           </p>
         </motion.div>
 
@@ -138,7 +138,7 @@ const SuccessStories = () => {
           {overallStats.map((stat, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+          variants={containerVariants}
               className="text-center p-6 rounded-xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-sm"
             >
               <div className="p-3 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 w-fit mx-auto mb-4">
@@ -164,7 +164,7 @@ const SuccessStories = () => {
           {successStories.map((story, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+          variants={containerVariants}
               className="relative group"
             >
               <div className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
@@ -204,7 +204,7 @@ const SuccessStories = () => {
                   {/* Testimonial */}
                   <div className="lg:col-span-2">
                     <div className="relative">
-                      <div className="text-6xl text-white/10 absolute -top-4 -left-2">"</div>
+                      <div className="text-6xl text-white/10 absolute -top-4 -left-2">&quot;</div>
                       <blockquote className="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
                         {story.testimonial}
                       </blockquote>

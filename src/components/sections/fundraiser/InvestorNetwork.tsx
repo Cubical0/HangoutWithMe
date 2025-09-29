@@ -104,7 +104,7 @@ const InvestorNetwork = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Connect with the right investors for your startup's stage and industry focus.
+            Connect with the right investors for your startup&apos;s stage and industry focus.
           </p>
         </motion.div>
 
@@ -119,7 +119,7 @@ const InvestorNetwork = () => {
           {networkStats.map((stat, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+          variants={containerVariants}
               className="text-center p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
             >
               <div className="p-4 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 w-fit mx-auto mb-4">
@@ -152,7 +152,7 @@ const InvestorNetwork = () => {
             {investorTypes.map((investor, index) => (
               <motion.div
                 key={index}
-                variants={itemVariants}
+          variants={containerVariants}
                 className="relative group"
               >
                 <div className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 h-full">
