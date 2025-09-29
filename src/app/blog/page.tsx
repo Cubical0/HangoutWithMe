@@ -3,6 +3,7 @@ import { getAllPosts, getFeaturedPosts } from '@/lib/blog';
 import { generateBlogListingMetadata } from '@/lib/seo';
 import BlogListing from '@/components/blog/BlogListing';
 import BlogHero from '@/components/blog/BlogHero';
+import ContactUs from '@/components/sections/home/ContactUs';
 
 export const metadata: Metadata = generateBlogListingMetadata();
 
@@ -22,6 +23,7 @@ export default async function BlogPage() {
       <div className="min-h-screen bg-black">
         <BlogHero featuredPost={safeFeaturedPosts[0]} />
         <BlogListing posts={safePosts} />
+        <ContactUs />
       </div>
     );
   } catch (error) {
@@ -30,6 +32,7 @@ export default async function BlogPage() {
       <div className="min-h-screen bg-black">
         <BlogHero />
         <BlogListing posts={[]} />
+        <ContactUs />
       </div>
     );
   }

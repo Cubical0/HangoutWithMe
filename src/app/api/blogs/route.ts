@@ -81,6 +81,21 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching blogs:', error);
+    
+    // Check if it's a MongoDB connection error
+    if (error && typeof error === 'object' && 'name' in error) {
+      if (error.name === 'MongooseServerSelectionError') {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Database connection failed. Please check your MongoDB Atlas configuration.',
+            details: 'Ensure your IP is whitelisted and credentials are correct.'
+          },
+          { status: 503 }
+        );
+      }
+    }
+    
     return NextResponse.json(
       { success: false, error: 'Failed to fetch blogs' },
       { status: 500 }
@@ -115,11 +130,26 @@ export async function POST(request: NextRequest) {
   } catch (error: unknown) {
     console.error('Error creating blog:', error);
     
+    // Check for duplicate key error
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       return NextResponse.json(
         { success: false, error: 'Blog with this slug already exists' },
         { status: 400 }
       );
+    }
+    
+    // Check if it's a MongoDB connection error
+    if (error && typeof error === 'object' && 'name' in error) {
+      if (error.name === 'MongooseServerSelectionError') {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Database connection failed. Please check your MongoDB Atlas configuration.',
+            details: 'Ensure your IP is whitelisted and credentials are correct.'
+          },
+          { status: 503 }
+        );
+      }
     }
     
     return NextResponse.json(

@@ -5,6 +5,7 @@ import BlogPost from '@/components/blog/BlogPost';
 import RelatedPosts from '@/components/blog/RelatedPosts';
 import SocialShare from '@/components/blog/SocialShare';
 import BlogBreadcrumb from '@/components/blog/BlogBreadcrumb';
+import ContactUs from '@/components/sections/home/ContactUs';
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
 import { generateBlogPostMetadata, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/seo';
 
@@ -102,6 +103,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <RelatedPosts posts={relatedPosts} />
             </div>
           )}
+          
+          <div className="mt-12">
+            <ContactUs />
+          </div>
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import TrustedBy from '@/components/sections/trading/TrustedBy';
 import { AnimatedTestimonialsDemo } from '@/components/sections/trading/TradingTools';
 import QuickStartCTA from '@/components/sections/home/QuickStartCTA';
 import FeaturesOverview from '@/components/sections/home/FeaturesOverview';
+import ContactUs from '@/components/sections/home/ContactUs';
 
 
 
@@ -27,6 +28,7 @@ export default function Trading() {
 
       <TrustedBy />
       
+      <ContactUs />
 
 
     </div>

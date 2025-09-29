@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Vortex } from '@/components/ui/vortex';
 import { ArrowRight, TrendingUp, Shield, Zap } from 'lucide-react';
+import ContactUs from '../home/ContactUs';
 
 const TradingHero = () => {
   const containerVariants = {
@@ -109,17 +110,28 @@ const TradingHero = () => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             {/* Primary CTA */}
-            <motion.button
-              className="group relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
-              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
-                Start Trading Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </motion.button>
+           <motion.div
+                          className="flex flex-col sm:flex-row gap-4  justify-center items-center"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                          {/* Enhanced primary button */}
+                          <a
+                            href="https://discord.com/invite/hangoutcodex"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
+                          >
+                            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
+                            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
+                              Join Discord
+                            </span>
+                          </a>
+          
+                          {/* Secondary button */}
+                          <ContactUs />
+                        </motion.div>
 
 
           </motion.div>
