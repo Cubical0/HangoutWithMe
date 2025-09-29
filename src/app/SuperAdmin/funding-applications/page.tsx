@@ -3,9 +3,29 @@ import connectDB from '@/lib/mongodb';
 import FundingApplication from '@/models/FundingApplication';
 import type { IFundingApplication } from '@/models/FundingApplication';
 
+// Force dynamic rendering to avoid build-time MongoDB connection issues
+export const dynamic = 'force-dynamic';
+
 export default async function FundingApplicationsPage() {
-  await connectDB();
-  const applications = await FundingApplication.find().sort({ submittedAt: -1 }).lean() as unknown as IFundingApplication[];
+  let applications: IFundingApplication[] = [];
+  let error: string | null = null;
+
+  try {
+    await connectDB();
+    applications = await FundingApplication.find().sort({ submittedAt: -1 }).lean() as unknown as IFundingApplication[];
+  } catch (err) {
+    console.error('Failed to fetch funding applications:', err);
+    error = 'Failed to load funding applications. Please check your database connection.';
+  }
+
+  if (error) {
+    return (
+      <div className="p-8">
+        <h1 className="text-3xl font-bold mb-6">Funding Applications</h1>
+        <div className="text-red-600">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8">
