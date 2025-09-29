@@ -4,6 +4,8 @@ import path from 'path';
 import connectDB from '@/lib/mongodb';
 import FundingApplication from '@/models/FundingApplication';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();

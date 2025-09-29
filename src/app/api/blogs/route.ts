@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
+export const dynamic = 'force-dynamic';
+
 // Define the query type for MongoDB
 interface BlogQuery {
   status?: string;
@@ -18,6 +20,21 @@ interface BlogQuery {
 // GET /api/blogs - Get all blogs with pagination and filtering
 export async function GET(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      console.warn('MONGODB_URI not available, returning empty blog list');
+      return NextResponse.json({
+        success: true,
+        data: [],
+        pagination: {
+          page: 1,
+          limit: 10,
+          total: 0,
+          pages: 0,
+        },
+      });
+    }
+
     await connectDB();
 
     const { searchParams } = new URL(request.url);
@@ -106,6 +123,14 @@ export async function GET(request: NextRequest) {
 // POST /api/blogs - Create a new blog
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const body = await request.json();

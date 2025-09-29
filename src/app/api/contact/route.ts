@@ -3,8 +3,18 @@ import connectDB from '@/lib/mongodb';
 import Contact from '@/models/Contact';
 import { sendContactNotification, sendContactConfirmation } from '@/lib/email';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     // Connect to database
     await connectDB();
 
@@ -174,6 +184,14 @@ export async function POST(request: NextRequest) {
 // Optional: GET endpoint to retrieve contacts (for admin use)
 export async function GET(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     // You might want to add authentication here
     await connectDB();
 

@@ -3,6 +3,8 @@ import { requireAuth } from '@/lib/auth';
 import connectDB from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const adminPayload = requireAuth(request);
@@ -12,6 +14,20 @@ export async function GET(request: NextRequest) {
         { success: false, error: 'Unauthorized' },
         { status: 401 }
       );
+    }
+
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      console.warn('MONGODB_URI not available, returning default stats');
+      return NextResponse.json({
+        success: true,
+        stats: {
+          totalBlogs: 0,
+          publishedBlogs: 0,
+          draftBlogs: 0,
+          totalViews: 0,
+        },
+      });
     }
 
     await connectDB();
