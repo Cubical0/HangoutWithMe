@@ -80,12 +80,11 @@ export interface BlogTag {
 
 // Helper function to get the base URL
 function getBaseUrl() {
-  if (typeof window !== 'undefined') {
-    // Client-side
-    return '';
+  // Use NEXT_PUBLIC_BASE_URL if set, otherwise fallback to localhost
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL;
   }
-  // Server-side
-  return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  return 'http://localhost:3000';
 }
 
 // Database API functions
@@ -113,7 +112,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return getMockBlogPosts();
     }
   } catch (error) {
-    console.warn('Failed to fetch blogs, using mock data:', error);
+      console.warn('Failed to fetch blogs, using mock data');
     return getMockBlogPosts();
   }
   
@@ -138,7 +137,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       };
     }
   } catch (error) {
-    // Silent error handling
+      // Silent error handling
   }
   
   return null;
