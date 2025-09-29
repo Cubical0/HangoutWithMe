@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { usePathname } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Label } from '@/components/ui/label';
@@ -9,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { X, Mail, MessageCircle } from 'lucide-react';
 
 export default function ContactUs() {
+  const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,6 +22,21 @@ export default function ContactUs() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Determine source and category based on current path
+  const getSourceAndCategory = () => {
+    if (pathname.includes('/services')) {
+      return { source: 'services', category: 'services' };
+    } else if (pathname.includes('/courses')) {
+      return { source: 'courses', category: 'education' };
+    } else if (pathname.includes('/trading')) {
+      return { source: 'trading', category: 'trading' };
+    } else if (pathname.includes('/blog')) {
+      return { source: 'blog', category: 'blog' };
+    } else {
+      return { source: 'home', category: 'general' };
+    }
+  };
 
   // Ensure component is mounted before rendering portal
   useEffect(() => {
@@ -77,32 +94,40 @@ export default function ContactUs() {
     e.preventDefault();
     setIsSubmitting(true);
     
+    const { source, category } = getSourceAndCategory();
+    
     try {
-      const response = await fetch('https://getform.io/f/brogrqma', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to: 'sparshhh123@gmail.com',
+          source,
+          category,
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
         setTimeout(() => {
           setIsModalOpen(false);
           setSubmitStatus('idle');
-        }, 2000);
+        }, 3000);
       } else {
+        console.error('Contact form error:', result.error);
         setSubmitStatus('error');
       }
     } catch (error) {
+      console.error('Contact form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

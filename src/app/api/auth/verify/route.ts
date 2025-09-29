@@ -3,6 +3,8 @@ import { requireAuth } from '@/lib/auth';
 import connectDB from '@/lib/mongodb';
 import Admin from '@/models/Admin';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const adminPayload = requireAuth(request);
@@ -11,6 +13,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
         { status: 401 }
+      );
+    }
+
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
       );
     }
 

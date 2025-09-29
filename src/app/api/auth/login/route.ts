@@ -3,10 +3,20 @@ import connectDB from '@/lib/mongodb';
 import Admin from '@/models/Admin';
 import jwt from 'jsonwebtoken';
 
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key';
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const { email, password } = await request.json();

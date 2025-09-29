@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
+export const dynamic = 'force-dynamic';
+
 // Define the query type for MongoDB
 interface BlogQuery {
   status?: string;
@@ -18,6 +20,21 @@ interface BlogQuery {
 // GET /api/blogs - Get all blogs with pagination and filtering
 export async function GET(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      console.warn('MONGODB_URI not available, returning empty blog list');
+      return NextResponse.json({
+        success: true,
+        data: [],
+        pagination: {
+          page: 1,
+          limit: 10,
+          total: 0,
+          pages: 0,
+        },
+      });
+    }
+
     await connectDB();
 
     const { searchParams } = new URL(request.url);
@@ -81,6 +98,21 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching blogs:', error);
+    
+    // Check if it's a MongoDB connection error
+    if (error && typeof error === 'object' && 'name' in error) {
+      if (error.name === 'MongooseServerSelectionError') {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Database connection failed. Please check your MongoDB Atlas configuration.',
+            details: 'Ensure your IP is whitelisted and credentials are correct.'
+          },
+          { status: 503 }
+        );
+      }
+    }
+    
     return NextResponse.json(
       { success: false, error: 'Failed to fetch blogs' },
       { status: 500 }
@@ -91,6 +123,14 @@ export async function GET(request: NextRequest) {
 // POST /api/blogs - Create a new blog
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const body = await request.json();
@@ -115,11 +155,26 @@ export async function POST(request: NextRequest) {
   } catch (error: unknown) {
     console.error('Error creating blog:', error);
     
+    // Check for duplicate key error
     if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
       return NextResponse.json(
         { success: false, error: 'Blog with this slug already exists' },
         { status: 400 }
       );
+    }
+    
+    // Check if it's a MongoDB connection error
+    if (error && typeof error === 'object' && 'name' in error) {
+      if (error.name === 'MongooseServerSelectionError') {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Database connection failed. Please check your MongoDB Atlas configuration.',
+            details: 'Ensure your IP is whitelisted and credentials are correct.'
+          },
+          { status: 503 }
+        );
+      }
     }
     
     return NextResponse.json(

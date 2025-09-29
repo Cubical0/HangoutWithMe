@@ -3,12 +3,22 @@ import connectDB from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import mongoose from 'mongoose';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/blogs/[id] - Get a single blog by ID or slug
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const { id } = await params;
@@ -47,6 +57,14 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const { id } = await params;
@@ -108,6 +126,14 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB URI is available
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured' },
+        { status: 503 }
+      );
+    }
+
     await connectDB();
 
     const { id } = await params;

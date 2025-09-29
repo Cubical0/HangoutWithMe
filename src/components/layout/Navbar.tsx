@@ -16,7 +16,7 @@ import Link from "next/link";
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "Trading hub",
+      name: "Trading",
       link: "/trading",
     },
     {
@@ -27,9 +27,9 @@ export function NavbarDemo() {
       name: "Services",
       link: "/services",
     },
-     {
+    {
       name: "Fundraiser",
-      link: "/services",
+      link: "/fundraiser",
     },
     {
       name: "Blog",

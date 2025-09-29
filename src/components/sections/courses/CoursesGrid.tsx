@@ -60,7 +60,7 @@ export default function CoursesGrid() {
       </div>
 
       {/* Courses Grid */}
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8'>
         {courses.map((course) => (
           <div key={course.id} className="backdrop-blur-lg bg-white/[0.08] border border-white/20 rounded-3xl p-8 hover:bg-white/[0.12] transition-all duration-500 hover:scale-[1.02] hover:border-white/30 shadow-xl hover:shadow-2xl relative overflow-hidden group">
             {/* Glass reflection effect */}

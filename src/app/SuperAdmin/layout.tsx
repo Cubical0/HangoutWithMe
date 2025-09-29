@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -9,7 +9,8 @@ import {
   Settings, 
   LogOut,
   Menu,
-  X
+  X,
+  Mail
 } from 'lucide-react';
 
 interface AdminUser {
@@ -33,15 +34,7 @@ export default function SuperAdminLayout({
   // Check if current page is login page
   const isLoginPage = pathname === '/SuperAdmin/login';
 
-  useEffect(() => {
-    if (!isLoginPage) {
-      checkAuth();
-    } else {
-      setLoading(false);
-    }
-  }, [isLoginPage]);
-
-  const checkAuth = async () => {
+  const checkAuth = React.useCallback(async () => {
     try {
       const token = localStorage.getItem('admin-token');
       if (!token) {
@@ -63,19 +56,27 @@ export default function SuperAdminLayout({
         localStorage.removeItem('admin-token');
         router.push('/SuperAdmin/login');
       }
-    } catch (error) {
+    } catch {
       router.push('/SuperAdmin/login');
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    if (!isLoginPage) {
+      checkAuth();
+    } else {
+      setLoading(false);
+    }
+  }, [checkAuth, isLoginPage]);
 
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
       localStorage.removeItem('admin-token');
       router.push('/SuperAdmin/login');
-    } catch (error) {
+    } catch {
       // Silent error handling
     }
   };
@@ -100,6 +101,8 @@ export default function SuperAdminLayout({
   const navigation = [
     { name: 'Dashboard', href: '/SuperAdmin', icon: LayoutDashboard },
     { name: 'Blogs', href: '/SuperAdmin/blogs', icon: FileText },
+    { name: 'Contacts', href: '/SuperAdmin/contacts', icon: Mail },
+    { name: 'Funding Applications', href: '/SuperAdmin/funding-applications', icon: FileText },
     { name: 'Settings', href: '/SuperAdmin/settings', icon: Settings },
   ];
 
