@@ -167,7 +167,6 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
     // Return mock featured posts on error
     return getMockBlogPosts().filter(post => post.featured);
   }
-  
   return [];
 }
 
@@ -185,7 +184,7 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
         ...blog,
         id: blog._id,
         publishedAt: blog.publishedAt,
-        updatedAt: blog.updatedAt,
+    // Silent error handling
       }));
     } else if (response.status === 503) {
       // Database connection failed, return mock recent posts
