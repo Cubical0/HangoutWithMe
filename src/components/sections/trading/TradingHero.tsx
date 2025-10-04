@@ -57,29 +57,23 @@ const TradingHero = () => {
             <span className="text-sm text-gray-300">Trusted by 10,000+ traders worldwide</span>
           </motion.div>
 
+
           {/* Main Heading */}
-          <motion.div           variants={containerVariants}
- className="mb-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent">
-                Hangout Finance
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                Build Wealth,
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300 bg-clip-text text-transparent">
-                Create Legacy
-              </span>
-            </h1>
-          </motion.div>
+          <motion.h1
+            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Master the Art of Trading
+          </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-                    variants={containerVariants}
-
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             Transform your financial future with our cutting-edge trading platform. 
             <br className="hidden md:block" />
@@ -88,9 +82,10 @@ const TradingHero = () => {
 
           {/* Feature Pills */}
           <motion.div
-                     variants={containerVariants}
-
             className="flex flex-wrap justify-center gap-4 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             {features.map((feature, index) => (
               <div
@@ -105,35 +100,26 @@ const TradingHero = () => {
 
           {/* CTA Buttons */}
           <motion.div
-                     variants={containerVariants}
-
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Primary CTA */}
-           <motion.div
-                          className="flex flex-col sm:flex-row gap-4  justify-center items-center"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.4 }}
-                        >
-                          {/* Enhanced primary button */}
-                          <a
-                            href="https://discord.com/invite/hangoutcodex"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
-                          >
-                            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
-                            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
-                              Join Discord
-                            </span>
-                          </a>
-          
-                          {/* Secondary button */}
-                          <ContactUs />
-                        </motion.div>
+            {/* Enhanced primary button */}
+            <a
+              href="https://discord.com/invite/hangoutcodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
+            >
+              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
+              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
+                Join Discord
+              </span>
+            </a>
 
-
+            {/* Secondary button */}
+            <ContactUs />
           </motion.div>
 
 

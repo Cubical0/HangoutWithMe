@@ -110,31 +110,48 @@ export default function PlatformStats() {
   </p>
 </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group"
             >
-              <CardSpotlight className="h-full w-full p-6">
+              <CardSpotlight className="h-full w-full p-8 hover:border-blue-500/50 transition-all duration-300">
                 <div className="relative z-20 h-full flex flex-col">
-                  <div className="mb-4">
-                    <service.icon className="h-10 w-10 text-blue-400" />
-                  </div>
-                  <p className="text-xl font-bold relative z-20 mt-2 text-white">
+                  {/* Icon with gradient background */}
+
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold relative z-20 mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-blue-200 group-hover:to-purple-200 transition-all duration-300">
                     {service.title}
-                  </p>
-                  <div className="text-neutral-200 mt-4 relative z-20">
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-neutral-300 text-sm mb-6 relative z-20 leading-relaxed">
                     {service.description}
-                    <ul className="list-none mt-4 space-y-2">
-                      {service.steps.map((step, stepIndex) => (
-                        <Step key={stepIndex} title={step.text} icon={step.icon} />
-                      ))}
-                    </ul>
-                    <p className="text-neutral-300 mt-4 relative z-20 text-sm">
+                  </p>
+
+                  {/* Steps list */}
+                  <ul className="list-none space-y-3 mb-6 flex-grow">
+                    {service.steps.map((step, stepIndex) => (
+                      <motion.li
+                        key={stepIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + stepIndex * 0.05 }}
+                      >
+                        <Step title={step.text} icon={step.icon} />
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  {/* Note with accent border */}
+                  <div className="relative z-20 mt-auto pt-4 border-t border-neutral-800 group-hover:border-blue-900/50 transition-colors duration-300">
+                    <p className="text-neutral-400 text-xs leading-relaxed italic">
                       {service.note}
                     </p>
                   </div>
@@ -153,10 +170,14 @@ export default function PlatformStats() {
  
 const Step = ({ title, icon: Icon }: { title: string; icon: LucideIcon }) => {
   return (
-    <li className="flex gap-3 items-start">
-      <Icon className="h-4 w-4 text-blue-400 mt-1 shrink-0" />
-      <p className="text-white text-sm">{title}</p>
-    </li>
+    <div className="flex gap-3 items-start group/step hover:translate-x-1 transition-transform duration-200">
+      <div className="mt-0.5 p-1.5 rounded-md bg-blue-500/10 border border-blue-500/20 group-hover/step:bg-blue-500/20 group-hover/step:border-blue-400/40 transition-all duration-200">
+        <Icon className="h-3.5 w-3.5 text-blue-400 group-hover/step:text-blue-300 transition-colors duration-200 shrink-0" />
+      </div>
+      <p className="text-neutral-200 text-sm leading-relaxed group-hover/step:text-white transition-colors duration-200">
+        {title}
+      </p>
+    </div>
   );
 };
 

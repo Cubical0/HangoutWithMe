@@ -96,7 +96,7 @@ const FundraiserServices = () => {
       description: 'Access our extensive network of angel investors, VCs, and institutional investors.',
       icon: Users,
       gradient: 'from-blue-500 to-cyan-500',
-      amount: '500+',
+      amount: '100+',
       metric: 'Active Investors'
     },
     {
@@ -367,7 +367,7 @@ const FundraiserServices = () => {
                             </div>
                             <div className="flex items-center gap-3">
                               <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${active.gradient}`}></div>
-                              <span className="text-gray-300">Network Access to 500+ Investors</span>
+                              <span className="text-gray-300">Network Access to 100+ Investors</span>
                             </div>
                             <div className="flex items-center gap-3">
                               <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${active.gradient}`}></div>

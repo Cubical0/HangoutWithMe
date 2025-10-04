@@ -7,10 +7,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-4">CryptoTrade</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">HangoutCodex</h3>
             <p className="text-gray-400 mb-4 max-w-md">
-              Master the art of cryptocurrency trading with our comprehensive courses and expert insights. 
-              Join thousands of successful traders who started their journey with us.
+              Empowering traders, entrepreneurs, and businesses with AI-powered solutions, expert mentorship, 
+              and cutting-edge technology. Your success is our mission.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -54,8 +54,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/blogs" className="text-gray-400 hover:text-white transition-colors">
-                  Blogs
+                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/fundraiser" className="text-gray-400 hover:text-white transition-colors">
+                  Fundraiser
                 </Link>
               </li>
               <li>
@@ -75,11 +85,7 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link href="/faq" className="text-gray-400 hover:text-white transition-colors">
-                  FAQ
-                </Link>
-              </li>
+
               <li>
                 <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
                   Privacy Policy
@@ -97,10 +103,10 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 CryptoTrade. All rights reserved.
+              © {new Date().getFullYear()} HangoutCodex. All rights reserved.
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
-              Made with ❤️ for crypto traders worldwide
+              Made with ❤️ for traders, entrepreneurs & innovators worldwide
             </p>
           </div>
         </div>

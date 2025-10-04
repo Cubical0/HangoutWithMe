@@ -8,7 +8,7 @@ const InvestorNetwork = () => {
   const networkStats = [
     {
       icon: Users,
-      value: "500+",
+      value: "100+",
       label: "Active Investors",
       description: "Angel investors, VCs, and institutional investors"
     },

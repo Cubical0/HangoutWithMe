@@ -103,8 +103,8 @@ const HomeHero = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">10K+</div>
-                  <div className="text-sm text-gray-300">Active Traders</div>
+                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent">100K+</div>
+                  <div className="text-sm text-gray-300">Active Members</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">$2.5B+</div>
