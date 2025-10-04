@@ -1,0 +1,52 @@
+'use client';
+
+import { ReactNode, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+
+interface LenisProviderProps {
+  children: ReactNode;
+}
+
+// Extend Window interface to include lenis
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
+
+export default function LenisProvider({ children }: LenisProviderProps) {
+  const lenisRef = useRef<Lenis | null>(null);
+
+  useEffect(() => {
+    // Add Lenis classes to html element
+    document.documentElement.classList.add('lenis');
+    
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    lenisRef.current = lenis;
+
+    // Make Lenis instance globally available
+    window.lenis = lenis;
+
+    // Animation frame loop
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Cleanup
+    return () => {
+      document.documentElement.classList.remove('lenis');
+      lenis.destroy();
+      delete window.lenis;
+    };
+  }, []);
+
+  return <>{children}</>;
+}
