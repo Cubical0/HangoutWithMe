@@ -3,136 +3,93 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Vortex } from '@/components/ui/vortex';
-import { ArrowRight, BookOpen, GraduationCap, Users, Star } from 'lucide-react';
-import { Cover } from '@/components/ui/sparkles';
+import ContactUs from '../home/ContactUs';
 
 const CoursesHero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
-
-  const courseFeatures = [
-    { icon: BookOpen, text: "Comprehensive E-commerce Training" },
-    { icon: GraduationCap, text: "Industry Expert Mentors" },
-    { icon: Users, text: "Active Community Support" },
-    { icon: Star, text: "Proven Success Methods" },
-  ];
-
   return (
-    <div className='flex flex-col items-center justify-center text-center  overflow-hidden'>
+    <div className='min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden'>
       <Vortex
         backgroundColor="black"
         className="flex items-center flex-col justify-center px-4 md:px-10 py-8 w-full h-full"
       >
-        <motion.div
-          className="max-w-6xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Badge */}
+        <motion.div className="max-w-6xl mx-auto">
+          {/* Subtle accent line */}
           <motion.div
-          variants={containerVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-8"
-          >
-            <div className="w-2 h-2 bg-amber-300 rounded-full animate-pulse"></div>
-            <span className="text-sm text-gray-300">Launch Your E-commerce Empire Today</span>
-          </motion.div>
+            className="w-32 h-[1px] bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mb-8"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          />
 
           {/* Main Heading */}
-          <motion.div           variants={containerVariants}
- className="mb-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-purple-300 via-pink-300 to-amber-300 bg-clip-text text-transparent">
-                Ecom Launchpad
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                Master E-commerce &
-              </span>
-              <br />
-              <Cover> 
-              <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
-               Digital Business
-                </span>
-                </Cover>
-            </h1>
-          </motion.div>
+          <motion.h1
+            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-pink-300 to-amber-300 bg-clip-text text-transparent font-semibold leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Master E-commerce & Digital Business
+          </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-          variants={containerVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            From E-commerce basics to advanced digital business strategies.
-            <br className="hidden md:block" />
-            Build profitable online businesses with our comprehensive training programs.
+            From E-commerce basics to advanced digital business strategies. Build profitable online businesses with our comprehensive training programs.
           </motion.p>
 
-          {/* Feature Pills */}
+          {/* Stats Section */}
           <motion.div
-          variants={containerVariants}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-wrap justify-center gap-8 mt-8 mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {courseFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
-              >
-                <feature.icon className="w-4 h-4 text-pink-300" />
-                <span className="text-sm text-gray-300">{feature.text}</span>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                50+
               </div>
-            ))}
+              <div className="text-sm text-gray-400 mt-1">Expert Courses</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-300 to-amber-300 bg-clip-text text-transparent">
+                5K+
+              </div>
+              <div className="text-sm text-gray-400 mt-1">Active Students</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
+                95%
+              </div>
+              <div className="text-sm text-gray-400 mt-1">Success Rate</div>
+            </div>
           </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
-          variants={containerVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Primary CTA */}
-            <motion.button
-              className="group relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-black"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            {/* Enhanced primary button */}
+            <a
+              href="https://discord.com/invite/hangoutcodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#d946ef_0%,#f59e0b_50%,#d946ef_100%)]" />
+              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#a855f7_0%,#3b82f6_50%,#a855f7_100%)]" />
               <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-black px-8 py-4 text-lg font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-900 transition-colors">
-                Browse Courses
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Join Discord
               </span>
-            </motion.button>
+            </a>
 
-            {/* Secondary CTA */}
-            <motion.button
-              className="group inline-flex h-16 items-center justify-center rounded-full border-2 border-white/20 px-8 py-4 text-lg font-semibold text-white hover:border-white/40 hover:bg-white/5 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Free Sample Lesson
-              <div className="ml-2 w-5 h-5 rounded-full border-2 border-current flex items-center justify-center">
-                <div className="w-0 h-0 border-l-[6px] border-l-current border-y-[4px] border-y-transparent ml-0.5"></div>
-              </div>
-            </motion.button>
+            {/* Secondary button */}
+            <ContactUs />
           </motion.div>
         </motion.div>
       </Vortex>

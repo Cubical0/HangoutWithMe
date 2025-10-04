@@ -49,65 +49,102 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-3xl mx-auto">
+    <section className="py-20 px-4 relative">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent pointer-events-none" />
+      
+      <div className="max-w-3xl mx-auto relative">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent mb-6">
-            FAQ
-          </h2>
-          <p className="text-lg text-gray-400">
-            Common questions about our platform
-          </p>
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-semibold bg-gradient-to-r from-slate-200 via-white to-slate-200 bg-clip-text text-transparent mb-3">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm text-gray-400">
+              Everything you need to know about our platform
+            </p>
+          </motion.div>
         </div>
 
         {/* FAQ Items */}
-        <div className="space-y-4">
-          {faqData.map((item) => {
+        <div className="space-y-3">
+          {faqData.map((item, index) => {
             const isOpen = openItems.includes(item.id);
             
             return (
-              <div
+              <motion.div
                 key={item.id}
-                className="border border-gray-800 rounded-lg bg-gray-900/50 overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
               >
-                {/* Question */}
-                <button
-                  onClick={() => toggleItem(item.id)}
-                  className="w-full p-6 text-left flex items-center justify-between transition-colors"
+                <div
+                  className={`
+                    relative overflow-hidden rounded-xl
+                    bg-white/5 backdrop-blur-md
+                    border border-white/10
+                    transition-all duration-300
+                    ${isOpen ? 'shadow-lg shadow-purple-500/10' : 'hover:bg-white/[0.07]'}
+                  `}
                 >
-                  <h3 className="text-lg font-medium text-white">
-                    {item.question}
-                  </h3>
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-blue-500/0 to-purple-500/0 group-hover:from-purple-500/5 group-hover:via-blue-500/5 group-hover:to-purple-500/5 transition-all duration-500" />
                   
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex-shrink-0 ml-4"
+                  {/* Question */}
+                  <button
+                    onClick={() => toggleItem(item.id)}
+                    className="relative w-full px-5 py-4 text-left flex items-center justify-between group"
                   >
-                    <ChevronDown className="w-5 h-5 text-gray-400" />
-                  </motion.div>
-                </button>
-
-                {/* Answer */}
-                <AnimatePresence>
-                  {isOpen && (
+                    <h3 className="text-base font-medium text-white/90 pr-4 group-hover:text-white transition-colors">
+                      {item.question}
+                    </h3>
+                    
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="flex-shrink-0"
                     >
-                      <div className="px-6 pb-6">
-                        <p className="text-gray-300 pt-4">
-                          {item.answer}
-                        </p>
+                      <div className={`
+                        w-8 h-8 rounded-full flex items-center justify-center
+                        bg-white/5 border border-white/10
+                        group-hover:bg-white/10 group-hover:border-white/20
+                        transition-all duration-300
+                      `}>
+                        <ChevronDown className="w-4 h-4 text-gray-400" />
                       </div>
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                  </button>
+
+                  {/* Answer */}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="relative px-5 pb-4">
+                          {/* Subtle divider */}
+                          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-4" />
+                          
+                          <p className="text-sm text-gray-300/90 leading-relaxed">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
             );
           })}
         </div>

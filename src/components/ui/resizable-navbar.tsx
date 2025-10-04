@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 
 import React, { useRef, useState } from "react";
 
@@ -248,7 +249,14 @@ export const NavbarLogo = () => {
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <span className="font-medium text-black dark:text-white">HangoutCodex</span>
+      <Image
+        src="/assets/Hangout Codex Symbol Final (1).svg"
+        alt="HangoutCodex Logo"
+        width={32}
+        height={32}
+        className="h-12 w-12 rounded-full"
+      />
+      <span className="font-extrabold text-black dark:text-white">HangoutCodex</span>
     </Link>
   );
 };
