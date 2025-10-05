@@ -1,13 +1,16 @@
 import mixpanel from "mixpanel-browser";
 
+// Type for Mixpanel properties
+type MixpanelProperties = Record<string, string | number | boolean | null | undefined>;
+
 // Helper functions for tracking events throughout your app
-export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
+export const trackEvent = (eventName: string, properties?: MixpanelProperties) => {
   if (typeof window !== "undefined") {
     mixpanel.track(eventName, properties);
   }
 };
 
-export const identifyUser = (userId: string, traits?: Record<string, any>) => {
+export const identifyUser = (userId: string, traits?: MixpanelProperties) => {
   if (typeof window !== "undefined") {
     mixpanel.identify(userId);
     if (traits) {
@@ -16,7 +19,7 @@ export const identifyUser = (userId: string, traits?: Record<string, any>) => {
   }
 };
 
-export const trackPageView = (pageName: string, properties?: Record<string, any>) => {
+export const trackPageView = (pageName: string, properties?: MixpanelProperties) => {
   if (typeof window !== "undefined") {
     mixpanel.track("Page View", {
       page: pageName,

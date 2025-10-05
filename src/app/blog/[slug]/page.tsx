@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         />
       )}
 
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-black pt-36">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <BlogBreadcrumb items={breadcrumbItems} />
           
