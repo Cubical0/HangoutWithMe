@@ -45,7 +45,7 @@ export function NavbarDemo() {
   return (
     <>
       {/* Add padding to body to account for fixed navbar */}
-      <div className="pt-20">
+      <div >
         <Navbar>
           {/* Desktop Navigation */}
           <NavBody>
