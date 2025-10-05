@@ -4,8 +4,25 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Vortex } from '@/components/ui/vortex';
 import ContactUs from '../home/ContactUs';
+import {  TrendingUp, Shield, Zap } from 'lucide-react';
+
 
 const CoursesHero = () => {
+    const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+    };
+    const features = [
+    { icon: TrendingUp, text: "Real Case Studies" },
+    { icon: Shield, text: "Expert Advice" },
+    { icon: Zap, text: "Funding Opportunities" },
+  ];
   return (
     <div className='min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden'>
       <Vortex
@@ -20,15 +37,22 @@ const CoursesHero = () => {
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           />
+            <motion.div
+                    variants={containerVariants}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-8"
+                    >
+                      <div className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-gray-300">Trusted by 10,000+ traders worldwide</span>
+                    </motion.div>
 
           {/* Main Heading */}
           <motion.h1
-            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-pink-300 to-amber-300 bg-clip-text text-transparent font-semibold leading-tight"
+            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Master E-commerce & Digital Business
+             E-commerce & Digital Business
           </motion.h1>
 
           {/* Subtitle */}
@@ -41,36 +65,26 @@ const CoursesHero = () => {
             From E-commerce basics to advanced digital business strategies. Build profitable online businesses with our comprehensive training programs.
           </motion.p>
 
-          {/* Stats Section */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-8 mt-8 mb-10"
+ <motion.div
+            className="flex flex-wrap justify-center gap-4 my-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-                50+
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
+              >
+                <feature.icon className="w-4 h-4 text-purple-300" />
+                <span className="text-sm text-gray-300">{feature.text}</span>
               </div>
-              <div className="text-sm text-gray-400 mt-1">Expert Courses</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-300 to-amber-300 bg-clip-text text-transparent">
-                5K+
-              </div>
-              <div className="text-sm text-gray-400 mt-1">Active Students</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
-                95%
-              </div>
-              <div className="text-sm text-gray-400 mt-1">Success Rate</div>
-            </div>
+            ))}
           </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 mt-10 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4  justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

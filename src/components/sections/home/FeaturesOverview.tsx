@@ -13,7 +13,7 @@ const logos = [
   { src: beep, alt: 'Beep' },
   { src: logo1, alt: 'Blue Full' },
   { src: logo2, alt: 'Hangout Codex' },
-  { src: logo3, alt: 'Partner Logo' },
+  // { src: logo3, alt: 'Partner Logo' },
   { src: logo4, alt: 'Partner Logo 2' }
 ];
 

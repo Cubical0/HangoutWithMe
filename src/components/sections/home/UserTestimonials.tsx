@@ -25,7 +25,7 @@ export default function OurProducts() {
             area="md:[grid-area:1/1/2/7]" 
             icon={<TrendingUp className="h-4 w-4 text-white" />} 
             title="Ypredict" 
-            description="More than a prediction tool. It's a comprehensive, AI-powered companion for anyone looking to navigate the complex and dynamic world of cryptocurrency investing. Whether you're a beginner or a pro, CryptoPredictor equips you with the knowledge, tools, and confidence to make smarter investment decisions." 
+            description="More than a prediction tool. It's a comprehensive, companion for anyone looking to navigate the complex and dynamic world of cryptocurrency investing. Whether you're a beginner or a pro, CryptoPredictor equips you with the knowledge, tools, and confidence to make smarter investment decisions." 
             url="https://ypredict.ai/app/"
             backgroundImage="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=800&h=600&fit=crop&crop=center"
           />

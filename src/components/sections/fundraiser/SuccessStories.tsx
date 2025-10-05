@@ -11,7 +11,7 @@ const SuccessStories = () => {
       sector: "Artificial Intelligence",
       fundingRound: "Series A",
       amountRaised: "$12M",
-      description: "AI-powered workflow automation platform that raised Series A funding in just 4 months.",
+      description: "workflow automation platform that raised Series A funding in just 4 months.",
       founder: "Sarah Chen",
       founderTitle: "CEO & Co-founder",
       testimonial: "The team's expertise in connecting us with the right investors was invaluable. They understood our vision and helped us craft a compelling narrative that resonated with VCs.",

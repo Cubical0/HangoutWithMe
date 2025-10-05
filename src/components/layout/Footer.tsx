@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold text-white mb-4">HangoutCodex</h3>
             <p className="text-gray-400 mb-4 max-w-md">
-              Empowering traders, entrepreneurs, and businesses with AI-powered solutions, expert mentorship, 
+              Empowering traders, entrepreneurs, and businesses with solutions, expert mentorship, 
               and cutting-edge technology. Your success is our mission.
             </p>
             <div className="flex space-x-4">
