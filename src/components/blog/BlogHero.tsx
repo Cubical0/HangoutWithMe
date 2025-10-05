@@ -24,7 +24,7 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
   }
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-30 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">

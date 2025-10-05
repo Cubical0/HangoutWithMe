@@ -78,18 +78,57 @@ export interface BlogTag {
   count: number;
 }
 
-// Helper function to get the base URL
+// Helper function to get the base URL (for client-side or external API calls)
 function getBaseUrl() {
-  // Use NEXT_PUBLIC_BASE_URL if set, otherwise fallback to localhost
+  // For server-side rendering in production (Vercel, etc.)
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  
+  // Use NEXT_PUBLIC_BASE_URL if set
   if (process.env.NEXT_PUBLIC_BASE_URL) {
     return process.env.NEXT_PUBLIC_BASE_URL;
   }
+  
+  // Fallback to localhost for development
   return 'http://localhost:3000';
+}
+
+// Helper function to check if we're on the server
+function isServer() {
+  return typeof window === 'undefined';
 }
 
 // Database API functions
 export async function getAllPosts(): Promise<BlogPost[]> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blogs = await Blog.find({ status: 'published' })
+          .sort({ publishedAt: -1 })
+          .lean();
+        
+        const mappedPosts = blogs.map((blog: any) => ({
+          ...blog,
+          id: blog._id.toString(),
+          _id: undefined,
+          publishedAt: blog.publishedAt.toISOString(),
+          updatedAt: blog.updatedAt?.toISOString(),
+        }));
+        
+        return mappedPosts;
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call (for client-side or if direct DB access fails)
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs?status=published`;
     const response = await fetch(url, {
@@ -112,7 +151,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return getMockBlogPosts();
     }
   } catch (error) {
-      console.warn('Failed to fetch blogs, using mock data');
+    console.warn('Failed to fetch blogs, using mock data:', error);
     return getMockBlogPosts();
   }
   
@@ -121,6 +160,31 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blog = await Blog.findOne({ slug, status: 'published' }).lean();
+        
+        if (blog) {
+          return {
+            ...blog,
+            id: blog._id.toString(),
+            _id: undefined,
+            publishedAt: blog.publishedAt.toISOString(),
+            updatedAt: blog.updatedAt?.toISOString(),
+          } as any;
+        }
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs/${slug}`;
     const response = await fetch(url, {
@@ -137,7 +201,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       };
     }
   } catch (error) {
-      // Silent error handling
+    console.warn('Failed to fetch blog post:', error);
   }
   
   return null;
@@ -145,6 +209,33 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 export async function getFeaturedPosts(): Promise<BlogPost[]> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blogs = await Blog.find({ status: 'published', featured: true })
+          .sort({ publishedAt: -1 })
+          .lean();
+        
+        const mappedPosts = blogs.map((blog: any) => ({
+          ...blog,
+          id: blog._id.toString(),
+          _id: undefined,
+          publishedAt: blog.publishedAt.toISOString(),
+          updatedAt: blog.updatedAt?.toISOString(),
+        }));
+        
+        return mappedPosts;
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs?status=published&featured=true`;
     const response = await fetch(url, {
@@ -164,6 +255,7 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
       return getMockBlogPosts().filter(post => post.featured);
     }
   } catch (error) {
+    console.warn('Failed to fetch featured posts:', error);
     // Return mock featured posts on error
     return getMockBlogPosts().filter(post => post.featured);
   }
@@ -172,6 +264,34 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
 
 export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blogs = await Blog.find({ status: 'published' })
+          .sort({ publishedAt: -1 })
+          .limit(limit)
+          .lean();
+        
+        const mappedPosts = blogs.map((blog: any) => ({
+          ...blog,
+          id: blog._id.toString(),
+          _id: undefined,
+          publishedAt: blog.publishedAt.toISOString(),
+          updatedAt: blog.updatedAt?.toISOString(),
+        }));
+        
+        return mappedPosts;
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs?status=published&limit=${limit}`;
     const response = await fetch(url, {
@@ -184,13 +304,14 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
         ...blog,
         id: blog._id,
         publishedAt: blog.publishedAt,
-    // Silent error handling
+        updatedAt: blog.updatedAt,
       }));
     } else if (response.status === 503) {
       // Database connection failed, return mock recent posts
       return getMockBlogPosts().slice(0, limit);
     }
   } catch (error) {
+    console.warn('Failed to fetch recent posts:', error);
     // Return mock recent posts on error
     return getMockBlogPosts().slice(0, limit);
   }
@@ -200,6 +321,36 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
 
 export async function getBlogPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blogs = await Blog.find({ 
+          status: 'published',
+          category: { $regex: categorySlug, $options: 'i' }
+        })
+          .sort({ publishedAt: -1 })
+          .lean();
+        
+        const mappedPosts = blogs.map((blog: any) => ({
+          ...blog,
+          id: blog._id.toString(),
+          _id: undefined,
+          publishedAt: blog.publishedAt.toISOString(),
+          updatedAt: blog.updatedAt?.toISOString(),
+        }));
+        
+        return mappedPosts;
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs?status=published&category=${categorySlug}`;
     const response = await fetch(url, {
@@ -216,7 +367,7 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
       }));
     }
   } catch (error) {
-    // Silent error handling
+    console.warn('Failed to fetch posts by category:', error);
   }
   
   return [];
@@ -224,6 +375,36 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
 
 export async function getBlogPostsByTag(tagSlug: string): Promise<BlogPost[]> {
   try {
+    // If on server and MongoDB is available, fetch directly from database
+    if (isServer() && process.env.MONGODB_URI) {
+      try {
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const Blog = (await import('@/models/Blog')).default;
+        
+        await connectDB();
+        
+        const blogs = await Blog.find({ 
+          status: 'published',
+          tags: { $in: [new RegExp(tagSlug, 'i')] }
+        })
+          .sort({ publishedAt: -1 })
+          .lean();
+        
+        const mappedPosts = blogs.map((blog: any) => ({
+          ...blog,
+          id: blog._id.toString(),
+          _id: undefined,
+          publishedAt: blog.publishedAt.toISOString(),
+          updatedAt: blog.updatedAt?.toISOString(),
+        }));
+        
+        return mappedPosts;
+      } catch (dbError) {
+        console.warn('Direct database access failed, falling back to API:', dbError);
+      }
+    }
+    
+    // Fallback to API call
     const baseUrl = getBaseUrl();
     const url = `${baseUrl}/api/blogs?status=published&tag=${tagSlug}`;
     const response = await fetch(url, {
@@ -240,7 +421,7 @@ export async function getBlogPostsByTag(tagSlug: string): Promise<BlogPost[]> {
       }));
     }
   } catch (error) {
-    // Silent error handling
+    console.warn('Failed to fetch posts by tag:', error);
   }
   
   return [];
