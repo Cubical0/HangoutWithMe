@@ -6,21 +6,16 @@ import {
   DollarSign, 
   Users, 
   BookOpen, 
-  Target,
-  Presentation,
-  FileText,
-  Handshake,
-  TrendingUp,
   X,
   Upload,
   Building,
   User,
   Briefcase,
-  // removed unused FundingIcon
 } from 'lucide-react';
 import { useOutsideClick } from '@/hooks/use-outside-click';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import AdditionalSupportServices from './AdditionalSupportServices';
 
 const FundraiserServices = () => {
   const [active, setActive] = useState<{
@@ -83,10 +78,10 @@ const FundraiserServices = () => {
   const services = [
     {
       id: 'fundraising',
-      title: 'Raise Funds for Startups & Businesses',
+      title: 'Raise Funds for Startups',
       description: 'Comprehensive fundraising support from pre-seed to Series A and beyond.',
       icon: DollarSign,
-      gradient: 'from-emerald-500 to-teal-500',
+      gradient: 'from-black-100 to-white-500',
       amount: '$50M+',
       metric: 'Funds Raised'
     },
@@ -95,7 +90,7 @@ const FundraiserServices = () => {
       title: 'Connect with Investors',
       description: 'Access our extensive network of angel investors, VCs, and institutional investors.',
       icon: Users,
-      gradient: 'from-blue-500 to-cyan-500',
+      gradient: 'from-black-100 to-white-500',
       amount: '100+',
       metric: 'Active Investors'
     },
@@ -104,7 +99,7 @@ const FundraiserServices = () => {
       title: 'Mentor Support & Guidance',
       description: 'Learn from experienced entrepreneurs and industry experts who\'ve been there before.',
       icon: BookOpen,
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-black-100 to-white-500',
       amount: '100+',
       metric: 'Expert Mentors'
     }
@@ -233,7 +228,7 @@ const FundraiserServices = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
               Fundraising Services
             </span>
           </h2>
@@ -1032,55 +1027,7 @@ const FundraiserServices = () => {
         </div>
 
         {/* Additional Services */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-teal-300 to-emerald-300 bg-clip-text text-transparent">
-              Additional Support Services
-            </span>
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            <div className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center">
-              <div className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 w-fit mx-auto mb-4">
-                <Target className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Business Plan Development</h4>
-              <p className="text-sm text-gray-300">Create compelling business plans that attract investors.</p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center">
-              <div className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 w-fit mx-auto mb-4">
-                <Presentation className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Pitch Deck Creation</h4>
-              <p className="text-sm text-gray-300">Design professional pitch decks that tell your story effectively.</p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center">
-              <div className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 w-fit mx-auto mb-4">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Financial Modeling</h4>
-              <p className="text-sm text-gray-300">Build robust financial models and projections for investors.</p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center">
-              <div className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 w-fit mx-auto mb-4">
-                <Handshake className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Partnership Facilitation</h4>
-              <p className="text-sm text-gray-300">Connect with strategic partners and potential collaborators.</p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center">
-              <div className="p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 w-fit mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Growth Strategy</h4>
-              <p className="text-sm text-gray-300">Develop scalable growth strategies for sustainable success.</p>
-            </div>
-          </div>
-        </div>
+        <AdditionalSupportServices />
       </div>
     </section>
   );

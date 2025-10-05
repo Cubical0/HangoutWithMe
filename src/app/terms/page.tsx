@@ -44,7 +44,7 @@ const sections = [
     content: [
       {
         subtitle: "Trading Hub",
-        text: "Our Trading Hub provides AI-powered trading signals and mentorship. The first 3 signals are free, after which paid subscription is required. Trading involves risk, and past performance does not guarantee future results."
+        text: "Our Trading Hub provides trading signals and mentorship. The first 3 signals are free, after which paid subscription is required. Trading involves risk, and past performance does not guarantee future results."
       },
       {
         subtitle: "Ecom Launchpad",
@@ -78,7 +78,7 @@ const sections = [
       },
       {
         subtitle: "Not Financial Advice",
-        text: "Our services, including AI-powered analysis and mentorship, are educational in nature and should not be considered as financial, investment, or legal advice. Consult with qualified professionals before making investment decisions."
+        text: "Our services, including analysis and mentorship, are educational in nature and should not be considered as financial, investment, or legal advice. Consult with qualified professionals before making investment decisions."
       }
     ]
   },

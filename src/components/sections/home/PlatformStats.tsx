@@ -34,12 +34,12 @@ import {
 const services = [
   { 
     title: "Trading Hub", 
-    description: "Advanced trading platform with AI-powered signals and mentorship.",
+    description: "Advanced trading platform with signals and mentorship.",
     icon: TrendingUp,
     steps: [
       { text: "Trading Signals (3 free, then paid)", icon: TrendingUp },
       { text: "Mentorship for Traders", icon: Users },
-      { text: "AI-Powered Market Analysis", icon: Brain },
+      { text: "Market Analysis", icon: Brain },
       { text: "ChatAI & Generative AI", icon: MessageSquare },
       { text: "Voice AI & NLP", icon: Mic },
       { text: "Zero Down Time Infrastructure", icon: Server }

@@ -7,10 +7,10 @@ import ContactUs from './ContactUs';
 
 export default function TradingHubCTA() {
   const tradingHubData = [
-    { name: "Trading Signals", subtitle: "3 free, then paid", icon: TrendingUp, color: "text-green-500" },
+    { name: "Trading Signals", subtitle: "1 free, then paid", icon: TrendingUp, color: "text-green-500" },
     { name: "Mentorship", subtitle: "Expert traders", icon: Users, color: "text-green-500" },
     { name: "AI Analysis", subtitle: "Market insights", icon: Brain, color: "text-red-500" },
-    { name: "ChatAI", subtitle: "Smart assistance", icon: MessageSquare, color: "text-green-500" },
+    // { name: "ChatAI", subtitle: "Smart assistance", icon: MessageSquare, color: "text-green-500" },
     { name: "Voice AI", subtitle: "NLP powered", icon: Mic, color: "text-red-500" },
     { name: "Zero Downtime", subtitle: "99.9% uptime", icon: Server, color: "text-green-500" },
   ];
@@ -37,8 +37,8 @@ export default function TradingHubCTA() {
             </span>
           </h2>
           <p className="text-lg text-gray-400 mt-6 max-w-xl">
-            Experience professional trading with AI-powered signals, expert mentorship, 
-            and zero-downtime infrastructure. Get 3 free signals to start your journey.
+            Experience professional trading with signals, expert mentorship, 
+            and zero-downtime infrastructure. Get 1 free signal everyday to get started.
           </p>
 
           {/* Button */}

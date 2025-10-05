@@ -2,17 +2,17 @@
 
 import { Cover } from '@/components/ui/cover';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Package, Users, TrendingUp } from 'lucide-react';
+import { Cloud, Package, Users, TrendingUp } from 'lucide-react';
 
 const courses = [
-  {
-    id: 1,
-    title: "E-commerce Fundamentals",
-    description: "Complete guide to starting and scaling your online store from scratch.",
-    price: "$149",
-    level: "Beginner",
-    icon: ShoppingCart
-  },
+{
+  id: 1,
+  title: "SaaS Mastery: Beginner to Advanced",
+  description: "A complete roadmap to building, launching, and scaling a successful SaaS product — from idea to revenue.",
+  price: "$149",
+  level: "Beginner to Advanced",
+  icon: Cloud
+},
   {
     id: 2,
     title: "Dropshipping Mastery",
@@ -52,11 +52,7 @@ export default function CoursesGrid() {
         </p>
       </div>
       <div className="text-center mb-8">
-        <Cover> 
-        <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
-          We provide funds up to $5000
-          </h2>
-          </Cover>
+
       </div>
 
       {/* Courses Grid */}
@@ -70,9 +66,7 @@ export default function CoursesGrid() {
               {/* Icon and level */}
               <div className="flex justify-between items-center mb-6">
                 <course.icon className="w-8 h-8 text-purple-400 drop-shadow-lg" />
-                <span className="text-xs bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full text-white/90 border border-white/30 font-medium">
-                  {course.level}
-                </span>
+
               </div>
               
               {/* Title */}

@@ -44,6 +44,10 @@ const TrustedBy = () => {
           <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Basic trading signals</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>1 Trading signal everyday</span>
           </div>
           <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -58,10 +62,16 @@ const TrustedBy = () => {
             <span>Email support</span>
           </div>
         </div>
-        
-        <button className="w-full py-3 px-6 border border-black/[0.2] dark:border-white/[0.2] rounded-lg text-black dark:text-white font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-          Get Started Free
-        </button>
+         <a
+              href="https://discord.com/invite/hangoutcodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
+            >
+        <button className="w-full cursor-pointer py-3 px-6 border border-black/[0.2] dark:border-white/[0.2] rounded-lg text-black dark:text-white font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+          Get Started For Free
+              </button>
+              </a>
       </div>
 
       {/* Pro User Card */}
@@ -88,7 +98,7 @@ const TrustedBy = () => {
         <div className="flex-1 space-y-3 mb-8">
           <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-            <span>Advanced AI trading signals</span>
+            <span>Multiple trading signals everyday</span>
           </div>
           <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
@@ -108,7 +118,7 @@ const TrustedBy = () => {
           </div>
         </div>
         
-        <button className="w-full py-3 px-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <button className="w-full cursor-pointer py-3 px-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
           Upgrade to Pro
         </button>
       </div>

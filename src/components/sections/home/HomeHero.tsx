@@ -93,7 +93,7 @@ const HomeHero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Learn fast, build bold, trade smart, and raise the bar all in one place where ideas meet mentors, tools, and a little bit of magic.              </motion.p>
+                A place where hustlers, traders & founders collide. Learn, trade, scale & grow together.          </motion.p>
 
               {/* Enhanced stats section */}
               <motion.div
@@ -107,8 +107,8 @@ const HomeHero = () => {
                   <div className="text-sm text-gray-300">Active Members</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">$2.5B+</div>
-                  <div className="text-sm text-gray-300">Volume Traded</div>
+                  <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">100+</div>
+                  <div className="text-sm text-gray-300">Clients Secured</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold bg-gradient-to-r from-rose-300 to-purple-300 bg-clip-text text-transparent">99.9%</div>

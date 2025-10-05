@@ -33,7 +33,7 @@ const TradingHero = () => {
   const features = [
     { icon: TrendingUp, text: "Smart Trading" },
     { icon: Shield, text: "Secure Platform" },
-    { icon: Zap, text: "Lightning Fast" },
+    { icon: Zap, text: "Real Time Analysis" },
   ];
 
   return (

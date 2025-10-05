@@ -23,7 +23,7 @@ const FundraiserHero = () => {
 
           {/* Main Heading */}
           <motion.h1
-            className="text-[40px] md:text-[48px] bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent font-semibold leading-tight"
+            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -58,7 +58,7 @@ const FundraiserHero = () => {
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
                 200+
               </div>
-              <div className="text-sm text-gray-400 mt-1">Startups Funded</div>
+              <div className="text-sm text-gray-400 mt-1">Advisor network</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">

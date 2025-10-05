@@ -171,7 +171,7 @@ export function ServicesGrid() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r  from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
               Our Services
             </span>
           </h2>

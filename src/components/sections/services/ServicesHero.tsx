@@ -23,7 +23,7 @@ const ServicesHero = () => {
 
           {/* Main Heading */}
           <motion.h1
-            className="text-[40px] md:text-[48px] bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent font-semibold leading-tight"
+            className="text-[40px] md:text-[48px] bg-gradient-to-r from-purple-300 via-slate-300 to-blue-300 bg-clip-text text-transparent font-semibold leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -38,7 +38,7 @@ const ServicesHero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            From ERP solutions to AI-powered applications. We deliver cutting-edge technology solutions for modern businesses.
+            From ERP solutions to applications. We deliver cutting-edge technology solutions for modern businesses.
           </motion.p>
 
           {/* Stats Section */}

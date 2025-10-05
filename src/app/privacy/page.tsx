@@ -16,7 +16,7 @@ const sections = [
       },
       {
         subtitle: "Trading Data",
-        text: "For our Trading Hub services, we collect trading preferences, signal interactions, and performance metrics to improve our AI-powered recommendations."
+        text: "For our Trading Hub services, we collect trading preferences, signal interactions, and performance metrics to improve our recommendations."
       }
     ]
   },
@@ -132,7 +132,7 @@ const sections = [
       },
       {
         subtitle: "AI & Analytics",
-        text: "We use AI-powered tools and analytics services to improve our platform. These services may collect and process data according to their own privacy policies."
+        text: "We use tools and analytics services to improve our platform. These services may collect and process data according to their own privacy policies."
       },
       {
         subtitle: "Payment Processors",
