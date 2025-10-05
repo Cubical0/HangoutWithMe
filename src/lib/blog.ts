@@ -63,6 +63,40 @@ interface RawBlogPost {
   }[];
 }
 
+// Type for Mongoose lean documents (from database)
+interface LeanBlogDocument {
+  _id: { toString(): string };
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  excerpt: string;
+  author: {
+    name: string;
+    avatar: string;
+    bio: string;
+  };
+  publishedAt: Date;
+  updatedAt?: Date;
+  readingTime: number;
+  category: string;
+  tags: string[];
+  thumbnail: string;
+  featured: boolean;
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+    ogImage?: string;
+  };
+  relatedPosts?: string[];
+  faq?: {
+    question: string;
+    answer: string;
+  }[];
+  status: string;
+}
+
 export interface BlogCategory {
   id: string;
   name: string;
@@ -112,9 +146,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
         
         const blogs = await Blog.find({ status: 'published' })
           .sort({ publishedAt: -1 })
-          .lean();
+          .lean() as unknown as LeanBlogDocument[];
         
-        const mappedPosts = blogs.map((blog: any) => ({
+        const mappedPosts = blogs.map((blog) => ({
           ...blog,
           id: blog._id.toString(),
           _id: undefined,
@@ -168,7 +202,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
         
         await connectDB();
         
-        const blog = await Blog.findOne({ slug, status: 'published' }).lean();
+        const blog = await Blog.findOne({ slug, status: 'published' }).lean() as unknown as LeanBlogDocument | null;
         
         if (blog) {
           return {
@@ -177,7 +211,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
             _id: undefined,
             publishedAt: blog.publishedAt.toISOString(),
             updatedAt: blog.updatedAt?.toISOString(),
-          } as any;
+          } as BlogPost;
         }
       } catch (dbError) {
         console.warn('Direct database access failed, falling back to API:', dbError);
@@ -219,9 +253,9 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
         
         const blogs = await Blog.find({ status: 'published', featured: true })
           .sort({ publishedAt: -1 })
-          .lean();
+          .lean() as unknown as LeanBlogDocument[];
         
-        const mappedPosts = blogs.map((blog: any) => ({
+        const mappedPosts = blogs.map((blog) => ({
           ...blog,
           id: blog._id.toString(),
           _id: undefined,
@@ -275,9 +309,9 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
         const blogs = await Blog.find({ status: 'published' })
           .sort({ publishedAt: -1 })
           .limit(limit)
-          .lean();
+          .lean() as unknown as LeanBlogDocument[];
         
-        const mappedPosts = blogs.map((blog: any) => ({
+        const mappedPosts = blogs.map((blog) => ({
           ...blog,
           id: blog._id.toString(),
           _id: undefined,
@@ -334,9 +368,9 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
           category: { $regex: categorySlug, $options: 'i' }
         })
           .sort({ publishedAt: -1 })
-          .lean();
+          .lean() as unknown as LeanBlogDocument[];
         
-        const mappedPosts = blogs.map((blog: any) => ({
+        const mappedPosts = blogs.map((blog) => ({
           ...blog,
           id: blog._id.toString(),
           _id: undefined,
@@ -388,9 +422,9 @@ export async function getBlogPostsByTag(tagSlug: string): Promise<BlogPost[]> {
           tags: { $in: [new RegExp(tagSlug, 'i')] }
         })
           .sort({ publishedAt: -1 })
-          .lean();
+          .lean() as unknown as LeanBlogDocument[];
         
-        const mappedPosts = blogs.map((blog: any) => ({
+        const mappedPosts = blogs.map((blog) => ({
           ...blog,
           id: blog._id.toString(),
           _id: undefined,
