@@ -53,7 +53,7 @@ const AdditionalSupportServices = () => {
             key={service.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.1,  }}
             viewport={{ once: true }}
             className="p-6 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg text-center hover:bg-white/15 transition-all duration-300 hover:border-white/30"
           >
