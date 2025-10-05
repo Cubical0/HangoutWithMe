@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { BlogPost, BlogCategory, BlogTag } from './blog';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://hangoutfinance.com';
-const SITE_NAME = 'Hangout Finance';
-const SITE_DESCRIPTION = 'Your trusted source for cryptocurrency insights, trading strategies, and market analysis.';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://hangoutcodex.com';
+const SITE_NAME = 'HangoutCodex';
+const SITE_DESCRIPTION = 'Join 100K+ hustlers, traders & founders at HangoutCodex. Master crypto trading, e-commerce, dropshipping, SaaS development, and connect with 100+ investors. Your all-in-one platform for building, trading, and innovating.';
 
 export interface SEOConfig {
   title: string;
@@ -77,8 +77,8 @@ export function generateMetadata(config: SEOConfig): Metadata {
       title: fullTitle,
       description,
       images: [imageUrl],
-      creator: '@HangoutFinance',
-      site: '@HangoutFinance',
+      creator: '@HangoutCodex',
+      site: '@HangoutCodex',
     },
   };
 

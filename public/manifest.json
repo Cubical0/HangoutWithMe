@@ -1,0 +1,53 @@
+{
+  "name": "HangoutCodex - Build, Trade, Innovate",
+  "short_name": "HangoutCodex",
+  "description": "Join 100K+ hustlers, traders & founders. Master crypto trading, e-commerce, and connect with investors.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "business",
+    "finance",
+    "education",
+    "productivity"
+  ],
+  "shortcuts": [
+    {
+      "name": "Trading Signals",
+      "short_name": "Trading",
+      "description": "Access premium trading signals",
+      "url": "/trading",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Courses",
+      "short_name": "Courses",
+      "description": "Browse e-commerce courses",
+      "url": "/courses",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Fundraiser",
+      "short_name": "Fundraiser",
+      "description": "Connect with investors",
+      "url": "/fundraiser",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
