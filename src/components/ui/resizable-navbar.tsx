@@ -256,7 +256,7 @@ export const NavbarLogo = () => {
         height={32}
         className="h-12 w-12 rounded-full"
       />
-      <span className="font-extrabold ttext-white">HangoutCodex</span>
+      <span className="font-extrabold text-white">HangoutCodex</span>
     </Link>
   );
 };
