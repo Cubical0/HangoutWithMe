@@ -24,7 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLI
           background: useMotionTemplate`
         radial-gradient(
           ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-          #3b82f6,
+          var(--input-gradient-color, transparent),
           transparent 80%
         )
       `,
@@ -32,7 +32,7 @@ const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLI
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
-        className="group/input rounded-lg p-[2px] transition duration-300"
+        className="group/input rounded-lg p-[2px] transition duration-300 [--input-gradient-color:transparent] dark:[--input-gradient-color:#3b82f6]"
       >
         <input
           type={type}
