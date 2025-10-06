@@ -139,8 +139,7 @@ const BlogSchema = new Schema<IBlog>({
   timestamps: true,
 });
 
-// Create indexes
-BlogSchema.index({ slug: 1 });
+// Create indexes (slug already has unique index from schema definition)
 BlogSchema.index({ category: 1 });
 BlogSchema.index({ tags: 1 });
 BlogSchema.index({ status: 1 });
