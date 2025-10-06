@@ -12,7 +12,7 @@ interface PayPalButtonProps {
 }
 
 const PayPalButton: React.FC<PayPalButtonProps> = ({
-  amount = '29.99',
+  amount = '49.99',
   currency = 'USD',
   onSuccess,
   onError,

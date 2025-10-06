@@ -37,7 +37,7 @@ const TradingHero = () => {
   ];
 
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden'>
+    <div className='min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-20 md:pt-0'>
       <Vortex
         backgroundColor="black"
         className="flex items-center flex-col justify-center px-4 md:px-10 py-8 w-full h-full"
@@ -48,14 +48,13 @@ const TradingHero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div
-          variants={containerVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-8"
-          >
-            <div className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
-            <span className="text-sm text-gray-300">Trusted by 10,000+ traders worldwide</span>
-          </motion.div>
+    <motion.div
+            className="w-32 h-[1px] bg-gradient-to-r from-transparent via-slate-400 to-transparent mx-auto mb-8"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          />
+
 
 
           {/* Main Heading */}

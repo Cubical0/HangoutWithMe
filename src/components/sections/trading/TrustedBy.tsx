@@ -31,38 +31,38 @@ const TrustedBy = () => {
 
     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto my-12">
       {/* Free User Card */}
-      <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col p-6 relative rounded-lg bg-white/5 dark:bg-black/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
-        <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
-        <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
-        <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
-        <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+      <div className="border border-white/[0.2] flex flex-col p-6 relative rounded-lg bg-black/20 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+        <Icon className="absolute h-6 w-6 -top-3 -left-3 text-white " />
+        <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-white " />
+        <Icon className="absolute h-6 w-6 -top-3 -right-3 text-white " />
+        <Icon className="absolute h-6 w-6 -bottom-3 -right-3 text-white " />
    
 
-        <h2 className="dark:text-white text-black text-xl font-bold mb-2">
+        <h2 className="text-white text-xl font-bold mb-2">
           Free Plan
         </h2>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
+        <p className="text-gray-400 text-sm mb-6">
           Perfect for getting started with trading
         </p>
         
         <div className="flex-1 space-y-3 mb-8">
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Basic trading signals</span>
               </div>
-              <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+              <div className="flex items-center gap-3 text-sm ßtext-gray-300 ">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>1 Trading signal everyday</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm ßtext-gray-300 ">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Limited market analysis</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm ßtext-gray-300 ">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Community access</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm ßtext-gray-300 ">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             <span>Email support</span>
           </div>
@@ -73,14 +73,14 @@ const TrustedBy = () => {
               rel="noopener noreferrer"
               className="relative inline-flex h-16 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black group"
             >
-        <button className="w-full cursor-pointer py-3 px-6 border border-black/[0.2] dark:border-white/[0.2] rounded-lg text-black dark:text-white font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+        <button className="w-full cursor-pointer py-3 px-6 border  border-white/[0.2] rounded-lg text-white font-medium hover:bg-white/5 transition-colors">
           Get Started For Free
               </button>
               </a>
       </div>
 
       {/* Pro User Card */}
-      <div className="border-2 border-yellow-500/[0.5] dark:border-yellow-400/[0.5] flex flex-col p-6 relative  rounded-lg bg-gradient-to-br from-yellow-50/10 to-orange-50/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1">
+      <div className="border-2 border-yellow-400/[0.5] flex flex-col p-6 relative  rounded-lg bg-gradient-to-br from-yellow-50/10 to-orange-50/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-yellow-500/20 transition-all duration-300 transform hover:-translate-y-1">
         <Icon className="absolute h-6 w-6 -top-3 -left-3 text-yellow-500" />
         <Icon className="absolute h-6 w-6 -bottom-3 -left-3 text-yellow-500" />
         <Icon className="absolute h-6 w-6 -top-3 -right-3 text-yellow-500" />
@@ -92,32 +92,32 @@ const TrustedBy = () => {
         </div>
    
    
-        <h2 className="dark:text-white text-black text-xl font-bold mb-2 flex items-center gap-2">
+        <h2 className="text-white text-xl font-bold mb-2 flex items-center gap-2">
           Pro Plan
           <Award className="h-5 w-5 text-yellow-500" />
         </h2>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
+        <p className="text-gray-400 text-sm mb-6">
           Advanced tools for serious traders
         </p>
         
         <div className="flex-1 space-y-3 mb-8">
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
             <span>Multiple trading signals everyday</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
             <span>Real-time market analysis</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
             <span>Priority support & alerts</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
             <span>Exclusive trading strategies</span>
           </div>
-          <div className="flex items-center gap-3 text-sm dark:text-gray-300 text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-300 ">
             <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
             <span>Portfolio optimization tools</span>
           </div>
@@ -137,7 +137,7 @@ const TrustedBy = () => {
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
         planName="Pro Plan"
-        amount="29.99"
+        amount="49.99"
         currency="USD"
       />
      

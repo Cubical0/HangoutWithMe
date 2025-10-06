@@ -20,7 +20,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   isOpen,
   onClose,
   planName = 'Pro Plan',
-  amount = '29.99',
+  amount = '49.99',
   currency = 'USD',
   features,
   redirectUrl = '/trading?payment=success',

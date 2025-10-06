@@ -13,6 +13,7 @@ import {
   Code,
   Brain,
   Linkedin,
+  Github,
 } from 'lucide-react';
 import { motion } from "framer-motion";
 import { Vortex } from '@/components/ui/vortex';
@@ -178,6 +179,7 @@ export default function AboutPageClient() {
       </section>
 
       {/* Our Team */}
+          {/* Our Team */}
       <section className="flex flex-col items-center py-12 px-4">
         <div className="flex flex-col items-center max-w-7xl w-full">
           <div className="flex flex-col items-center text-center mb-12">
@@ -204,17 +206,16 @@ export default function AboutPageClient() {
               
               <h3 className="text-xl font-bold text-white mb-2">Sparsh Gupta</h3>
               <p className="text-sm font-semibold text-gray-300 mb-3">Founder & CEO</p>
-              <p className="text-sm text-gray-400 text-center leading-relaxed mb-4">
-                Founder turning ideas into thriving digital ecosystems.
-              </p>
+              <p className="text-sm text-gray-400 text-center   leading-relaxed mb-4">
+                Founder turning ideas into thriving digital ecosystems.</p>
               <a 
-                href="https://www.linkedin.com/in/sparsh-gupta-72306b22b/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4 text-gray-300" />
-              </a>
+                  href="https://www.linkedin.com/in/sparsh-gupta-72306b22b/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Linkedin className="w-4 h-4 text-gray-300" />
+                </a>
             </div>
 
             {/* Yuvraj Singh Rathore - Co-Founder */}
@@ -235,13 +236,13 @@ export default function AboutPageClient() {
                 The knight building revolutionary products that change the game.
               </p>
               <a 
-                href="www.linkedin.com/in/yuvraj-singh-rathore-1998381ab" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4 text-gray-300" />
-              </a>
+                  href="www.linkedin.com/in/yuvraj-singh-rathore-1998381ab" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Linkedin className="w-4 h-4 text-gray-300" />
+                </a>
             </div>
 
             {/* Vikram - CTO */}
@@ -257,53 +258,85 @@ export default function AboutPageClient() {
               </div>
               
               <h3 className="text-xl font-bold text-white mb-2">Vikram</h3>
-              <p className="text-sm font-semibold text-gray-300 mb-3">CTO</p>
+              <p className="text-sm font-semibold text-gray-300 mb-3">Chief Technology Officer</p>
               <p className="text-sm text-gray-400 text-center leading-relaxed mb-4">
-                Tech visionary architecting scalable solutions for tomorrow.
+                10+ years architecting scalable AI-driven platforms across industries.
               </p>
-              <a 
-                href="https://www.linkedin.com/in/vikram-singh-rathore-a2b2b81ab/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4 text-gray-300" />
-              </a>
+              
+              {/* Social Links */}
+              <div className="flex items-center gap-3">
+                <a 
+                  href="https://github.com/glowhard" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Github className="w-4 h-4 text-gray-300" />
+                </a>
+              </div>
             </div>
 
-            {/* Shobhit Sharma */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[280px] max-w-[320px]">
+            {/* Puneet Tiwari - Tech Lead */}
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px] max-w-[300px]">
               <div className="flex flex-col items-center mb-6">
-                <div className="w-28 h-28 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
+                <div className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
-                    src="/assets/shobhit.jpeg" 
-                    alt="Shobhit Sharma"
+                    src="/assets/puneet.png" 
+                    alt="Puneet Tiwari"
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
               </div>
               
-              <h3 className="text-xl font-bold text-white mb-2">Shobhit Sharma</h3>
-              <p className="text-sm font-semibold text-gray-300 mb-3">Strategic Advisor</p>
+              <h3 className="text-xl font-bold text-white mb-2">Puneet Tiwari</h3>
+              <p className="text-sm font-semibold text-gray-300 mb-3">Tech Lead</p>
               <p className="text-sm text-gray-400 text-center leading-relaxed mb-4">
-                Guiding strategy with deep market insights and business acumen.
+                Blockchain wizard serving 70,000+ users with Web3 innovation.
               </p>
-              <a 
-                href="https://www.linkedin.com/in/shobhit-sharma-8816561a5/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4 text-gray-300" />
-              </a>
+              
+              {/* Social Links */}
+              <div className="flex items-center gap-3">
+                <a 
+                  href="https://www.linkedin.com/in/heyitspuneet/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Linkedin className="w-4 h-4 text-gray-300" />
+                </a>
+                <a 
+                  href="https://github.com/puneettiwari61" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Github className="w-4 h-4 text-gray-300" />
+                </a>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Our Investors */}
+      <section className="flex flex-col items-center py-12 px-4">
+        <div className="flex flex-col items-center max-w-7xl w-full">
+          <div className="flex flex-col items-center text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
+              Backed By Visionaries
+            </h2>
+            <p className="text-lg text-gray-400 max-w-3xl">
+              Strategic investors who believe in our mission to revolutionize the ecosystem.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-8 max-w-4xl">
             {/* Yogesh Nogia */}
             <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[280px] max-w-[320px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-28 h-28 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
-                    src="/assets/yogesh.jpeg" 
+                    src="/assets/yogesh.png" 
                     alt="Yogesh Nogia"
                     className="w-full h-full rounded-full object-cover"
                   />
@@ -311,18 +344,20 @@ export default function AboutPageClient() {
               </div>
               
               <h3 className="text-xl font-bold text-white mb-2">Yogesh Nogia</h3>
-              <p className="text-sm font-semibold text-gray-300 mb-3">Growth Strategist</p>
+              <p className="text-sm font-semibold text-gray-300 mb-3">Strategic Investo, 3x founder</p>
               <p className="text-sm text-gray-400 text-center leading-relaxed mb-4">
-                Driving expansion with innovative growth strategies.
+                Empowering innovation with strategic vision and capital.
+
               </p>
+            
               <a 
-                href="https://www.linkedin.com/in/yogesh-nogia-8816561a5/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4 text-gray-300" />
-              </a>
+                  href="https://www.linkedin.com/in/yogesh-nogia-8816561a5/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/15 hover:border-white/20 transition-all duration-300"
+                >
+                  <Linkedin className="w-4 h-4 text-gray-300" />
+                </a>
             </div>
 
             {/* Mukul Choudary */}
@@ -342,7 +377,7 @@ export default function AboutPageClient() {
               <p className="text-sm text-gray-400 text-center leading-relaxed mb-4">
                 Fueling growth with expertise and investment acumen.
               </p>
-              <div className="flex items-center gap-3">
+               <div className="flex items-center gap-3">
                 <a 
                   href="https://www.linkedin.com/in/viralmukul/" 
                   target="_blank" 
@@ -356,6 +391,7 @@ export default function AboutPageClient() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }
