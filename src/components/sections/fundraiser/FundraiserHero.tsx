@@ -50,9 +50,9 @@ const FundraiserHero = () => {
           >
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">
-                $50M+
+                50+
               </div>
-              <div className="text-sm text-gray-400 mt-1">Funds Raised</div>
+              <div className="text-sm text-gray-400 mt-1">Partner Network</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">

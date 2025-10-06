@@ -14,7 +14,6 @@ export default function Home() {
       <HomeHero />
       <FeaturesOverview />
       <PlatformStats />
-      <AnimatedTestimonialsDemo/>
       <FAQ />
       <ContactUs />
       <UserTestimonials />

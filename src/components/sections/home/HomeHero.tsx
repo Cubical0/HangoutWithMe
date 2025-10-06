@@ -56,7 +56,7 @@ const HomeHero = () => {
 ];
 
   return (
-    <div className="flex flex-col relative min-h-screen overflow-x-hidden">
+    <div className="flex flex-col relative min-h-screen overflow-x-hidden pt-20 md:pt-0">
       <Spotlight />
       
       {/* Enhanced background with subtle gradients */}
@@ -108,7 +108,7 @@ const HomeHero = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">100+</div>
-                  <div className="text-sm text-gray-300">Clients Secured</div>
+                  <div className="text-sm text-gray-300">Clients Served</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold bg-gradient-to-r from-rose-300 to-purple-300 bg-clip-text text-transparent">99.9%</div>
@@ -139,18 +139,7 @@ const HomeHero = () => {
                 <ContactUs />
               </motion.div>
 
-              {/* Trust indicators */}
-              <motion.div
-                className="flex flex-wrap justify-center items-center gap-6 mt-12 opacity-60"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                <div className="text-xs text-gray-300 uppercase tracking-wider">Trusted by</div>
-                <div className="flex items-center gap-4 text-gray-300">
-                  <AnimatedTooltip items={people} />
-                </div>
-              </motion.div>
+
             </div>
           </>}
           discordRef={discordRef}

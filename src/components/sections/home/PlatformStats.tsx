@@ -79,7 +79,7 @@ export default function PlatformStats() {
   transition={{ duration: 0.6 }}
   className="text-center mb-16"
 >
-  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent mb-6">
+  <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-white to-gray-900 bg-clip-text text-transparent mb-6">
     Learn, Build, and Trade<br/> with Confidence
   </h2>
   <p className="text-xl text-gray-300">

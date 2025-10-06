@@ -14,28 +14,28 @@ const AdditionalSupportServices = () => {
   const supportServices = [
     {
       icon: Target,
-      title: 'Business Plan Development',
-      description: 'Create compelling business plans that attract investors.'
+      title: 'Business Planning',
+      description: ' Create structured, investor-focused plans that define clear goals and growth pathways.'
     },
     {
       icon: Presentation,
-      title: 'Pitch Deck Creation',
-      description: 'Design professional pitch decks that tell your story effectively.'
+      title: 'Pitch Deck Design',
+      description: ' Craft visually compelling decks that communicate your story and attract investors.'
     },
     {
       icon: FileText,
-      title: 'Financial Modeling',
-      description: 'Build robust financial models and projections for investors.'
+      title: 'Financial Analysis',
+      description: ' Build reliable financial models that project stability, potential, and profitability.'
     },
     {
       icon: Handshake,
-      title: 'Partnership Facilitation',
-      description: 'Connect with strategic partners and potential collaborators.'
+      title: 'Partner Relations',
+      description: ' Forge meaningful connections with advisors, investors, and strategic collaborators.'
     },
     {
       icon: TrendingUp,
       title: 'Growth Strategy',
-      description: 'Develop scalable growth strategies for sustainable success.'
+      description: ' Develop scalable, data-backed strategies for long-term business sustainability.'
     }
   ];
 
@@ -43,7 +43,8 @@ const AdditionalSupportServices = () => {
     <div className="mb-16">
       <h3 className="text-3xl font-bold text-center mb-12">
         <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
-          Additional Support Services
+         Strategic Business Support
+
         </span>
       </h3>
       

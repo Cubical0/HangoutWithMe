@@ -1,67 +1,107 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IFundingApplication extends Document {
-  firstName: string;
-  lastName: string;
+  // Personal Information
+  fullName: string;
   email: string;
   phone: string;
-  linkedIn: string;
+  role: string;
+  
+  // Company Information
   companyName: string;
-  companyWebsite: string;
-  companyStage: string;
+  website?: string;
   industry: string;
-  location: string;
   foundedYear: string;
   teamSize: string;
+  
+  // Fundraising Details
+  fundingStage: string;
+  fundingAmount: string;
+  currentRevenue?: string;
   businessModel: string;
+  
+  // Business Details
   targetMarket: string;
   competitiveAdvantage: string;
-  currentRevenue: string;
-  monthlyGrowthRate: string;
-  fundingType: string;
-  fundingAmount: string;
-  previousFunding: string;
   useOfFunds: string;
-  timeline: string;
-  additionalInfo: string;
-  source: string;
-  category: string;
-  subject: string;
-  submittedAt: string;
+  pitchDeck?: string;
+  additionalNotes?: string;
+  
+  // Metadata
+  serviceType?: string;
+  submittedAt: Date;
+  status?: string;
+  
+  // Legacy fields for backward compatibility
+  firstName?: string;
+  lastName?: string;
+  linkedIn?: string;
+  companyWebsite?: string;
+  companyStage?: string;
+  location?: string;
+  monthlyGrowthRate?: string;
+  fundingType?: string;
+  previousFunding?: string;
+  timeline?: string;
+  additionalInfo?: string;
+  source?: string;
+  category?: string;
+  subject?: string;
   pitchDeckPath?: string;
   businessPlanPath?: string;
 }
 
 const FundingApplicationSchema: Schema = new Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  // Personal Information
+  fullName: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  linkedIn: { type: String },
+  role: { type: String, required: true },
+  
+  // Company Information
   companyName: { type: String, required: true },
+  website: { type: String },
+  industry: { type: String, required: true },
+  foundedYear: { type: String, required: true },
+  teamSize: { type: String, required: true },
+  
+  // Fundraising Details
+  fundingStage: { type: String, required: true },
+  fundingAmount: { type: String, required: true },
+  currentRevenue: { type: String },
+  businessModel: { type: String, required: true },
+  
+  // Business Details
+  targetMarket: { type: String, required: true },
+  competitiveAdvantage: { type: String, required: true },
+  useOfFunds: { type: String, required: true },
+  pitchDeck: { type: String },
+  additionalNotes: { type: String },
+  
+  // Metadata
+  serviceType: { type: String },
+  submittedAt: { type: Date, default: Date.now },
+  status: { type: String, default: 'pending' },
+  
+  // Legacy fields for backward compatibility
+  firstName: { type: String },
+  lastName: { type: String },
+  linkedIn: { type: String },
   companyWebsite: { type: String },
   companyStage: { type: String },
-  industry: { type: String },
   location: { type: String },
-  foundedYear: { type: String },
-  teamSize: { type: String },
-  businessModel: { type: String },
-  targetMarket: { type: String },
-  competitiveAdvantage: { type: String },
-  currentRevenue: { type: String },
   monthlyGrowthRate: { type: String },
   fundingType: { type: String },
-  fundingAmount: { type: String },
   previousFunding: { type: String },
-  useOfFunds: { type: String },
   timeline: { type: String },
   additionalInfo: { type: String },
   source: { type: String },
   category: { type: String },
   subject: { type: String },
-  submittedAt: { type: String, required: true },
   pitchDeckPath: { type: String },
   businessPlanPath: { type: String },
+}, {
+  timestamps: true
 });
 
 export default mongoose.models.FundingApplication || mongoose.model<IFundingApplication>('FundingApplication', FundingApplicationSchema);

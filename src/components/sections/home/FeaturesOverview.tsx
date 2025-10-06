@@ -48,7 +48,7 @@ export default function FeaturesOverview() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-white to-gray-900 bg-clip-text text-transparent">
             Our Partners
           </h2>
         </motion.div>
