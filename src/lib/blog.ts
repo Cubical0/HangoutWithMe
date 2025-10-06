@@ -158,7 +158,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
         
         return mappedPosts;
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Fallback to API
       }
     }
     
@@ -181,11 +181,9 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       return mappedPosts;
     } else if (response.status === 503) {
       // Database connection failed, return mock data for development
-      console.warn('Database unavailable, using mock data');
       return getMockBlogPosts();
     }
   } catch (error) {
-    console.warn('Failed to fetch blogs, using mock data:', error);
     return getMockBlogPosts();
   }
   
@@ -214,7 +212,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
           } as BlogPost;
         }
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Silently fall back to API
       }
     }
     
@@ -235,7 +233,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       };
     }
   } catch (error) {
-    console.warn('Failed to fetch blog post:', error);
+    // Error fetching blog post
   }
   
   return null;
@@ -265,7 +263,7 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
         
         return mappedPosts;
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Fallback to API
       }
     }
     
@@ -289,7 +287,6 @@ export async function getFeaturedPosts(): Promise<BlogPost[]> {
       return getMockBlogPosts().filter(post => post.featured);
     }
   } catch (error) {
-    console.warn('Failed to fetch featured posts:', error);
     // Return mock featured posts on error
     return getMockBlogPosts().filter(post => post.featured);
   }
@@ -321,7 +318,7 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
         
         return mappedPosts;
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Fallback to API
       }
     }
     
@@ -345,7 +342,6 @@ export async function getRecentPosts(limit: number = 5): Promise<BlogPost[]> {
       return getMockBlogPosts().slice(0, limit);
     }
   } catch (error) {
-    console.warn('Failed to fetch recent posts:', error);
     // Return mock recent posts on error
     return getMockBlogPosts().slice(0, limit);
   }
@@ -380,7 +376,7 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
         
         return mappedPosts;
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Fallback to API
       }
     }
     
@@ -401,7 +397,7 @@ export async function getBlogPostsByCategory(categorySlug: string): Promise<Blog
       }));
     }
   } catch (error) {
-    console.warn('Failed to fetch posts by category:', error);
+    // Error fetching posts by category
   }
   
   return [];
@@ -434,7 +430,7 @@ export async function getBlogPostsByTag(tagSlug: string): Promise<BlogPost[]> {
         
         return mappedPosts;
       } catch (dbError) {
-        console.warn('Direct database access failed, falling back to API:', dbError);
+        // Fallback to API
       }
     }
     
@@ -455,7 +451,7 @@ export async function getBlogPostsByTag(tagSlug: string): Promise<BlogPost[]> {
       }));
     }
   } catch (error) {
-    console.warn('Failed to fetch posts by tag:', error);
+    // Error fetching posts by tag
   }
   
   return [];

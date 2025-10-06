@@ -98,8 +98,6 @@ export async function POST(request: NextRequest) {
       
       // Send confirmation to user
       await sendContactConfirmation(contactData);
-      
-      console.log('✅ Both emails sent successfully');
     } catch (emailError) {
       console.error('❌ Email sending failed:', emailError);
       // Continue execution - contact is still saved

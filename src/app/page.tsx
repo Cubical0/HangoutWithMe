@@ -6,9 +6,7 @@ import PlatformStats from '@/components/sections/home/PlatformStats';
 import UserTestimonials from '@/components/sections/home/UserTestimonials';
 import FAQ from '@/components/sections/home/FAQ';
 import ContactUs from '@/components/sections/home/ContactUs';
-import QuickStartCTA from '@/components/sections/home/QuickStartCTA';
 import { AnimatedTestimonialsDemo } from '@/components/sections/trading/TradingTools';
-
 
 export default function Home() {
   return (
@@ -16,7 +14,6 @@ export default function Home() {
       <HomeHero />
       <FeaturesOverview />
       <PlatformStats />
-      
       <AnimatedTestimonialsDemo/>
       <FAQ />
       <ContactUs />

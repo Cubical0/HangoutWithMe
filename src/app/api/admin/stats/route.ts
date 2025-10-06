@@ -18,7 +18,6 @@ export async function GET(request: NextRequest) {
 
     // Check if MongoDB URI is available
     if (!process.env.MONGODB_URI) {
-      console.warn('MONGODB_URI not available, returning default stats');
       return NextResponse.json({
         success: true,
         stats: {

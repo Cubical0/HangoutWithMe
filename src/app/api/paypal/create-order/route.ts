@@ -38,9 +38,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { amount = '49.99', currency = 'USD' } = body;
 
-    console.log('Creating PayPal order with amount:', amount, 'currency:', currency);
     const accessToken = await getAccessToken();
-    console.log('Got access token successfully');
 
     const orderData = {
       intent: 'CAPTURE',
@@ -78,7 +76,6 @@ export async function POST(request: NextRequest) {
     }
 
     const order = await response.json();
-    console.log('Order created successfully:', order.id);
     return NextResponse.json({ id: order.id });
   } catch (error) {
     console.error('Error creating PayPal order:', error);

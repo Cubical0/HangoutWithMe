@@ -66,8 +66,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   }, [isOpen, onClose]);
 
   const handleSuccess = (details: unknown) => {
-    console.log('Payment successful:', details);
-    
     // Show success message
     alert(`Payment successful! Welcome to ${planName}!`);
     

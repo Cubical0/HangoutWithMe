@@ -22,7 +22,6 @@ export async function GET(request: NextRequest) {
   try {
     // Check if MongoDB URI is available
     if (!process.env.MONGODB_URI) {
-      console.warn('MONGODB_URI not available, returning empty blog list');
       return NextResponse.json({
         success: true,
         data: [],

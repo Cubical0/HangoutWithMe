@@ -98,7 +98,6 @@ export const sendContactNotification = async (data: EmailData) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log('✅ Contact notification email sent successfully');
   } catch (error) {
     console.error('❌ Error sending contact notification email:', error);
     throw error;
@@ -158,7 +157,6 @@ export const sendContactConfirmation = async (data: EmailData) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log('✅ Contact confirmation email sent successfully');
   } catch (error) {
     console.error('❌ Error sending contact confirmation email:', error);
     throw error;

@@ -8,7 +8,6 @@ export async function GET() {
   try {
     // Check if MongoDB URI is available
     if (!process.env.MONGODB_URI) {
-      console.warn('MONGODB_URI not available, returning default stats');
       return NextResponse.json({ stats: { total: 0 } });
     }
 

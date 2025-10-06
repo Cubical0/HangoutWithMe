@@ -38,7 +38,6 @@ async function connectDB(): Promise<typeof mongoose> {
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      console.log('✅ MongoDB connected successfully');
       return mongoose;
     }).catch((error) => {
       console.error('❌ MongoDB connection failed:', error.message);

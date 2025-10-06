@@ -85,7 +85,6 @@ export default function ContactsAdmin() {
       }
     } catch (err) {
       setError('Error loading contacts');
-      console.error('Error fetching contacts:', err);
     } finally {
       setLoading(false);
     }
