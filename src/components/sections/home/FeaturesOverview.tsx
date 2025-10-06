@@ -8,13 +8,17 @@ import logo1 from '../../../../public/assets/Blue Full (1).svg'
 import logo2 from '../../../../public/assets/logo (1680×720).svg' 
 import logo3 from '../../../../public/assets/MetroVerse.png' 
 import logo4 from '../../../../public/assets/photo_2025-08-28_15-54-16.svg'
+import logo5 from '../../../../public/assets/HIRO-Orange.png'
+import logo6 from '../../../../public/assets/beraverse.png'
 
 const logos = [
   { src: beep, alt: 'Beep' },
   { src: logo1, alt: 'Blue Full' },
   { src: logo2, alt: 'Hangout Codex' },
   { src: logo3, alt: 'Partner Logo' },
-  { src: logo4, alt: 'Partner Logo 2' }
+  { src: logo4, alt: 'Partner Logo 2' },
+  { src: logo5, alt: 'Hiro Orange' },
+  { src: logo6, alt: 'Beraverse' }
 ];
 
 const features = [

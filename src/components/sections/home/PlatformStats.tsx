@@ -80,7 +80,7 @@ export default function PlatformStats() {
   className="text-center mb-16"
 >
   <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-white to-gray-900 bg-clip-text text-transparent mb-6">
-    Learn, Build, and Trade<br/> with Confidence
+    Learn, Build, and Trade
   </h2>
   <p className="text-xl text-gray-300">
     Explore our <span className="text-white font-semibold">Trading Hub</span>, launch your dream venture with <span className="text-white font-semibold">Ecom Launchpad</span>, 

@@ -25,7 +25,7 @@ export default function Trading() {
 
       <TradingHero />
       {/* <MarketOverview /> */}
-            <FeaturesOverview />
+            {/* <FeaturesOverview /> */}
       
       <QuickStartCTA />
 
