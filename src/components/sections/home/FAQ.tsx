@@ -7,34 +7,54 @@ import { ChevronDown } from 'lucide-react';
 const faqData = [
   {
     id: 1,
-    question: "How secure is your trading platform?",
-    answer: "Our platform uses bank-grade encryption, multi-factor authentication, and cold storage for digital assets."
+    question: "What is Hangout Codex?",
+    answer: "Hangout Codex is a global ecosystem where traders, founders, and innovators connect to learn, build, and grow. It combines community learning, trading education, startup fundraising, and enterprise-grade IT solutions under one platform."
   },
   {
     id: 2,
-    question: "What trading tools do you offer?",
-    answer: "We provide advanced charting tools, real-time market data, technical indicators, and automated trading bots."
+    question: "Who can join Hangout Codex?",
+    answer: "Hangout Codex is open to traders, entrepreneurs, startups, and established businesses. Whether you want to master trading, scale your business, raise capital, or explore AI and IT solutions, you’ll find opportunities tailored to your goals."
   },
   {
     id: 3,
-    question: "Do you offer educational resources?",
-    answer: "Yes! We have comprehensive courses taught by industry experts, live webinars, and trading guides."
+    question: "What services does Hangout Codex provide?",
+    answer: "Hangout Codex bridges education, technology, and business growth. Members access trading signals, e-commerce and SaaS programs, startup funding support, and advisory guidance. Our IT division builds enterprise solutions like ERP systems, DevOps pipelines, AI automation, and cybersecurity frameworks."
   },
   {
     id: 4,
-    question: "What are your trading fees?",
-    answer: "We offer competitive fees starting from 0.1% for makers and 0.15% for takers with volume discounts."
+    question: "Do you offer trading and educational programs?",
+    answer: "Yes. Members can access structured trading courses, daily signals, webinars, and mentorship sessions led by experienced professionals. Our goal is to make trading and business education simple, practical, and results-driven."
   },
   {
     id: 5,
-    question: "How fast are deposits and withdrawals?",
-    answer: "Deposits are processed within 1-3 confirmations. Withdrawals are instant for most cryptocurrencies."
+    question: "Can startups and Web3 projects collaborate with you?",
+    answer: "Absolutely. Hangout Codex partners with Web3, AI, and fintech startups for cross-promotions, sponsorships, advisory onboarding, and fundraising. We help projects reach audiences, build trust, and scale through genuine community engagement."
   },
   {
     id: 6,
-    question: "Can I access market insights?",
-    answer: "Absolutely! Our experts provide daily market insights, technical analysis, and trend predictions."
-  }
+    question: "What IT and AI solutions do you offer?",
+    answer: "We deliver a wide range of enterprise and AI-driven solutions, including ERP integration, DevOps, healthcare software, microservices, and business intelligence. Our AI team also develops generative AI, chatbots, voice assistants, and predictive analytics tools."
+  },
+  {
+    id: 7,
+    question: "Do you create custom software or digital solutions?",
+    answer: "Yes. Every project is custom-built to match business goals. From automation tools to full-scale analytics and AI systems, we design solutions that integrate seamlessly with your existing workflows."
+  },
+  {
+    id: 8,
+    question: "Can I raise funds for my startup through Hangout Codex?",
+    answer: "Yes. We connect founders with investors and advisors. Our team reviews your pitch deck, arranges investor meetings, and supports negotiations. We charge only a small success-based commission once funding is secured."
+  },
+  {
+    id: 9,
+    question: "Do you onboard advisors and experts?",
+    answer: "Yes. Experienced professionals can join our advisory network to mentor startups and contribute to projects within the Hangout Codex ecosystem. There’s no cost to join, and it’s a great way to share expertise with emerging founders."
+  },
+  {
+    id: 10,
+    question: "How can I become a premium member?",
+    answer: "Premium members gain access to advanced trading signals, investor introductions, private groups, and personalized support. You can upgrade directly through our website or via Discord."
+  },
 ];
 
 const FAQ = () => {

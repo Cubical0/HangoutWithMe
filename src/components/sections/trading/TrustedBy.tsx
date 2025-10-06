@@ -1,10 +1,15 @@
-import React from 'react'
+'use client';
+
+import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { TrendingUp, Shield, Users, Award, BarChart3, DollarSign } from 'lucide-react';
 import { EvervaultCard, Icon } from '@/components/ui/evervault-card';
+import PaymentModal from '@/components/ui/PaymentModal';
 
 
 const TrustedBy = () => {
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
   return (
       <section className=" px-4">
       <div className="max-w-7xl mx-auto">
@@ -118,12 +123,23 @@ const TrustedBy = () => {
           </div>
         </div>
         
-        <button className="w-full cursor-pointer py-3 px-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <button 
+          onClick={() => setIsPaymentModalOpen(true)}
+          className="w-full cursor-pointer py-3 px-6 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
           Upgrade to Pro
         </button>
       </div>
     </div>
         
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+        planName="Pro Plan"
+        amount="29.99"
+        currency="USD"
+      />
      
       </div>
     </section>

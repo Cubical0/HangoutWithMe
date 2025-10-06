@@ -152,10 +152,6 @@ const sections = [
         subtitle: "Data Protection Officer",
         text: "For data protection concerns, you can reach our Data Protection Officer at dpo@hangoutcodex.com"
       },
-      {
-        subtitle: "Mailing Address",
-        text: "HangoutCodex, [Your Business Address]"
-      }
     ]
   }
 ];

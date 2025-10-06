@@ -136,7 +136,7 @@ const sections = [
       },
       {
         subtitle: "Courses",
-        text: "Course fees are generally non-refundable after 14 days of purchase or after completing 25% of the course content, whichever comes first."
+        text: "Course fees are non-refundable under any circumstances after purchase."
       },
       {
         subtitle: "Enterprise Services",
@@ -180,7 +180,7 @@ const sections = [
     content: [
       {
         subtitle: "Jurisdiction",
-        text: "These terms shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions."
+        text: "These terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions."
       },
       {
         subtitle: "Dispute Resolution",

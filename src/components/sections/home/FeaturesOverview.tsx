@@ -6,14 +6,14 @@ import Link from 'next/link';
 import beep from "../../../../public/assets/beep.svg"
 import logo1 from '../../../../public/assets/Blue Full (1).svg'
 import logo2 from '../../../../public/assets/logo (1680×720).svg' 
-import logo3 from '../../../../public/assets/image.svg' 
+import logo3 from '../../../../public/assets/MetroVerse.png' 
 import logo4 from '../../../../public/assets/photo_2025-08-28_15-54-16.svg'
 
 const logos = [
   { src: beep, alt: 'Beep' },
   { src: logo1, alt: 'Blue Full' },
   { src: logo2, alt: 'Hangout Codex' },
-  // { src: logo3, alt: 'Partner Logo' },
+  { src: logo3, alt: 'Partner Logo' },
   { src: logo4, alt: 'Partner Logo 2' }
 ];
 

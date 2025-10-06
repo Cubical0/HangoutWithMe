@@ -68,8 +68,7 @@ AdminSchema.methods.comparePassword = async function(candidatePassword: string):
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-// Create indexes
-AdminSchema.index({ email: 1 });
-AdminSchema.index({ username: 1 });
+// Note: email and username indexes are already created via unique: true in schema definition
+// No need to create duplicate indexes here
 
 export default mongoose.models.Admin || mongoose.model<IAdmin>('Admin', AdminSchema);

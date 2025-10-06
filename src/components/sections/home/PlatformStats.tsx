@@ -3,46 +3,25 @@
 import { CardSpotlight } from '@/components/ui/card-spotlight';
 import { motion } from 'framer-motion';
 import { 
-  TrendingUp, 
-  Users, 
-  Brain, 
-  Server, 
-  ShoppingCart, 
-  Package, 
-  Zap, 
-  Target, 
-  DollarSign, 
-  Code, 
-  Palette, 
-  Wrench, 
-  Settings, 
-  Cloud, 
-  Heart, 
-  Factory, 
-  Network, 
-  Shield, 
-  Megaphone, 
-  ArrowUpRight, 
-  Handshake, 
-  UserCheck, 
-  MessageSquare, 
-  Mic, 
-  Sparkles,
-  type LucideIcon
-} from 'lucide-react';
+  TrendingUp, BarChart3, Users, Brain, Layers, LineChart,
+  ShoppingCart, Store, Target, Laptop, Video, Headphones, Rocket,
+  Settings, Cpu, Shield, Bot, Network, Grid, Globe,
+  DollarSign, ArrowUpRight, Handshake, UserCheck, FileText, Star,
+  LucideIcon
+} from "lucide-react";
 
 const services = [
   { 
     title: "Trading Hub", 
     description: "Advanced trading platform with signals and mentorship.",
-    icon: TrendingUp,
+    icon: BarChart3,
     steps: [
-      { text: "Trading Signals (3 free, then paid)", icon: TrendingUp },
-      { text: "Mentorship for Traders", icon: Users },
+      { text: "Trading Signals", icon: TrendingUp },
+      { text: "Trader Mentorship", icon: Users },
       { text: "Market Analysis", icon: Brain },
-      { text: "ChatAI & Generative AI", icon: MessageSquare },
-      { text: "Voice AI & NLP", icon: Mic },
-      { text: "Zero Down Time Infrastructure", icon: Server }
+      { text: "Strategy Backtesting", icon: Layers },
+      { text: "Performance Tracking", icon: LineChart },
+      { text: "Zero Down Time Infrastructure", icon: Shield },
     ],
     note: "Professional trading tools with AI-driven insights and expert guidance."
   },
@@ -51,13 +30,12 @@ const services = [
     description: "Complete e-commerce ecosystem with courses and development support.",
     icon: ShoppingCart,
     steps: [
-      { text: "E-commerce Courses", icon: ShoppingCart },
-      { text: "Dropshipping & Dropservicing", icon: Package },
+      { text: "Dropshipping & Dropservicing", icon: Store },
       { text: "Affiliate Marketing", icon: Target },
-      { text: "SaaS Development", icon: Zap },
-      { text: "Application Development", icon: Code },
-      { text: "Beautiful UI/UX Design", icon: Palette },
-      { text: "Tech Stack Support", icon: Wrench }
+      { text: "SaaS Development", icon: Laptop },
+      { text: "Real-Time Case Studies", icon: Video },
+      { text: "Expert Support (24/7)", icon: Headphones },
+      { text: "Funding Opportunities", icon: Rocket }
     ],
     note: "Everything you need to launch and scale your e-commerce business."
   },
@@ -66,15 +44,12 @@ const services = [
     description: "Enterprise solutions and cutting-edge technology services.",
     icon: Settings,
     steps: [
-      { text: "ERP Solutions", icon: Settings },
-      { text: "DevOps Services", icon: Cloud },
-      { text: "Health Care Solutions", icon: Heart },
-      { text: "Manufacturing Industry Support", icon: Factory },
-      { text: "Micro-services Architecture", icon: Network },
-      { text: "Voice AI & Generative AI", icon: Sparkles },
-      { text: "Natural Language Processing", icon: MessageSquare },
-      { text: "Secured Network Security", icon: Shield },
-      { text: "Digital & Inbound Marketing", icon: Megaphone }
+      { text: "ERP & DevOps Solutions", icon: Cpu },
+      { text: "Healthcare & Manufacturing Tech", icon: Globe },
+      { text: "Network Security & Resilience", icon: Shield },
+      { text: "Voice AI & NLP", icon: Bot },
+      { text: "Micro-Services Architecture", icon: Network },
+      { text: "Digital & Inbound Marketing", icon: Grid },
     ],
     note: "Comprehensive enterprise solutions with advanced AI technologies."
   },
@@ -83,9 +58,12 @@ const services = [
     description: "Connect startups with investors and provide mentorship support.",
     icon: DollarSign,
     steps: [
-      { text: "Raise Funds for Startups & Businesses", icon: ArrowUpRight },
+      { text: "Raise Startup Funds", icon: ArrowUpRight },
       { text: "Connect with Investors", icon: Handshake },
-      { text: "Mentor Support & Guidance", icon: UserCheck }
+      { text: "Mentor Support & Guidance", icon: UserCheck },
+      { text: "Pitch Deck Review", icon: FileText },
+      { text: "Global Exposure", icon: Star },
+      { text: "Launch Campaign Assistance", icon: Rocket }
     ],
     note: "Bridge the gap between innovative ideas and investment opportunities."
   }

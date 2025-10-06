@@ -93,71 +93,50 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center py-20 px-4 overflow-hidden">
+      <section className="flex flex-col items-center justify-center h-screen px-4 overflow-hidden">
         <div className="flex flex-col items-center justify-center max-w-7xl w-full">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-5xl md:text-7xl font-bold  bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent mb-6">
               About HangoutCodex
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-400 max-w-4xl leading-relaxed mb-12">
               Empowering traders, entrepreneurs, and businesses with{' '}
-              <span className="text-white font-semibold">solutions</span>,{' '}
+              <span className="text-white font-semibold">AI-powered solutions</span>,{' '}
               <span className="text-gray-200 font-semibold">expert mentorship</span>, and{' '}
               <span className="text-gray-300 font-semibold">cutting-edge technology</span>.
             </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission Section */}
-      <section className="flex flex-col items-center py-20 px-4">
-        <div className="flex flex-col items-center max-w-7xl w-full">
-          <div className="flex flex-col items-center text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
-              Our Mission
-            </h2>
-            <p className="text-lg text-gray-400 max-w-3xl leading-relaxed">
-              At HangoutCodex, we&apos;re building a comprehensive ecosystem that combines{' '}
-              <span className="text-white font-semibold">trading excellence</span>,{' '}
-              <span className="text-white font-semibold">e-commerce innovation</span>,{' '}
-              <span className="text-white font-semibold">enterprise solutions</span>, and{' '}
-              <span className="text-white font-semibold">fundraising opportunities</span>{' '}
-              all in one platform. Our goal is to democratize access to professional tools,
-              expert knowledge, and investment opportunities.
-            </p>
-          </div>
 
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-6 mb-20 w-full">
-            {[
-              { label: 'Active Users', value: '100K+', icon: <Users className="h-7 w-7" /> },
-              { label: 'Clients Secured', value: '100+', icon: <TrendingUp className="h-7 w-7" /> },
-              { label: 'Success Rate', value: '87%', icon: <Target className="h-7 w-7" /> },
-              { label: 'Uptime', value: '99.9%', icon: <Zap className="h-7 w-7" /> },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="group flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 flex-1 min-w-[200px]"
-              >
-                {/* Icon with glass background */}
-                <div className="flex items-center justify-center mb-4 p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-md">
-                  <div className="text-white">
-                    {stat.icon}
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl">
+              {[
+                { label: 'Active Users', value: '100K+', icon: <Users className="h-6 w-6" /> },
+                { label: 'Clients Secured', value: '100+', icon: <TrendingUp className="h-6 w-6" /> },
+                { label: 'Success Rate', value: '87%', icon: <Target className="h-6 w-6" /> },
+                { label: 'Uptime', value: '99.9%', icon: <Zap className="h-6 w-6" /> },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex flex-col items-center justify-center p-6 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-colors duration-300"
+                >
+                  <div className="flex items-center justify-center mb-3 p-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+                    <div className="text-white">
+                      {stat.icon}
+                    </div>
+                  </div>
+                  
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+                    {stat.value}
+                  </div>
+                  
+                  <div className="text-xs font-medium text-gray-400">
+                    {stat.label}
                   </div>
                 </div>
-                
-                {/* Value */}
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {stat.value}
-                </div>
-                
-                {/* Label */}
-                <div className="text-sm font-medium text-gray-400 group-hover:text-gray-200 transition-colors duration-300">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -206,9 +185,9 @@ export default function AboutPage() {
       </section> */}
 
       {/* Our Values */}
-      <section className="flex flex-col items-center py-20 px-4">
+      <section className="flex flex-col items-center py-12 px-4">
         <div className="flex flex-col items-center max-w-7xl w-full">
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
               Our Core Values
             </h2>
@@ -221,7 +200,7 @@ export default function AboutPage() {
             {values.map((value) => (
               <div
                 key={value.title}
-                className="flex flex-col p-8 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-all duration-300 flex-1 min-w-[250px]"
+                className="flex flex-col p-8 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px]"
               >
                 <div className="mb-4">
                   {value.icon}
@@ -237,9 +216,9 @@ export default function AboutPage() {
       </section>
 
       {/* Our Team */}
-      <section className="flex flex-col items-center py-20 px-4">
+      <section className="flex flex-col items-center py-12 px-4">
         <div className="flex flex-col items-center max-w-7xl w-full">
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
               Meet Our Team
             </h2>
@@ -250,7 +229,7 @@ export default function AboutPage() {
 
           <div className="flex flex-wrap justify-center gap-8 w-full">
             {/* Sparsh Gupta - Founder */}
-            <div className="group flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[250px] max-w-[300px]">
+            <div className="group flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px] max-w-[300px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-32 h-32 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
@@ -276,7 +255,7 @@ export default function AboutPage() {
             </div>
 
             {/* Yuvraj Singh Rathore - Co-Founder */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[250px] max-w-[300px]">
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px] max-w-[300px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
@@ -303,7 +282,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vikram - CTO */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[250px] max-w-[300px]">
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px] max-w-[300px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
@@ -334,7 +313,7 @@ export default function AboutPage() {
             </div>
 
             {/* Puneet Tiwari - Tech Lead */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[250px] max-w-[300px]">
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[250px] max-w-[300px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
@@ -376,9 +355,9 @@ export default function AboutPage() {
       </section>
 
       {/* Our Investors */}
-      <section className="flex flex-col items-center py-20 px-4">
+      <section className="flex flex-col items-center py-12 px-4">
         <div className="flex flex-col items-center max-w-7xl w-full">
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
               Backed By Visionaries
             </h2>
@@ -389,7 +368,7 @@ export default function AboutPage() {
 
           <div className="flex flex-wrap justify-center gap-8 max-w-4xl">
             {/* Yogesh Nogia */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[280px] max-w-[320px]">
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[280px] max-w-[320px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-28 h-28 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 
@@ -418,7 +397,7 @@ export default function AboutPage() {
             </div>
 
             {/* Mukul Choudary */}
-            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 flex-1 min-w-[280px] max-w-[320px]">
+            <div className="group flex flex-col items-center p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[280px] max-w-[320px]">
               <div className="flex flex-col items-center mb-6">
                 <div className="w-28 h-28 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 p-1">
                   <img 

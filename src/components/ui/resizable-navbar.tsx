@@ -249,13 +249,7 @@ export const NavbarLogo = () => {
       href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal"
     >
-      <Image
-        src="/assets/Hangout Codex Symbol Final (1).svg"
-        alt="HangoutCodex Logo"
-        width={32}
-        height={32}
-        className="h-12 w-12 rounded-full"
-      />
+
       <span className="font-extrabold text-white">HangoutCodex</span>
     </Link>
   );
@@ -279,7 +273,7 @@ export const NavbarButton = <T extends React.ElementType = "a">({
 }: NavbarButtonProps<T>) => {
   const Tag = as || "a";
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-full bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
