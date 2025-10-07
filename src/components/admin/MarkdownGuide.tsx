@@ -146,7 +146,7 @@ export default function MarkdownGuide() {
                 <div className="text-gray-500 mb-1">Code block:</div>
                 <div>```javascript</div>
                 <div>function example() {'{'}</div>
-                <div>&nbsp;&nbsp;console.log("Hello");</div>
+                <div>&nbsp;&nbsp;console.log(&quot;Hello&quot;);</div>
                 <div>{'}'}</div>
                 <div>```</div>
               </div>

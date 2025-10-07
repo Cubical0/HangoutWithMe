@@ -569,7 +569,8 @@ function getMockBlogPosts(): BlogPost[] {
       author: {
         name: 'Alex Johnson',
         avatar: '/images/authors/alex.jpg',
-        bio: 'Crypto trading expert with 5+ years of experience in digital asset markets.'
+        bio: 'Crypto trading expert with 5+ years of experience in digital asset markets.',
+        designation: 'Senior Crypto Trading Analyst'
       },
       publishedAt: new Date('2024-01-15').toISOString(),
       updatedAt: new Date('2024-01-15').toISOString(),
@@ -620,7 +621,8 @@ function getMockBlogPosts(): BlogPost[] {
       author: {
         name: 'Sarah Chen',
         avatar: '/images/authors/sarah.jpg',
-        bio: 'DeFi researcher and blockchain technology enthusiast with expertise in protocol analysis.'
+        bio: 'DeFi researcher and blockchain technology enthusiast with expertise in protocol analysis.',
+        designation: 'DeFi Research Lead'
       },
       publishedAt: new Date('2024-01-10').toISOString(),
       updatedAt: new Date('2024-01-10').toISOString(),
@@ -660,7 +662,8 @@ function getMockBlogPosts(): BlogPost[] {
       author: {
         name: 'Mike Rodriguez',
         avatar: '/images/authors/mike.jpg',
-        bio: 'NFT market analyst and digital art collector with deep insights into marketplace trends.'
+        bio: 'NFT market analyst and digital art collector with deep insights into marketplace trends.',
+        designation: 'NFT Market Analyst'
       },
       publishedAt: new Date('2024-01-05').toISOString(),
       updatedAt: new Date('2024-01-05').toISOString(),
