@@ -153,6 +153,8 @@ export default function CoursesGrid() {
         features={selectedCourse?.features}
         redirectUrl="/courses?payment=success"
         billingType="One-time Payment"
+        purchaseType="course"
+        itemId={selectedCourse?.title}
       />
     </div>
   );

@@ -9,6 +9,15 @@ interface PayPalButtonProps {
   onSuccess?: (details: unknown) => void;
   onError?: (error: unknown) => void;
   className?: string;
+  userData?: {
+    name: string;
+    email: string;
+  };
+  purchaseData?: {
+    purchaseType: 'course' | 'subscription' | 'pro_plan';
+    itemName: string;
+    itemId?: string;
+  };
 }
 
 const PayPalButton: React.FC<PayPalButtonProps> = ({
@@ -17,6 +26,8 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({
   onSuccess,
   onError,
   className = '',
+  userData,
+  purchaseData,
 }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -69,7 +80,15 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ orderID: data.orderID }),
+        body: JSON.stringify({ 
+          orderID: data.orderID,
+          userData,
+          purchaseData: {
+            ...purchaseData,
+            amount,
+            currency,
+          },
+        }),
       });
 
       if (!response.ok) {

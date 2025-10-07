@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import connectDB from '@/lib/mongodb';
+import Payment from '@/models/Payment';
 
 const PAYPAL_API_BASE = process.env.NODE_ENV === 'production' 
   ? 'https://api-m.paypal.com' 
@@ -36,7 +38,7 @@ async function getAccessToken() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { orderID } = body;
+    const { orderID, userData, purchaseData } = body;
 
     if (!orderID) {
       return NextResponse.json(
@@ -66,11 +68,57 @@ export async function POST(request: NextRequest) {
 
     const captureData = await response.json();
 
-    // Here you can add logic to:
-    // 1. Save the transaction to your database
-    // 2. Update user's subscription status
-    // 3. Send confirmation email
-    // 4. Grant access to Pro features
+    // Save the transaction to database
+    try {
+      await connectDB();
+
+      const paymentAmount = captureData.purchase_units?.[0]?.amount?.value || purchaseData?.amount || '0';
+      const paymentCurrency = captureData.purchase_units?.[0]?.amount?.currency_code || purchaseData?.currency || 'USD';
+
+      // Get IP address and user agent
+      const ipAddress = request.headers.get('x-forwarded-for') || 
+                       request.headers.get('x-real-ip') || 
+                       'unknown';
+      const userAgent = request.headers.get('user-agent') || 'unknown';
+
+      // Determine subscription dates if it's a subscription
+      let subscriptionStartDate;
+      let subscriptionEndDate;
+      let subscriptionStatus;
+
+      if (purchaseData?.purchaseType === 'subscription' || purchaseData?.purchaseType === 'pro_plan') {
+        subscriptionStartDate = new Date();
+        subscriptionEndDate = new Date();
+        subscriptionEndDate.setMonth(subscriptionEndDate.getMonth() + 1); // 1 month subscription
+        subscriptionStatus = 'active';
+      }
+
+      const paymentRecord = await Payment.create({
+        userName: userData?.name || captureData.payer?.name?.given_name + ' ' + captureData.payer?.name?.surname || 'Unknown',
+        userEmail: userData?.email || captureData.payer?.email_address || 'unknown@email.com',
+        orderId: captureData.id,
+        paypalOrderId: orderID,
+        amount: parseFloat(paymentAmount),
+        currency: paymentCurrency,
+        status: captureData.status === 'COMPLETED' ? 'completed' : 'pending',
+        purchaseType: purchaseData?.purchaseType || 'course',
+        itemName: purchaseData?.itemName || 'Unknown Item',
+        itemId: purchaseData?.itemId,
+        subscriptionStatus,
+        subscriptionStartDate,
+        subscriptionEndDate,
+        paypalPayerEmail: captureData.payer?.email_address,
+        paypalPayerId: captureData.payer?.payer_id,
+        paypalPayerName: captureData.payer?.name?.given_name + ' ' + captureData.payer?.name?.surname,
+        ipAddress,
+        userAgent,
+      });
+
+      console.log('✅ Payment record saved:', paymentRecord._id);
+    } catch (dbError) {
+      console.error('❌ Error saving payment to database:', dbError);
+      // Don't fail the payment if database save fails
+    }
 
     return NextResponse.json({
       success: true,

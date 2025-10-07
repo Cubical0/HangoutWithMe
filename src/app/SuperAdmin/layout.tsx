@@ -10,7 +10,8 @@ import {
   LogOut,
   Menu,
   X,
-  Mail
+  Mail,
+  DollarSign
 } from 'lucide-react';
 
 interface AdminUser {
@@ -101,6 +102,7 @@ export default function SuperAdminLayout({
   const navigation = [
     { name: 'Dashboard', href: '/SuperAdmin', icon: LayoutDashboard },
     { name: 'Blogs', href: '/SuperAdmin/blogs', icon: FileText },
+    { name: 'Payments', href: '/SuperAdmin/payments', icon: DollarSign },
     { name: 'Contacts', href: '/SuperAdmin/contacts', icon: Mail },
     { name: 'Funding Applications', href: '/SuperAdmin/funding-applications', icon: FileText },
     { name: 'Settings', href: '/SuperAdmin/settings', icon: Settings },
