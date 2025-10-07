@@ -8,7 +8,7 @@ const courses = [
 {
   id: 1,
   title: "SaaS Mastery: Beginner to Advanced",
-  description: "A complete roadmap to building, launching, and scaling a successful SaaS product — from idea to revenue.",
+  description: "A complete roadmap to building, launching, and scaling a successful SaaS product - from idea to revenue.",
   price: "$149",
   priceValue: "149.00", // Numeric value for PayPal
   level: "Beginner to Advanced",
