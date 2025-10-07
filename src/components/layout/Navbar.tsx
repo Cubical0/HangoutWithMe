@@ -29,10 +29,10 @@ export function NavbarDemo() {
       name: "About Us",
       link: "/about",
     },
-    //   {
-    //   name: "Blog",
-    //   link: "/blog",
-    // },
+      {
+      name: "Blog",
+      link: "/blog",
+    },
   ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
