@@ -11,6 +11,9 @@ interface TagPageProps {
   }>;
 }
 
+// Revalidate every 60 seconds (ISR)
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   return tags.map((tag) => ({
     slug: tag.slug,

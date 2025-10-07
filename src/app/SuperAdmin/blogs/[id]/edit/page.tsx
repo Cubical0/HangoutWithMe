@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Save, Eye, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import MarkdownGuide from '@/components/admin/MarkdownGuide';
 
 interface BlogFormData {
   title: string;
@@ -20,6 +21,7 @@ interface BlogFormData {
     name: string;
     avatar: string;
     bio: string;
+    designation: string;
   };
   seo: {
     title: string;
@@ -42,9 +44,10 @@ export default function EditBlogPage() {
     featured: false,
     status: 'draft',
     author: {
-      name: 'Admin',
-      avatar: '/images/authors/admin.jpg',
-      bio: 'Blog Administrator',
+      name: '',
+      avatar: '',
+      bio: '',
+      designation: '',
     },
     seo: {
       title: '',
@@ -275,17 +278,95 @@ export default function EditBlogPage() {
 
                 <div>
                   <label htmlFor="content" className="block text-sm font-medium text-gray-700">
-                    Content *
+                    Content * (Markdown Supported)
                   </label>
+                  
+                  {/* Markdown Guide Component */}
+                  <div className="mt-2 mb-3">
+                    <MarkdownGuide />
+                  </div>
+                  
                   <textarea
                     id="content"
                     name="content"
                     rows={20}
                     required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white font-mono"
                     value={formData.content}
                     onChange={handleChange}
-                    placeholder="Write your blog content here. You can use HTML tags for formatting."
+                    placeholder="Write your blog content here using Markdown formatting..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Author Information */}
+            <div className="bg-white shadow rounded-lg p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Author Information</h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="author.name" className="block text-sm font-medium text-gray-700">
+                    Author Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="author.name"
+                    name="author.name"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white"
+                    value={formData.author.name}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="author.designation" className="block text-sm font-medium text-gray-700">
+                    Designation *
+                  </label>
+                  <input
+                    type="text"
+                    id="author.designation"
+                    name="author.designation"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white"
+                    value={formData.author.designation}
+                    onChange={handleChange}
+                    placeholder="Senior Content Writer"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="author.avatar" className="block text-sm font-medium text-gray-700">
+                    Profile Picture URL *
+                  </label>
+                  <p className="text-xs text-gray-500 mt-1">Recommended: 400x400px square image</p>
+                  <input
+                    type="url"
+                    id="author.avatar"
+                    name="author.avatar"
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white"
+                    value={formData.author.avatar}
+                    onChange={handleChange}
+                    placeholder="https://example.com/profile.jpg"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="author.bio" className="block text-sm font-medium text-gray-700">
+                    Author Bio *
+                  </label>
+                  <textarea
+                    id="author.bio"
+                    name="author.bio"
+                    rows={3}
+                    required
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900 bg-white"
+                    value={formData.author.bio}
+                    onChange={handleChange}
+                    placeholder="Brief bio about the author..."
                   />
                 </div>
               </div>
@@ -482,6 +563,7 @@ export default function EditBlogPage() {
                 <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">
                   Image URL *
                 </label>
+                <p className="text-xs text-gray-500 mt-1">Recommended: 1200x630px for optimal display</p>
                 <input
                   type="url"
                   id="thumbnail"

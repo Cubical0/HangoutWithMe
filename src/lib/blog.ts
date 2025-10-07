@@ -9,6 +9,7 @@ export interface BlogPost {
     name: string;
     avatar: string;
     bio: string;
+    designation: string;
   };
   publishedAt: string;
   updatedAt?: string;
@@ -42,6 +43,7 @@ interface RawBlogPost {
     name: string;
     avatar: string;
     bio: string;
+    designation: string;
   };
   publishedAt: string;
   updatedAt?: string;
@@ -75,6 +77,7 @@ interface LeanBlogDocument {
     name: string;
     avatar: string;
     bio: string;
+    designation: string;
   };
   publishedAt: Date;
   updatedAt?: Date;

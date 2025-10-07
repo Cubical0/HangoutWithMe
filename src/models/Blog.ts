@@ -10,6 +10,7 @@ export interface IBlog extends Document {
     name: string;
     avatar: string;
     bio: string;
+    designation: string;
   };
   publishedAt: Date;
   updatedAt: Date;
@@ -68,6 +69,10 @@ const BlogSchema = new Schema<IBlog>({
       required: true,
     },
     bio: {
+      type: String,
+      required: true,
+    },
+    designation: {
       type: String,
       required: true,
     },

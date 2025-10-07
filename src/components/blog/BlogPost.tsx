@@ -2,12 +2,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BlogPost as BlogPostType, formatDate } from '@/lib/blog';
 import FAQSection from './FAQSection';
+import { marked } from 'marked';
+import { useMemo } from 'react';
 
 interface BlogPostProps {
   post: BlogPostType;
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
+  // Parse markdown content to HTML
+  const htmlContent = useMemo(() => {
+    return marked(post.content, {
+      breaks: true,
+      gfm: true,
+    });
+  }, [post.content]);
   return (
     <article className="max-w-4xl mx-auto">
       {/* Header */}
@@ -51,6 +60,9 @@ export default function BlogPost({ post }: BlogPostProps) {
             />
             <div>
               <h3 className="text-white font-semibold text-lg">{post.author.name}</h3>
+              {post.author.designation && (
+                <p className="text-blue-400 text-sm font-medium mb-1">{post.author.designation}</p>
+              )}
               <p className="text-white/70">{post.author.bio}</p>
             </div>
           </div>
@@ -72,7 +84,7 @@ export default function BlogPost({ post }: BlogPostProps) {
       {/* Content */}
       <div 
         className="prose prose-lg prose-invert max-w-none mb-8"
-        dangerouslySetInnerHTML={{ __html: post.content }}
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
       />
 
       {/* Tags */}

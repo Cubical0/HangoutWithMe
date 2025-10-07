@@ -11,6 +11,9 @@ interface CategoryPageProps {
   }>;
 }
 
+// Revalidate every 60 seconds (ISR)
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   return categories.map((category) => ({
     slug: category.slug,

@@ -15,6 +15,9 @@ interface BlogPostPageProps {
   }>;
 }
 
+// Revalidate every 60 seconds (ISR)
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((post) => ({

@@ -7,6 +7,9 @@ import ContactUs from '@/components/sections/home/ContactUs';
 
 export const metadata: Metadata = generateBlogListingMetadata();
 
+// Revalidate every 60 seconds (ISR)
+export const revalidate = 60;
+
 export default async function BlogPage() {
   try {
     // Fetch both all posts and featured posts from database

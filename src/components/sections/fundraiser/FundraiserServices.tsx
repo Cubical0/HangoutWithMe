@@ -7,7 +7,6 @@ import {
   BookOpen,
   ArrowRight,
 } from 'lucide-react';
-import Link from 'next/link';
 import AdditionalSupportServices from './AdditionalSupportServices';
 import FundraiserApplicationModal from '@/components/ui/FundraiserApplicationModal';
 
