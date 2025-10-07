@@ -84,7 +84,7 @@ export const services: Service[] = [
   {
     category: "Health Care Solutions",
     icon: Heart,
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop&crop=center",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=300&fit=crop&crop=center",
     description: "HIPAA-compliant healthcare technology solutions for modern medical practices.",
     features: ["Patient Management Systems", "Telemedicine Platforms", "Medical Records", "Compliance Tools", "Appointment Scheduling", "Billing Integration"],
     detailedContent: {
@@ -110,7 +110,7 @@ export const services: Service[] = [
   {
     category: "Manufacturing Industry Support",
     icon: Factory,
-    image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=500&h=300&fit=crop&crop=center",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&h=300&fit=crop&crop=center",
     description: "Industrial IoT and automation solutions for manufacturing excellence.",
     features: ["Production Monitoring", "Quality Control Systems", "Supply Chain Management", "Predictive Maintenance", "Real-time Analytics", "Equipment Integration"],
     detailedContent: {

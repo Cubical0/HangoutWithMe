@@ -133,7 +133,7 @@ export default function CoursesGrid() {
                 <span className="text-purple-300 font-bold text-xl drop-shadow-lg">{course.price}</span>
                 <button 
                   onClick={() => handleEnrollClick(course)}
-                  className="bg-white/15 backdrop-blur-sm hover:bg-white/25 text-white text-sm px-5 py-2.5 rounded-xl transition-all duration-300 border border-white/30 hover:border-white/50 font-medium hover:shadow-lg"
+                  className="bg-white/15 backdrop-blur-sm cursor-pointer hover:bg-white/25 text-white text-sm px-5 py-2.5 rounded-xl transition-all duration-300 border border-white/30 hover:border-white/50 font-medium hover:shadow-lg"
                 >
                   Enroll Now
                 </button>

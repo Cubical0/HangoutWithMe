@@ -7,11 +7,11 @@ import {
   Mail, 
   Send,
   MessageCircle,
-  Globe,
-  Linkedin,
+  Instagram,
   Twitter,
   ChevronDown
 } from 'lucide-react';
+import { IconBrandDiscord } from '@tabler/icons-react';
 
 const LabelInputContainer = ({
   children,
@@ -90,21 +90,18 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="pt-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-black-400 via-white to-black-400 bg-clip-text text-transparent">
               Get In Touch
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
-            </p>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-20 px-4">
+      <section className="py-2 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8">
             
@@ -130,28 +127,31 @@ export default function ContactPage() {
                 <h3 className="text-lg font-bold text-white mb-4">Connect With Us</h3>
                 <div className="flex gap-3">
                   <a 
-                    href="#" 
+                    href="https://x.com/hangoutcodex?s=21" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/10 border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/20 transition-all duration-200"
+                    aria-label="Follow us on X (Twitter)"
                   >
                     <Twitter className="h-5 w-5" />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://www.instagram.com/hangoutcodex?igsh=MXBta2JuZHRuYjdnNQ%3D%3D&utm_source=qr" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/10 border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/20 transition-all duration-200"
+                    aria-label="Follow us on Instagram"
                   >
-                    <Linkedin className="h-5 w-5" />
+                    <Instagram className="h-5 w-5" />
                   </a>
                   <a 
-                    href="#" 
+                    href="https://discord.gg/hangoutcodex" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/10 border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/20 transition-all duration-200"
+                    aria-label="Join our Discord server"
                   >
-                    <Globe className="h-5 w-5" />
-                  </a>
-                  <a 
-                    href="#" 
-                    className="p-3 rounded-xl bg-white/10 border border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/20 transition-all duration-200"
-                  >
-                    <MessageCircle className="h-5 w-5" />
+                    <IconBrandDiscord className="h-5 w-5" />
                   </a>
                 </div>
               </div>
@@ -246,13 +246,42 @@ export default function ContactPage() {
                   </LabelInputContainer>
 
                   {/* Submit Button */}
-                  <button
-                    className="group/btn relative block h-12 w-full rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 hover:from-pink-600 hover:via-purple-600 hover:to-orange-600 font-medium text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message →'}
-                  </button>
+                 <button
+  type="submit"
+  disabled={isSubmitting}
+  className="relative group w-full h-12 rounded-2xl overflow-hidden select-none
+  bg-gradient-to-b from-white/10 via-white/5 to-transparent
+  backdrop-blur-2xl border border-white/10
+  text-white font-semibold tracking-wider uppercase
+  shadow-[inset_0_1px_2px_rgba(255,255,255,0.2),0_8px_32px_rgba(0,0,0,0.45)]
+  transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]
+  hover:shadow-[inset_0_1px_2px_rgba(255,255,255,0.3),0_0_40px_rgba(255,255,255,0.15)]
+  hover:border-white/20 hover:scale-[1.015]
+  active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  {/* Dynamic reflective sweep */}
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent
+  translate-x-[-120%] group-hover:translate-x-[120%]
+  transition-transform duration-[1800ms] ease-[cubic-bezier(0.77,0,0.175,1)]" />
+
+  {/* Glass top reflection */}
+  <span className="absolute top-0 left-0 right-0 h-1/2 
+  bg-gradient-to-b from-white/20 to-transparent opacity-40" />
+
+  {/* Soft radial glow center */}
+  <span className="absolute inset-0 bg-radial-gradient 
+  from-white/10 via-transparent to-transparent opacity-10 group-hover:opacity-20 transition-opacity duration-700" />
+
+  {/* Subtle outline glow */}
+  <span className="absolute inset-0 rounded-2xl border border-white/10 shadow-[inset_0_0_10px_rgba(255,255,255,0.1)]" />
+
+  {/* Floating reflection shimmer */}
+  <span className="absolute bottom-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-700 blur-sm" />
+
+  {/* Button text */}
+  <span className="relative z-10">{isSubmitting ? 'Sending…' : 'Send Message →'}</span>
+</button>
+
 
                   {/* Status Messages */}
                   {submitStatus === 'success' && (
@@ -273,72 +302,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-white/70 text-lg">Quick answers to common questions</p>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              {
-                question: "What are your response times?",
-                answer: "We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call us directly."
-              },
-              {
-                question: "Do you offer technical support?",
-                answer: "Yes! Our technical support team is available Monday-Friday, 9am-6pm PST. Premium members get 24/7 priority support."
-              },
-              {
-                question: "Can I schedule a consultation?",
-                answer: "Absolutely! Use the contact form above to request a consultation, and we'll reach out to schedule a time that works for you."
-              },
-              {
-                question: "Where are you located?",
-                answer: "Our headquarters is in San Francisco, CA, but we serve clients globally through our online platform."
-              },
-              {
-                question: "What payment methods do you accept?",
-                answer: "We accept all major credit cards, PayPal, and bank transfers. For enterprise clients, we also offer invoice-based billing."
-              },
-              {
-                question: "Do you offer refunds?",
-                answer: "Yes, we offer a 30-day money-back guarantee on all our services. If you're not satisfied, contact us for a full refund."
-              }
-            ].map((faq, index) => (
-              <div 
-                key={index} 
-                className="rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden transition-all duration-300"
-              >
-                <button
-                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                  className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-all duration-200"
-                >
-                  <h3 className="text-lg font-bold text-white pr-4">{faq.question}</h3>
-                  <ChevronDown 
-                    className={`h-5 w-5 text-purple-400 flex-shrink-0 transition-transform duration-300 ${
-                      openFaqIndex === index ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaqIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="px-6 pb-6">
-                    <p className="text-white/70 leading-relaxed">{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
