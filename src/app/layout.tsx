@@ -153,12 +153,6 @@ export default function RootLayout({
           {children}
         </ConditionalLayout>
 
-        {/* Mixpanel - deferred to end of body for non-blocking load */}
-        <script
-          src="/assets/mixpanel-init.js"
-          async
-          defer
-        />
       </body>
     </html>
   );
