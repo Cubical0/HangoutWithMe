@@ -208,3 +208,74 @@ export function generateWebsiteSchema() {
     },
   };
 }
+
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
+    sameAs: [
+      'https://discord.com/invite/hangoutcodex',
+      'https://twitter.com/HangoutCodex',
+    ],
+    foundingDate: '2024',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      url: `${SITE_URL}/contact`,
+    },
+  };
+}
+
+export function generateServiceSchema(services: { name: string; description: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'HangoutCodex Services',
+    description: 'Comprehensive enterprise solutions with advanced AI technologies, trading tools, and development services.',
+    provider: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+    },
+    areaServed: 'Worldwide',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'HangoutCodex Services',
+      itemListElement: services.map((service, index) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name,
+          description: service.description,
+        },
+        position: index + 1,
+      })),
+    },
+  };
+}
+
+export function generateCourseSchema(courses: { name: string; description: string; url?: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'HangoutCodex Courses',
+    description: 'Expert-led e-commerce and trading courses.',
+    itemListElement: courses.map((course, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Course',
+        name: course.name,
+        description: course.description,
+        url: course.url || SITE_URL,
+        provider: {
+          '@type': 'Organization',
+          name: SITE_NAME,
+        },
+      },
+    })),
+  };
+}

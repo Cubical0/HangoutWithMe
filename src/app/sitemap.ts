@@ -4,7 +4,7 @@ import { blogPosts, categories, tags } from '@/lib/blog';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://hangoutcodex.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
+  const routes: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
       lastModified: new Date(),
@@ -68,28 +68,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Add blog posts
-  const blogRoutes = blogPosts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt || post.publishedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+  if (Array.isArray(blogPosts)) {
+    const blogRoutes = blogPosts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt || post.publishedAt),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }));
+    routes.push(...blogRoutes);
+  }
 
   // Add category pages
-  const categoryRoutes = categories.map((category) => ({
-    url: `${SITE_URL}/blog/category/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
+  if (Array.isArray(categories)) {
+    const categoryRoutes = categories.map((category) => ({
+      url: `${SITE_URL}/blog/category/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }));
+    routes.push(...categoryRoutes);
+  }
 
   // Add tag pages
-  const tagRoutes = tags.map((tag) => ({
-    url: `${SITE_URL}/blog/tag/${tag.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
+  if (Array.isArray(tags)) {
+    const tagRoutes = tags.map((tag) => ({
+      url: `${SITE_URL}/blog/tag/${tag.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }));
+    routes.push(...tagRoutes);
+  }
 
-  return [...routes, ...blogRoutes, ...categoryRoutes, ...tagRoutes];
+  return routes;
 }

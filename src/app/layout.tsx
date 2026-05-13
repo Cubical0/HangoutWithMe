@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { generateWebsiteSchema } from "@/lib/seo";
+import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Clarity from "@/components/analytics/Clarity";
@@ -17,8 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://hangoutcodex.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://hangoutcodex.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "HangoutCodex - Build, Trade, Innovate | Trading, E-commerce & Development",
     template: "%s | HangoutCodex",
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://hangoutcodex.com",
+    url: SITE_URL,
     siteName: "HangoutCodex",
     title: "HangoutCodex - Build, Trade, Innovate | Trading, E-commerce & Development",
     description: "Join 100K+ hustlers, traders & founders at HangoutCodex. Master crypto trading, e-commerce, dropshipping, SaaS development, and connect with 100+ investors.",
@@ -87,10 +89,13 @@ export const metadata: Metadata = {
     images: ["/og-default.png"],
   },
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
     types: {
       "application/rss+xml": [{ url: "/feed.xml", title: "HangoutCodex RSS Feed" }],
     },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
   },
 };
 
@@ -100,9 +105,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const websiteSchema = generateWebsiteSchema();
+  const organizationSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         {/* Performance Optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,10 +123,22 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
+
         {/* Analytics */}
         <GoogleAnalytics />
         <Clarity />
