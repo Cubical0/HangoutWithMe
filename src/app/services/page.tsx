@@ -3,7 +3,7 @@ import { ServicesGrid } from '@/components/sections/services/ServicesGrid';
 import ServicesHero from '@/components/sections/services/ServicesHero';
 import ContactUs from '@/components/sections/home/ContactUs';
 import { services } from '@/lib/data/services';
-import { generateServiceSchema } from '@/lib/seo';
+import { generateServiceSchema, generateWebPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Our Services - ERP, DevOps, AI & Enterprise Solutions | HangoutCodex',
@@ -61,12 +61,23 @@ export default function Services() {
   const serviceSchema = generateServiceSchema(
     services.map(s => ({ name: s.category, description: s.description }))
   );
+  const webpageSchema = generateWebPageSchema(
+    'Our Services - ERP, DevOps, AI & Enterprise Solutions | HangoutCodex',
+    'Enterprise-grade technology services including ERP solutions, DevOps, healthcare tech, network security, Voice AI, NLP, micro-services architecture, and digital marketing solutions.',
+    'https://hangoutcodex.com/services'
+  );
 
   return (
     <main className="min-h-screen bg-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        id="schema-services"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
+        id="schema-webpage"
       />
       <ServicesHero />
       <ServicesGrid/>

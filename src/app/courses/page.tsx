@@ -5,6 +5,7 @@ import CoursesGrid from '@/components/sections/courses/CoursesGrid';
 import LearningPath from '@/components/sections/courses/LearningPath';
 import ContactUs from '@/components/sections/home/ContactUs';
 import PaymentNotification from '@/components/sections/courses/PaymentNotification';
+import { generateCourseSchema, generateWebPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'E-commerce Courses - Dropshipping, SaaS & Affiliate Marketing | HangoutCodex',
@@ -58,18 +59,45 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Courses() {
-  return (
-    <div className="min-h-screen bg-black">
-      {/* Payment Notification */}
-      <Suspense fallback={null}>
-        <PaymentNotification />
-      </Suspense>
+const courseItems = [
+  { name: 'Dropshipping & Dropservicing', description: 'Learn how to build and scale a dropshipping business from scratch with expert mentorship and real-time case studies.', url: 'https://hangoutcodex.com/courses' },
+  { name: 'Affiliate Marketing', description: 'Master affiliate marketing strategies to generate passive income and build a sustainable online business.', url: 'https://hangoutcodex.com/courses' },
+  { name: 'SaaS Development', description: 'Comprehensive SaaS development course covering architecture, deployment, and scaling SaaS products.', url: 'https://hangoutcodex.com/courses' },
+  { name: 'Digital Business Training', description: 'Complete digital business training covering online store setup, marketing, and business operations.', url: 'https://hangoutcodex.com/courses' },
+  { name: 'E-commerce Launchpad', description: 'Launch your e-commerce venture with expert guidance, 24/7 support, and funding opportunities.', url: 'https://hangoutcodex.com/courses' },
+];
 
-      <CoursesHero />
-      <CoursesGrid />
-      <LearningPath />
-      <ContactUs />
-    </div>
+export default function Courses() {
+  const courseSchema = generateCourseSchema(courseItems);
+  const webpageSchema = generateWebPageSchema(
+    'E-commerce Courses - Dropshipping, SaaS & Affiliate Marketing | HangoutCodex',
+    'Master e-commerce with expert courses in dropshipping, dropservicing, affiliate marketing, SaaS development, and digital business.',
+    'https://hangoutcodex.com/courses'
+  );
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+        id="schema-courses"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
+        id="schema-webpage"
+      />
+      <main className="min-h-screen bg-black">
+        {/* Payment Notification */}
+        <Suspense fallback={null}>
+          <PaymentNotification />
+        </Suspense>
+
+        <CoursesHero />
+        <CoursesGrid />
+        <LearningPath />
+        <ContactUs />
+      </main>
+    </>
   );
 }

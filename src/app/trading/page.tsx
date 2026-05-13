@@ -4,6 +4,7 @@ import TradingHero from '@/components/sections/trading/TradingHero';
 import TrustedBy from '@/components/sections/trading/TrustedBy';
 import QuickStartCTA from '@/components/sections/home/QuickStartCTA';
 import PaymentNotification from '@/components/sections/trading/PaymentNotification';
+import { generateWebPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Crypto Trading Hub - Signals, Mentorship & Market Analysis | HangoutCodex',
@@ -59,20 +60,33 @@ export const metadata: Metadata = {
 };
 
 export default function Trading() {
+  const webpageSchema = generateWebPageSchema(
+    'Crypto Trading Hub - Signals, Mentorship & Market Analysis | HangoutCodex',
+    'Professional crypto trading platform with real-time signals, expert mentorship, and advanced market analysis. Join 100K+ traders.',
+    'https://hangoutcodex.com/trading'
+  );
+
   return (
-    <main className="min-h-screen bg-black">
-      {/* Payment Notification */}
-      <Suspense fallback={null}>
-        <PaymentNotification />
-      </Suspense>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
+        id="schema-webpage"
+      />
+      <main className="min-h-screen bg-black">
+        {/* Payment Notification */}
+        <Suspense fallback={null}>
+          <PaymentNotification />
+        </Suspense>
 
-      <TradingHero />
-      {/* <MarketOverview /> */}
-            {/* <FeaturesOverview /> */}
-      
-      <QuickStartCTA />
+        <TradingHero />
+        {/* <MarketOverview /> */}
+              {/* <FeaturesOverview /> */}
+        
+        <QuickStartCTA />
 
-      <TrustedBy />
-    </main>
+        <TrustedBy />
+      </main>
+    </>
   );
 }

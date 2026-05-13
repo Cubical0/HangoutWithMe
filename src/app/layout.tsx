@@ -5,7 +5,7 @@ import { generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Clarity from "@/components/analytics/Clarity";
-import Mixpanel from "@/components/analytics/Mixpanel";
+import JsonLd from "@/components/seo/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -90,6 +90,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      "en": SITE_URL,
+      "x-default": SITE_URL,
+    },
     types: {
       "application/rss+xml": [{ url: "/feed.xml", title: "HangoutCodex RSS Feed" }],
     },
@@ -97,7 +101,15 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "",
   },
+  other: {
+    "theme-color": "#000000",
+  },
 };
+
+// Default breadcrumb for homepage - page-specific breadcrumbs override this in child pages
+const breadcrumbItems = [
+  { name: "Home", url: SITE_URL },
+];
 
 export default function RootLayout({
   children,
@@ -108,25 +120,19 @@ export default function RootLayout({
   const organizationSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" itemScope itemType="https://schema.org/WebPage">
       <head>
-        {/* Performance Optimization */}
+        {/* Performance Optimization - Preconnect to critical origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://clarity.ms" />
         <link rel="dns-prefetch" href="https://api.mixpanel.com" />
         <link rel="dns-prefetch" href="https://discord.com" />
-        
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+
+        {/* Global Structured Data - Organization + Website */}
+        <JsonLd schema={websiteSchema} id="schema-website" />
+        <JsonLd schema={organizationSchema} id="schema-organization" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
@@ -139,14 +145,20 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        {/* Analytics */}
+        {/* Analytics - deferred for performance */}
         <GoogleAnalytics />
         <Clarity />
-        <Mixpanel />
-        
+
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
+
+        {/* Mixpanel - deferred to end of body for non-blocking load */}
+        <script
+          src="/assets/mixpanel-init.js"
+          async
+          defer
+        />
       </body>
     </html>
   );

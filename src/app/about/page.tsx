@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import AboutPageClient from '@/components/pages/AboutPageClient';
+import { generateWebPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'About Us - HangoutCodex | Empowering Traders, Entrepreneurs & Developers',
@@ -50,5 +51,20 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutPageClient />;
+  const webpageSchema = generateWebPageSchema(
+    'About Us - HangoutCodex | Empowering Traders, Entrepreneurs & Developers',
+    'Empowering 100K+ traders, entrepreneurs, and businesses with AI-powered solutions, expert mentorship, and cutting-edge technology.',
+    'https://hangoutcodex.com/about'
+  );
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
+        id="schema-webpage"
+      />
+      <AboutPageClient />
+    </>
+  );
 }

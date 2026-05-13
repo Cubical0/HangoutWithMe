@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import FundraiserHero from '@/components/sections/fundraiser/FundraiserHero';
 import FundraiserServices from '@/components/sections/fundraiser/FundraiserServices';
+import { generateWebPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Startup Fundraising - Connect with 100+ Investors | HangoutCodex',
@@ -55,10 +56,23 @@ export const metadata: Metadata = {
 };
 
 export default function Fundraiser() {
+  const webpageSchema = generateWebPageSchema(
+    'Startup Fundraising - Connect with 100+ Investors | HangoutCodex',
+    'Raise startup funds and connect with 100+ investors. Get mentor support, pitch deck review, and global exposure.',
+    'https://hangoutcodex.com/fundraiser'
+  );
+
   return (
-    <main className="min-h-screen bg-black">
-      <FundraiserHero />
-      <FundraiserServices />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
+        id="schema-webpage"
+      />
+      <main className="min-h-screen bg-black">
+        <FundraiserHero />
+        <FundraiserServices />
+      </main>
+    </>
   );
 }

@@ -129,72 +129,11 @@ export function generateTagMetadata(tag: BlogTag): Metadata {
 }
 
 // JSON-LD Schema generators
-export function generateArticleSchema(post: BlogPost) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    image: `${SITE_URL}${post.thumbnail}`,
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      description: post.author.bio,
-      image: `${SITE_URL}${post.author.avatar}`,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
-      },
-    },
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt || post.publishedAt,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${post.slug}`,
-    },
-    articleSection: post.category,
-    keywords: post.tags.join(', '),
-    wordCount: post.content.replace(/<[^>]*>/g, '').split(/\s+/).length,
-    timeRequired: `PT${post.readingTime}M`,
-  };
-}
-
-export function generateBreadcrumbSchema(items: { name: string; url: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
-  };
-}
-
-export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
-}
-
 export function generateWebsiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
@@ -206,6 +145,9 @@ export function generateWebsiteSchema() {
       },
       'query-input': 'required name=search_term_string',
     },
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
   };
 }
 
@@ -213,47 +155,158 @@ export function generateOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/icon-512.png`,
+    image: `${SITE_URL}/og-default.png`,
     sameAs: [
       'https://discord.com/invite/hangoutcodex',
       'https://twitter.com/HangoutCodex',
+      'https://www.linkedin.com/company/hangoutcodex',
     ],
     foundingDate: '2024',
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
       url: `${SITE_URL}/contact`,
+      email: 'support@hangoutcodex.com',
     },
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'IN',
+    },
+  };
+}
+
+export function generateBreadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${SITE_URL}/#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+export function generateLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_URL}/#localbusiness`,
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon-512.png`,
+    image: `${SITE_URL}/og-default.png`,
+    telephone: '',
+    email: 'support@hangoutcodex.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'IN',
+    },
+    sameAs: [
+      'https://discord.com/invite/hangoutcodex',
+      'https://twitter.com/HangoutCodex',
+      'https://www.linkedin.com/company/hangoutcodex',
+    ],
+    foundingDate: '2024',
+    areaServed: 'Worldwide',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        url: `${SITE_URL}/contact`,
+        email: 'support@hangoutcodex.com',
+        availableLanguage: ['English'],
+      },
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        url: `${SITE_URL}/contact`,
+        email: 'support@hangoutcodex.com',
+        availableLanguage: ['English'],
+      },
+    ],
+  };
+}
+
+export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${SITE_URL}/#faq`,
+    name: 'Frequently Asked Questions - HangoutCodex',
+    description: 'Common questions about our trading, e-commerce, and development platform.',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function generateArticleSchema(post: BlogPost) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${SITE_URL}/blog/${post.slug}#article`,
+    headline: post.title,
+    description: post.description,
+    image: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}${post.thumbnail}`,
+    },
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+      description: post.author.bio,
+      image: post.author.avatar ? `${SITE_URL}${post.author.avatar}` : undefined,
+    },
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/blog/${post.slug}`,
+    },
+    articleSection: post.category,
+    keywords: post.tags.join(', '),
+    wordCount: post.content ? post.content.replace(/<[^>]*>/g, '').split(/\s+/).length : 0,
+    timeRequired: `PT${post.readingTime}M`,
   };
 }
 
 export function generateServiceSchema(services: { name: string; description: string }[]) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Service',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/services#services`,
     name: 'HangoutCodex Services',
     description: 'Comprehensive enterprise solutions with advanced AI technologies, trading tools, and development services.',
-    provider: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-    },
-    areaServed: 'Worldwide',
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'HangoutCodex Services',
-      itemListElement: services.map((service, index) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service.name,
-          description: service.description,
+    url: `${SITE_URL}/services`,
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Service',
+        name: service.name,
+        description: service.description,
+        provider: {
+          '@id': `${SITE_URL}/#organization`,
         },
-        position: index + 1,
-      })),
-    },
+      },
+    })),
   };
 }
 
@@ -261,8 +314,10 @@ export function generateCourseSchema(courses: { name: string; description: strin
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
+    '@id': `${SITE_URL}/courses#courses`,
     name: 'HangoutCodex Courses',
-    description: 'Expert-led e-commerce and trading courses.',
+    description: 'Expert-led e-commerce and trading courses for entrepreneurs and traders.',
+    url: `${SITE_URL}/courses`,
     itemListElement: courses.map((course, index) => ({
       '@type': 'ListItem',
       position: index + 1,
@@ -270,12 +325,38 @@ export function generateCourseSchema(courses: { name: string; description: strin
         '@type': 'Course',
         name: course.name,
         description: course.description,
-        url: course.url || SITE_URL,
+        url: course.url || `${SITE_URL}/courses`,
         provider: {
-          '@type': 'Organization',
-          name: SITE_NAME,
+          '@id': `${SITE_URL}/#organization`,
         },
+        offers: {
+          '@type': 'Offer',
+          category: 'Paid',
+          priceCurrency: 'USD',
+        },
+        educationalCredentialAwarded: 'Certificate of Completion',
       },
     })),
+  };
+}
+
+export function generateWebPageSchema(pageName: string, pageDescription: string, canonicalUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    name: pageName,
+    description: pageDescription,
+    url: canonicalUrl,
+    isPartOf: {
+      '@id': `${SITE_URL}/#website`,
+    },
+    breadcrumb: {
+      '@id': `${SITE_URL}/#breadcrumb`,
+    },
+    inLanguage: 'en-US',
+    about: {
+      '@id': `${SITE_URL}/#organization`,
+    },
   };
 }
